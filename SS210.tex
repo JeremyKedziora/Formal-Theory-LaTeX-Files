@@ -1,0 +1,4615 @@
+\documentclass[12pt]{article}
+\usepackage{fancyhdr,amsmath,amssymb,amssymb,amsthm,setspace,graphicx,endfloat,dsfont}
+
+%call this line to use the strategic game form package!!!
+\usepackage{sgame,color}
+
+%call this line to use the extensive game form package!!!  Note you actually don't need pstcol - but you do need to be texing in Tex and Ghostscript under Typeset, since pstricks is incompatible with pdflatex
+\usepackage{pstricks,egameps}
+%\usepackage{pstricks,pstcol,egameps}
+%\usepackage{pstcol,egameps}
+
+\newtheorem{propo}{Proposition}[section]
+\newtheorem{theo}[propo]{Theorem}
+\newtheorem{lemmo}[propo]{Lemma}
+\newtheorem{coro}[propo]{Corollary}
+\newtheorem{claimo}[propo]{Claim}
+
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+
+\textheight=8.75in
+\textwidth=6in
+\voffset=-.65in
+\hoffset=-.25in
+
+\newcommand{\n}{\noindent}
+\newcommand{\s}{\vspace{5mm}}
+
+
+
+\begin{document}
+\pagestyle{plain}
+
+\title{SS210c \\
+Lecture Notes}
+
+\date{\today}
+\maketitle
+
+\thispagestyle{empty}
+\tableofcontents
+
+\thispagestyle{empty}
+\mbox{ }
+
+\newpage
+
+%\thispagestyle{empty}
+%\mbox{ }
+
+%\newpage
+
+
+\setcounter{page}{1}
+
+\section{Social Choice Framework}
+
+\n A \textit{social choice problem} is $(N,X,(P_1,R_1),\hdots,(P_n,R_n))$ where
+\begin{itemize}
+\item $N$ is a finite set of individuals (``voters")
+\item $X$ is a set of alternatives
+\item $P_i$ is asymmetric and negative transitive
+\item $R_i$ is complete and transitive
+\item $P_i$ and $R_i$ are dual, i.e. $\forall x,y\in X, xP_iy \Longleftrightarrow \mbox{ not }yR_ix$
+\end{itemize}
+
+\s
+
+\n Let $P$ and $R$ be majority preference relations:\marginpar{\tiny Define linear orders, note $n$ odd and linear orders $\Rightarrow$ no majority ties.} 
+\begin{eqnarray*}
+xPy&\Longleftrightarrow&\#\{i\in N\mid xP_iy\}>\frac{n}{2}\\
+xRy&\Longleftrightarrow&\#\{i\in N\mid xP_iy\}\geq\frac{n}{2}.
+\end{eqnarray*}(More generally, we can define $P$ and $R$ by arbitrary collections $\mathcal{W}$ and $\mathcal{B}$ of winning and blocking coalitions.)
+
+\s
+
+\n Let the \textit{core} be:
+\begin{eqnarray*}
+K&=&\{x\in X\mid \forall y\in X, \mbox{ not }yPx\}=\{x\in X\mid\forall y\in X, xRy\}.
+\end{eqnarray*}
+
+\s
+
+\n Emptiness of the core in many environments leads us to put more structure on the problem.  We looked at static models of elections in SS210a.  Now we consider dynamic models of committees.
+
+\section{Voting Games with Two Alternatives}
+
+\n First, suppose there are two alternatives, $x$ (the default) and $y$. Consider the following strategic game form:\marginpar{\tiny Give a general description of $G$ first, $s=(s_1,\hdots,s_n)$, $s_{-i}$, $(s_i,s_{-i})$.}
+\begin{eqnarray*}
+G&=&(N,X,S_1,\hdots,S_n,g)
+\end{eqnarray*}
+\begin{eqnarray*}
+&&\begin{array}{ccccc}
+S_i=\{x,y\},&&S=\prod_{i\in N}S_i,&&g:S\longrightarrow X\\
+\end{array}
+\end{eqnarray*}
+\begin{eqnarray*}
+g(s_1,\hdots,s_n)&=&\left\{\begin{array}{cc}
+x&\mbox{ if }\#\{i\in N\mid s_i=x\}\geq\frac{n}{2}\\
+&\\
+y&\mbox{ if }\#\{i\in N\mid s_i=y\}>\frac{n}{2}
+\end{array}\right..
+\end{eqnarray*} 
+\s
+
+\n Then: $(\overbrace{N,X,S_1\hdots,S_N,g}^G,(P_1,R_1),\hdots,(P_n,R_n))$ defines a strategic form game where:
+\begin{eqnarray*}
+s>_is^{\prime}&\Longleftrightarrow&g(s)P_ig(s^{\prime})\\
+s\geq_is^{\prime}&\Longleftrightarrow&g(s)R_ig(s^{\prime}).\\
+\end{eqnarray*}
+
+\n If $n\geq 3$ then $(x,\hdots,x)$ and $(y,\hdots,y)$ are Nash equilibria, so $x$ and $y$ are both Nash outcomes.\marginpar{\tiny Define Nash.}
+
+\s
+
+\n If $xR_iy$, then $x$ is a dominant strategy.  If $xP_iy$, then $x$ weakly dominates $y$, so $x$ is the only undominated strategy for $i$.\marginpar{\tiny Define dominant strategy and IEWDS.  See 4/10/03 p. 1.}  
+
+\noindent\begin{propo}\mbox{}
+\begin{enumerate}
+\item $s$ is a dominant strategy equilibrium $\Longleftrightarrow \forall i\in N, xP_iy\Rightarrow s_i=x \mbox{ and } yP_ix\Rightarrow s_i=y$.
+\item $x$ is a dominant strategy equilibrium outcome $\Longleftrightarrow xRy$.
+\item $y$ is a dominant strategy equilibrium outcome $\Longleftrightarrow \#\{i\in N\mid yR_ix\}>\frac{n}{2}$.
+\end{enumerate}
+\end{propo}
+\s
+\n NOTE: if $n$ is odd, then $\#\{i\in N\mid yR_ix\}>\frac{n}{2}$ is equivalent to $yRx$.
+
+\s
+\n\marginpar{\tiny Uniqueness follows from linear preferences - $n$ odd not needed.}\begin{coro} Assume $n$ is odd and each $(P_i,R_i)$ is linear.  Then there is a unique dominant strategy equilibrium outcome, $x_{DS}$:
+\begin{eqnarray*}
+x_{DS}&=&\left\{\begin{array}{cc}
+x&\mbox{ if }xPy\\
+y&\mbox{ if }yPx\\
+\end{array}\right..
+\end{eqnarray*}
+\end{coro}
+
+\s
+\n\begin{propo} $s$ survives Iterated Elimination of Weakly Dominated Strategies (IEWDS) for all orders $\Longleftrightarrow \forall i \in N, xP_iy\Rightarrow s_i=x$ and $yP_ix\Rightarrow s_i=y$.
+\end{propo}
+
+\s
+\n Such profiles are equivalent to dominant strategy equilibria.  There may also be other profiles that survive IEWDS from some orders. Let $n=3$ and consider:
+\begin{eqnarray*}
+\begin{array}{ccc}
+\underline{1}&\underline{2}&\underline{3}\\
+y&x&x\\
+x&y&y\\
+\end{array}
+\end{eqnarray*}
+Eliminate $y$ for $2$, $y$ for $3$, and then $1$ is indifferent between $x$ and $y$, so $(x,x,x)$ survives IEWDS for some orders.  But the outcome is still the majority preferred alternative...
+
+\s
+\n\begin{propo}\mbox{}
+\begin{enumerate}
+\item $x$ is an IEWDS outcome for some order $\Longleftrightarrow xRy$.
+\item $y$ is an IEWDS outcome for some order $\Longleftrightarrow \#\{i\in N\mid yR_ix\}>\frac{n}{2}$.
+\end{enumerate}
+\end{propo}
+\begin{proof}  Consider $1$.  $\Leftarrow$ is clear.  Suppose that $yPx$, and let $s$ survive IEWDS for some order of elimination with $s_1^{\prime},\hdots,s_n^{\prime}$.  Note that for all $i$ with $yP_ix$, $y\in s_i^{\prime}$.  If $g(s)=x$, then there exists $i$ with $yP_ix$ such that $s_i=x\in s_i^{\prime}$.  For each $j\neq i$ with $yP_jx$ and $s_j=x$, one at a time, switch $s_j$ to $s_j^{\prime}=y$ until the next switch would produce outcome $y$.  Call that profile $s^{\prime}$.  Then $(s_i^{\prime}s_{-i}^{\prime})>_i(s_i,s_{-i}^{\prime})$, so $s_i^{\prime}$ weakly dominates $s_i=x$, a contradiction.
+\end{proof}
+
+%let me go through this again...
+%\begin{proof}  Consider $1$, and suppose that $x$ is an IEWDS outcome for some order, yet by contradiction, $yPx$.  Let strategy profile $s$ survive IEWDS for some order of elimination.  If $g(s)=x$, then majority rule implies that there exists $i$ with $yP_ix$ such that $s_i=x$.  For each $j\neq i$ with $yP_jx$ and $s_j=x$, one at a time, switch $s_j$ to $s_j^{\prime}=y$ until the next such switch would produce outcome $y$.  Call that profile $s^{\prime}$.  Then $(s_i^{\prime},s^{\prime}_{-i})>_i(s_i,s_{-i}^{\prime})$.  So $s_i^{\prime}$ weakly dominates $s_i=x$, a contradiction.
+%\end{proof}
+
+
+
+\s
+\n\begin{coro}  Assume $n$ is odd and each $(P_i,R_i)$ is linear.  Then there is a unique IEWDS outcome $x_{IE}$:
+\begin{eqnarray*}
+x_{IE}&=&\left\{\begin{array}{cc}
+x&\mbox{ if }xPy\\
+y&\mbox{ if }yPx\\
+\end{array}\right..
+\end{eqnarray*}
+\end{coro}
+
+\s
+\n A finite perfect information extensive game (FPIEG) is $\Gamma=(N,X,A,H,T,I,G)$ where:\marginpar{\tiny $T$ is redundant here.}
+\begin{itemize}
+\item $A$ is the set of possible actions (assumed finite)
+\item $H$ is the set of histories: subsets of sequences $(a_1,\hdots,a_m)\in A^m$ where $m=0,1,\hdots,M$ such that:
+\begin{itemize}
+\item $\emptyset\in H$ ($m=0$)
+\item $(a_1,\hdots,a_m)\in H$ and $k<m\Rightarrow (a_1,\hdots,a_k)\in H$.
+\end{itemize}
+\item $T$ is a set of terminal histories: $(a_1,\hdots,a_m)\in H$ such that $\nexists a\in A$ such that $(a_1,\hdots,a_m,a)\in H$.
+\item $I:H\backslash T\longrightarrow N$ is the player function.
+\item $g:T\longrightarrow X$ is the outcome function.\marginpar{\tiny Use $\gamma$ instead!!!}
+\end{itemize}
+
+\s
+\n A \textit{strategy} for $i$ is $s_i:I^{-1}(i)\longrightarrow A$ such that $\forall h\in I^{-1}(i), (h,s_i(h))\in H$.\marginpar{\tiny Define the action set at $h$.}
+
+\s
+\n Given $h\in H$ and profile $s$, let $H(h,s)$ denote the continuation path from $h$ given $s$:
+\begin{eqnarray*}
+H(h,s)&=&\left(h,s_{I(h)}(h), s_{I(h,s_{I(h)}(h))}(h,s_{I(h)}(h)), \hdots\right)
+\end{eqnarray*} and let:
+\begin{eqnarray*}
+g(h,s)&=&g(H(h,s)).
+\end{eqnarray*}
+
+\s
+\n Then $\left(\Gamma,(P_1,R_1),\hdots,(P_n,R_n)\right)$ defines a FPIEG where preferences over strategies at different histories are given by:
+\begin{eqnarray*}
+s>_i(h)s^{\prime} &\Longleftrightarrow&g(h,s)P_ig(h,s^{\prime})\\
+s\geq_i(h)s^{\prime} &\Longleftrightarrow&g(h,s)R_ig(h,s^{\prime}).
+\end{eqnarray*}
+
+\s
+\n  Then $s$ is a subgame perfect equilibrium if, for all $h\in H\backslash T$ and all $s_i^{\prime}\in S_i$, where $i=I(h)$, $s\geq_i(h) (s_i^{\prime},s_{-i})$.
+
+\s
+\n\begin{theo} (Kuhn)  In every FPIEG, there exists at least one subgame perfect equilibrium.  A profile $s$ is a subgame perfect equilibrium if and only if it is a backward induction profile.  In ``generic" games, there is a unique backward induction profile.  
+\end{theo}
+
+\s
+\n Sequential voting over two alternatives is:
+\begin{itemize}
+\item $X=\{x,y\}$.
+\item $A=\{x,y\}$.
+\item $H=\left(\bigcup_{m=1}^n\{x,y\}^m\right)\bigcup\{\emptyset\}$.
+\item $T=\{x,y\}^n$.
+\item $I(a_1,\hdots,a_m)=m+1$.
+\item 
+\begin{eqnarray*}
+g(a_1,\hdots,a_n)&=&\left\{\begin{array}{cc}
+x &\mbox{ if }\#\{i\in N\mid a_i=x\}\geq\frac{n}{2}\\
+&\\
+y &\mbox{ if }\#\{i\in N\mid a_i=y\}>\frac{n}{2}\\
+\end{array}\right.
+\end{eqnarray*}
+\end{itemize}
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$x$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$y$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$x$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{2}{$x$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{3}{$y$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{3}{$x$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure from 4/03/03 page 1.}\label{f:one}
+\end{figure}
+
+\s
+\n  Even with linear preferences, these games are not generic.  There \textit{can} be multiple subgame perfect equilibria.  
+
+\s
+\n
+\begin{propo}\mbox{}  \begin{enumerate}
+\item $x$ is a subgame perfect equilibrium outcome $\Longleftrightarrow$ $xRy$.
+\item $y$ is a subgame perfect equilibrium outcome $\Longleftrightarrow \#\{i\in N\mid yR_ix\}>\frac{n}{2}$
+\end{enumerate}
+\end{propo}
+\begin{proof}  $(1)$.  If $xRy$, then ``vote for $x$ unless $yP_ix$ in which case vote for $y$" is a subgame perfect equilibrium with outcome $x$.  Now suppose that $s$ is a subgame perfect equilibrium outcome, and suppose that $yPx$.  We prove the contrapositive: ``For all $h=(a_1,\hdots,a_m)\in H$ if
+\begin{eqnarray*}
+\#\{i\in N\mid i\leq m\mbox{ } \& \mbox{ } a_i=y\}+\#\{i\in N\mid i>m \mbox{ } \& \mbox{ } yP_ix\}>\frac{n}{2}
+\end{eqnarray*}
+then the outcome from $h$ given $s$ is $y$, i.e. $g(h,s)=y$" for all $m=0,1,\hdots,n$.  It is clearly true for $m=n$.  Now choose $m>0$ and suppose it is true for $m,m+1,\hdots,n$.  We prove it for $m-1$.  So take $h=(a_1,\hdots,a_{m-1})\in H$ such that:
+\begin{eqnarray*}
+\#\{i\in N\mid i\leq m-1 \mbox{ } \& \mbox{ } yP_ix\}+\#\{i\in N\mid i>m-1 \mbox{ } \& \mbox{ } yP_ix\}>\frac{n}{2}
+\end{eqnarray*} If $\{i\in N\mid i>m-1 \mbox{ } \& \mbox{ } yP_ix\}=\emptyset$, then a majority have already voted for $y$, so $g(h,s)=y$.  Otherwise, let $j=\min\{i\in N\mid i>m-1 \mbox{ } \& \mbox{ } yP_ix\}$, so $yP_jx$.  Take any $a_m^{\prime},\hdots,a_{j-1}^{\prime}\in\{x,y\}$.  Setting $a_j^{\prime}=y$, we have:
+\begin{eqnarray*}
+\#\{i\in N\mid i\leq j\mbox{ } \&\mbox{ } a_i=y\}+\#\{i\in N\mid i>j\mbox{ } \&\mbox{ } yP_ix\}>\frac{n}{2}
+\end{eqnarray*} and so by the induction hypothesis, $g((h,a_m^{\prime},\hdots,a_j^{\prime}),s)=y$.  Since $s_j$ is a best response for $j$ at $(h,a_m^{\prime},\hdots,a_{j-1}^{\prime})$, we must have $g((h,a_m^{\prime},\hdots,a_{j-1}^{\prime}),s)=y$.  Since $a_m^{\prime},\hdots,a_{j-1}^{\prime}$ were chosen arbitrarily, $g(h,s)=y$.  This proves the claim for all $m=0,1,\hdots,n$.  Setting $m=0$, we see that $g(s)=g(\emptyset,s)=y$.  Therefore, $g(s)=x$ implies $xRy$.  $(2)$ is proved similarly.
+\end{proof}
+
+\s
+\n
+\begin{coro}  Assume $n$ is odd and each $(P_i,R_i)$ is linear ($P_i$ total, $R_i$ anti-symmetric).  Then there is a unique backward induction outcome $x_{BI}$:
+\begin{eqnarray*}
+x_{BI}&=&\left\{\begin{array}{cc}
+x&\mbox{ if }xPy\\
+y&\mbox{ if }yPx\\
+\end{array}\right..
+\end{eqnarray*}
+\end{coro}
+
+\s
+\n  So even though we don't have a generic game and we do, in fact, have multiple subgame perfect equilibria, under reasonable conditions there is just one subgame perfect equilibrium outcome.  
+
+\s
+\n What are the connections to dominance concepts?
+
+\s
+\n Converting $\Gamma$ to strategic form, if $n\geq 3$, then profile $s$ given by ``always vote $x$" is Nash, similarly for $y$.  So $x$ and $y$ are both Nash outcomes.
+
+\s
+\n Not all voters will have dominant strategies: in particular, $1$'s best response will depend upon how later voters vote:
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$x$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$y$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$x$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{2}{$x$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{3}{$y$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{3}{$x$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the left from 4/03/03 page 4.}\label{f:two}
+\end{figure}
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+%player 1's left branch
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$x$}
+
+%player 1's right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$y$}
+
+%player 2's left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$x$} 
+
+%player 2's left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%player 2's right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{2}{$x$}
+
+%player 2's right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%player 3's right/right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's right/right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{3}{$y$}[$x$]
+
+%player 3's right/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's right/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%player 3's left/right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's left/right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%player 3's left/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{3}{$x$}[$y$]
+
+%player 3's left/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the right from 4/03/03 page 4.}\label{f:three}
+\end{figure}
+
+\s
+\n Backward induction in the sequential voting game corresponds to an order of IEWDS, so every backward induction strategy profile survives IEWDS for some order.  (This is not true for general FPIE games.)
+
+\s
+\n But not all backward induction profiles survive IEWDS for all orders:
+\begin{eqnarray*}
+\begin{array}{ccc}
+\underline{1}&\underline{2}&\underline{3}\\
+y&x&x\\
+x&y&y\\
+\end{array}
+\end{eqnarray*}
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+%player 1's right branch
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$x$}
+
+%player 1's left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$y$}
+
+%player 2's left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$x$} 
+
+%player 2's left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%player 2's right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{2}{$x$}
+
+%player 2's right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{2}{$y$} 
+
+%player 3's right/right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's right/right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{3}{$y$}[$x$]
+
+%player 3's right/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's right/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%player 3's left/right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's left/right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%player 3's left/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{3}{$x$}[$y$]
+
+%player 3's left/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom from 4/03/03 page 4.}\label{f:four}
+\end{figure}
+
+\n Here, voting $x$ is weakly dominated for $1$, but $(x,xx,xxx)$ is a backward induction profile.
+
+\s
+\n  In fact, there is \textit{no} backward induction profile that generally survives IEWDS for all orders.  Defining $s^*$ by ``always" vote for my favorite alternative, even $s_i^*$ can be eliminated for some $i$.  \marginpar{\tiny$4$ backward induction profiles: $(x,xx,xx)$, $(x,yx,xx)$, $(y,xx,xx)$, and $(y,yx,xx)$.}
+\begin{eqnarray*}
+\begin{array}{ccc}
+\underline{1}&\underline{2}&\underline{3}\\
+x&x&x\\
+y&y&y\\
+\end{array}
+\end{eqnarray*}
+
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+%player 1's right branch
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$x$}
+
+%player 1's left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$y$}
+
+%player 2's left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$x$} 
+
+%player 2's left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$y$}[$y$]
+
+%player 2's right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{2}{$x$}[$x$]
+
+%player 2's right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{2}{$y$}
+
+
+
+
+%player 3's right/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's right/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+%player 3's left/right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x$}[$x$]
+
+%player 3's left/right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$y$}[$y$]
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure in the middle of 4/03/03 page 5.}\label{f:five}
+\end{figure}
+
+\n Here we simplify the voting game by removing two of $3$'s nodes.
+
+%The code for a strategic game matrix...
+\def\sgtextcolor{black}%
+\def\sglinecolor{black}%
+
+\begin{figure}[htb]\hspace*{\fill}%
+%still need to figure out how to make lines go through these damn strategic games!!!
+\begin{game}{4}{4}[$2$'s strategies][$3$'s strategies][$1$ votes $x$]
+& $xx$ & $xy$ & $yx$ & $yy$\\
+$xx$ &$1^*$ &$1$&$1^*$&$1$\\
+$xy$ &$1$ &$1$&$1$&$1$\\
+$yx$ &$1^*$ &$1$&$0^*$&$0$\\
+$yy$ &$1$ &$1$&$0$&$0$\\
+\end{game}\hspace*{5mm}%
+\begin{game}{4}{4}[][$3$'s strategies][$1$ votes $y$]
+& $xx$ & $xy$ & $yx$ & $yy$\\
+$xx$ &$1^*$ &$0$&$1^*$&$0$\\
+$xy$ &$0$ &$0$&$0$&$0$\\
+$yx$ &$1^*$ &$0$&$1^*$&$0$\\
+$yy$ &$0$ &$0$&$0$&$0$\\
+\end{game}\hspace*{\fill}%
+\caption[]{Figure on the bottom of 4/03/03 page 5.}\label{f:six}
+\end{figure}
+
+\s
+\n  Since voters all have the same preferences, we just write in one payoff.  In the first round of elimination, remove $xy$ and $yy$ for both $2$ and $3$.  Then $y$ weakly dominates $x$ for player 1!\marginpar{\tiny  Eliminate all but $xx$ for $3$.  Then voting $x$ weakly dominates $y$ for $1$.}
+
+\s
+\n\begin{propo}  Assume $n$ is odd and each $(P_i,R_i)$ is linear.  Then there is an order of elimination such that IEWDS (in that order) leaves exactly the backward induction strategy profiles.
+\end{propo}
+\begin{proof}  Let $s$ be a backward induction profile.  Let:
+\begin{eqnarray*}L_n&=&\left\{h\in H^{n-1} \mid g(h,x)\neq g(h,y) \right\}
+\end{eqnarray*} denote the ``live" histories for $n$.  Then $s_n^{\prime}$ is a backward induction strategy for $n$ if and only if $\forall h\in L_n$, $s^{\prime}_n=s_n(h)$.  If $s_n^{\prime}(h)\neq s_n(h)$ for some $h\in L_n$, then $s_n$ weakly dominates $s_n^{\prime}$.  Then the set:
+\begin{eqnarray*}
+S^{1}&=&\left\{\widehat{s}\in S\mid \forall h\in L_n, \widehat{s}_n(h)=s_n(h)\right\}
+\end{eqnarray*} is derived from $S$ by eliminating weakly dominated strategies for $n$ and consists exactly of the backward induction strategies for $n$.  Let: 
+\begin{eqnarray*}
+L_{n-1}&=&\left\{h\in H^{n-2}\mid g((h,x),s)\neq g((h,y),s)\right\}
+\end{eqnarray*} be the live nodes for $n-1$.  Note that, for all $h\in L_{n-1}$ and all $\widehat{s}\in S^{1}$,
+\begin{eqnarray*}
+g((h,x),\widehat{s})=g((h,x),s)&\&&g((h,y),\widehat{s})=g((h,y),s)
+\end{eqnarray*} so $s_{n-1}(h)$ is the unique best response to any $\widehat{s}\in S^{1}$.  Thus, $s^{\prime}_{n-1}$ is a backward induction strategy for $n-1$ if and only if $\forall h\in L_{n-1}$, $s^{\prime}_{n-1}(h)=s_{n-1}(h)$.  If $s^{\prime}_{n-1}(h)\neq s_{n-1}(h)$ for some $h\in L_{n-1}$, then $s_{n-1}$ weakly dominates $s_{n-1}^{\prime}$ over $S^{1}$.  Then the set:
+\begin{eqnarray*}
+S^2&=&\left\{\widehat{s}\in S^1\mid \forall h\in L_{n-1}, \widehat{s}_{n-1}(h)=s_{n-1}(h)\right\}
+\end{eqnarray*} is derived from $S^1$ be eliminating weakly dominated strategies for $n-1$, and consists of the backward induction strategies for $n-1$.  We continue in this way to get $S^n\subseteq\hdots\subseteq S^2\subseteq S^1\subseteq S$, where $S^n$ consists of exactly the backward induction profiles.  Note that each $\widehat{s}_i\in S_i^n$ is undominated over $S^n$: at $h\in L_i$, $\widehat{s}_i(h)$ is, by construction, a best response to any $s^{\prime}\in S^n$; at $h\in H^i\backslash L_i$, the outcome is independent of $i$'s vote.  Therefore, $S^n$ is an IEWDS outcome.
+\end{proof}
+
+\s
+\n So there is one order of elimination the produces only the backward induction outcome.  What about others?\marginpar{\tiny Moulin (1979) (only holds for extensive form games of complete information), path of exhaustive reductions, condition ($1$).  $uD_i(\widehat{s})$.}
+
+\s
+\n Given a strategic form game $\left(N,(S_1,u_1),\hdots,(S_n,u_n)\right)$, given $i\in N$, a product set $\widehat{S}\subseteq S$, and $s_i,s_i^{\prime}\in S_i$, we say \textit{$s_i$ dominates $s_i^{\prime}$ over $\widehat{S}$} if:
+\begin{itemize}
+\item for all $\widehat{s}\in\widehat{S}, u_i(s_i,\widehat{s}_{-i})\geq u_i(s_i^{\prime},\widehat{s}_{-i})$
+\item for some $\widehat{s}\in\widehat{S}, u_i(s_i,\widehat{s}_{-i})> u_i(s_i^{\prime},\widehat{s}_{-i})$.\marginpar{\tiny use the relations $>_i$ on strategy profiles.}
+\end{itemize}  Write $s_i WD_i(\widehat{S})s_i^{\prime}$.
+
+\s
+\n  We say that a strictly nested sequence $S^m\subsetneq\hdots\subsetneq S^1\subsetneq S^0$ of product sets of $S$ is a \textit{path of reductions by weak dominance from $S^0$} if $\forall k=1,\hdots,m, \forall i\in N, \forall s_i^{\prime}\in S_i^{k-1}\backslash S_i^k,\exists s_i\in S^{k-1}$ such that $s_iWD_i(S^{k-1})s_i^{\prime}$.
+
+\s
+\n We say that $\widehat{S}$ is a \textit{full reduction by weak dominance from $S^0$} if it is at the end of a maximal path of reductions by weak dominance from $S^0$.  It is a \textit{full reduction by weak dominance} if it is a full reduction by weak dominance from $S^0=S$.
+
+\s
+\n If $\widehat{S}$ is a full reduction by weak dominance from any $S^0$, then $\forall i\in N,\forall s_i,s_i^{\prime}\in \widehat{S}_i$ it is not the case that $s_iWD_i(\widehat{S})s_i^{\prime}$.
+
+\s
+\n We want conditions under which full reductions by weak dominance are ``equivalent."  For example:\marginpar{\tiny Use payoffs to represent $>_i,i=1,\hdots,n$.}
+
+\begin{figure}[htb]\hspace*{\fill}%
+\begin{center}
+%still need to figure out how to make lines go through these damn strategic games!!!
+\begin{game}{4}{2}[][][]
+&  & \\
+ &$2,0$ &$1,1$\\
+ &$0,2$ &$1,1$\\
+ &$3^*,3^*$ &$3^*,3^*$\\
+ &$3^*,3^*$ &$3^*,3^*$\\
+\end{game}\hspace*{5mm}%
+\begin{game}{4}{2}[][][]
+&  &  \\
+ &$2,0$ &$1,1$\\
+ &$0,2$ &$1,1$\\
+ &$3,3$ &$3^*,3^*$\\
+ &$3,3$ &$3^*,3^*$\\
+\end{game}\hspace*{5mm}%
+\begin{game}{4}{2}[][][]
+&  &  \\
+ &$2,0$ &$1,1$\\
+ &$0,2$ &$1,1$\\
+ &$3^*,3^*$ &$3,3$\\
+ &$3^*,3^*$ &$3,3$\\
+\end{game}\hspace*{5mm}%
+\end{center}
+\caption[]{Figure on the bottom of 4/10/03 page 1.}\label{f:seven}
+\end{figure}
+
+\s
+\n A more interesting example:
+\begin{figure}[htb]\hspace*{\fill}%
+\begin{center}
+%still need to figure out how to make lines go through these damn strategic games!!!
+\begin{game}{4}{4}[][][]
+& $A$ & $B$ & $C$ & $D$\\
+$a$ &$5,5$ &$2,4$&$5,5$&$-1,-1$\\
+$b$ &$1,1$ &$4,3$&$1,1$&$4,3$\\
+$c$ &$5,5$ &$2,4$&$5,5$&$2,4$\\
+$d$ &$0,0$ &$4,3$&$1,1$&$4,3$\\
+\end{game}\hspace*{5mm}%
+\begin{game}{4}{4}[][][]
+& $A$ & $B$ & $C$ & $D$\\
+$a$ &$5,5$ &$2,4$&$5,5$&$-1,-1$\\
+$b$ &$1,1$ &$4,3$&$1,1$&$4,3$\\
+$c$ &$5,5$ &$2,4$&$5,5$&$2,4$\\
+$d$ &$0,0$ &$4,3$&$1,1$&$4,3$\\
+\end{game}\hspace*{\fill}%
+\end{center}
+\caption[]{Figure on the top of 4/10/03 page 2.}\label{f:eight}
+\end{figure}
+
+\s
+\n So $\{abc\}\times\{ABC\}$ and $\{bcd\}\times\{BCD\}$ are full reductions by weak dominance.  Take any full reduction by weak dominance, e.g.
+
+\begin{figure}[htb]\hspace*{\fill}%
+\begin{center}
+%still need to figure out how to make lines go through these damn strategic games!!!
+\begin{game}{2}{2}[][][]
+& $A$ & $B$ \\
+$a$ &$5,5$ &$2,4$\\
+$b$ &$1,1$ &$4,3$\\
+
+\end{game}\hspace*{5mm}%
+\begin{game}{2}{2}[][][]
+& $B$ & $C$ \\
+$b$ &$4,3$ &$1,1$\\
+$c$ &$2,4$ &$5,5$\\
+\end{game}\hspace*{5mm}%
+\end{center}
+\caption[]{Figure on the bottom of 4/10/03 page 1.}\label{f:seven}
+\end{figure}
+
+\s
+\n Then under the mapping: $\phi_1(a)=c$, $\phi_1(b)=b$, $\phi_2(A)=C$, $\phi_2(B)=B$, we see that:
+\begin{eqnarray*}
+u_1(a,A)&=&5=u_1(c,C)=u_1(\phi_1(a),\phi_2(A))\\
+u_1(a,B)&=&2=u_1(c,B)=u_1(\phi_1(a),\phi_2(B))\\
+u_1(b,A)&=&1=u_1(b,C)=u_1(\phi_1(b),\phi_2(A))\\
+u_1(b,B)&=&4=u_1(b,B)=u_1(\phi_1(b),\phi_2(B))\\
+\end{eqnarray*} and similarly for $2$.  So these reductions are equivalent.
+
+
+\s
+\n  The key condition here is Marx and Swinkel's (1997,2000) \textit{transference of decision-maker indifference} (TDI): $\forall i\in N$, $\forall s_i,s_i^{\prime}$, $\forall s_{-i}\in S_{-i}$:\marginpar{\tiny Do right before the prop.}
+\begin{eqnarray*}
+u_i(s_i,s_{-i})=u_i(s_i^{\prime},s_{-i})&\Longrightarrow&\forall j\in N\mbox{  }u_j(s_i,s_{-i})=u_j(s_i^{\prime},s_{-i})
+\end{eqnarray*}
+
+\s
+\n  Given $i\in N$, product sets $\widehat{S}\subseteq S$, and $s_i,s_i^{\prime}\in S_i$, say that \textit{$s_i$ and $s_i^{\prime}$ are redundant on $\widehat{S}$} if, for all $\widehat{s}\in S$, $u_i(s_i,\widehat{s}_{-i})=u_i(s_i^{\prime},\widehat{s}_{-i})$.  Write $s_iR_i(\widehat{S})s_i^{\prime}$.  (Back to example)\marginpar{\tiny Note implication of TDI.}
+
+\s
+\n  Define ``path of reductions by redundance" and ``full reduction by redundance" as above.
+
+\s
+\n  We say that $\widehat{S}$ and $\tilde{S}$ are \textit{equivalent} if, for all $i\in N$, there exist bijections $\phi_i:\widehat{S}_i\longrightarrow\tilde{S}_i$ such that:\marginpar{\tiny Think of replacing $s_i$ with $\phi_i(s_i)$\normalsize}
+\begin{eqnarray*}
+\forall s\in\widehat{S},\forall i\in N\mbox{  }u_i(s_1,\hdots,s_n)&=&u_i(\phi_1(s_1),\hdots,\phi_n(s_n)).
+\end{eqnarray*} 
+
+\begin{propo} (Marx and Swinkels)  Let $\left(N,(S_1,u_1),\hdots,(S_n,u_n)\right)$ be a finite strategic game satisfying TDI.  Let $\widehat{S}$ and $\tilde{S}$ be full reductions by weak dominance.  Then every full reduction of $\widehat{S}$ be redundance is equivalent to every full reduction of $\tilde{S}$ by redundance.  
+\end{propo}
+
+\s
+\n Mention $>_i$ vs. $u_i$
+
+\s
+\n  We know for $n$ odd and linear orders:
+\begin{itemize}
+\item One order of elimination leaves exactly the backward induction profile.
+\item There is not generally a backward induction profile that survives all orders.
+\item A backward induction profile may be removed by exhaustive elimination.
+\end{itemize}
+
+\s
+\n Open question $(2)$:  Does ``always vote for the preferred alternative" survive exhaustive elimination?  (Or is there at least one backward induction profile that survives exhaustive elimination?  Or at least one profile with the subgame perfect equilibrium outcome?)
+
+\s
+\n  Can IEWDS produce alternatives other than the subgame perfect equilibrium outcome?  Moulin's (1979) \textit{condition $(1)$} is sufficient for ``dominance solvability."  Given a strategic form game $\left(N,(S_1,u_1),\hdots,(S_n,u_n)\right)$,
+\begin{eqnarray*}
+\forall i\in N,\forall s,s^{\prime}\in S\mbox{  }u_i(s)=u_i(s^{\prime})&\Longrightarrow&\forall j\in N\mbox{  } u_j(s)=u_j(s^{\prime}).
+\end{eqnarray*}  We say the game is \textit{dominance solvable} if:  Let $\widehat{S}$ be the full reduction of $S$ by exhaustive elimination of weakly dominated strategies; for all $i\in N$, $u_i$ is constant on $\widehat{S}$.
+
+\s
+\n Example:
+\begin{figure}[htb]\hspace*{\fill}%
+\begin{center}
+%still need to figure out how to make lines go through these damn strategic games!!!
+\begin{game}{4}{2}[][][]
+& $C$ & $D$ \\
+$AE$ &$2,0$ &$1,1$\\
+$AF$ &$0,2$ &$1,1$\\
+$BE$ &$3,3$ &$3,3$\\
+$BF$ &$3,3$ &$3,3$\\
+\end{game}\hspace*{\fill}%
+\end{center}
+\caption[]{Figure on the bottom of 4/10/03 page 4.}\label{f:nine}
+\end{figure}
+
+\s
+\n Condition $(1)$ holds with $n$ odd and linear preferences, so the sequential voting game is dominance solvable, so we would like to know the answer to open question $(2)$.
+
+\s
+\n  Other orders of elimination?
+
+\s
+\n  Do Marx and Swinkels.
+
+\s
+\n  Do figure $5$ from the note.
+
+\s
+\n\begin{propo}  Assume $n$ odd and linear preferences.  In the sequential voting game with two alternatives, $x$ and $y$, let $\widehat{S}$ be a full reduction of $S$ by weak dominance.  Every strategy profile $s\in\widehat{S}$ produces the subgame perfect equilibrium outcome:
+\begin{eqnarray*}
+g(s)&=&\left\{\begin{array}{cl}
+x&\mbox{ if }xRy\\
+y&\mbox{ if }\#\{i\in N\mid yR_ix\}>\frac{n}{2}\\
+\end{array}\right.
+\end{eqnarray*}
+\end{propo}
+\begin{proof}  We know there is one order of elimination that leaves exactly the backward induction strategy profiles, $\widehat{S}$, so $g(s)=$ subgame perfect equilibrium outcome for all $s\in\widehat{S}$.  Let $\tilde{S}$ be any other full reduction by weak dominance.  A full reduction of $\widehat{S}$ by redundance leaves a single strategy profile $\left\{\widehat{s}\right\}$.  By Marx-Swinkels, any full reduction of $\tilde{S}$ leaves a single profile $\tilde{s}$, and $g(\tilde{s})=g(\widehat{s})=$subgame perfect equilibrium outcome.  Therefore $g(s)=$ subgame perfect equilibrium outcome for all $s\in\tilde{S}$.
+\end{proof}
+
+\s
+\n  What if we allow indifference?  \underline{Indeterminacy}.
+
+\s
+\n\begin{propo}\marginpar{\tiny I claim much more on 4/24.}  In the sequential voting game with two alternatives, if $x$ is a subgame perfect equilibrium outcome, then there is a full reduction $\widehat{S}$ of $S$ by weak dominance and $s\in\widehat{S}$ such that $g(s)=x$.
+\end{propo}
+
+
+\s
+\n  Does not extend to strategy profiles: there may be a backwards induction profile that is \textit{always} eliminated (see figure 9 in the Note).
+
+\s
+\n Open questions: $(3)$, $(4)$, and $(5)$ from the Note.
+
+
+
+
+\section{Voting Games with $\geq$ 3 Alternatives}
+\s
+\n A \textit{binary voting tree} is $\Theta=(X,P,\theta)$ where:
+\begin{itemize}
+\item $X$ is the set of alternatives.
+\item $P$ are the paths of votes; subsets of sequences $(p_1\hdots p_m)\in X^m$ when $m=0,\hdots,M$ such that:
+\begin{itemize}
+\item $\emptyset\in P$ $(m=0)$;
+\item $(p_1\hdots p_m)\in P$ and $k<m$ implies that $(p_1\hdots p_k)\in P$.
+\end{itemize}
+Let $T=\{p\in P\mid \nexists x \mbox{ s.t. }(p,x)\in P\}$ be the terminal paths.  For $p\in P\backslash T$, let $X(p)=\{x\in X\mid (p,x)\in P\}$.
+\begin{itemize}
+\item For all $p\in P\backslash T$, $\mid X(p)\mid=2$.\marginpar{\tiny Implies finiteness.}
+\end{itemize}
+\item $\theta:T\longrightarrow X$ is the outcome function: if $(p_1\hdots p_m)\in T$, then $\theta(p_1\hdots p_m)=p_m$.\marginpar{\tiny Extraneous.}
+\end{itemize}
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+%player 1's right branch
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$b$}
+
+%player 1's left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$a$}
+
+%player 2's left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$d$} 
+
+%player 2's left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$c$}[$c$]
+
+
+
+
+%player 3's left/right/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{}
+
+%player 3's left/right/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{}
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 4/10/03 page 5.}\label{f:eleven}
+\end{figure}
+
+\s
+\n  Some examples of binary voting trees:
+\begin{itemize}
+\item ``Successive elimination" (Moulin 1986) or ``Sequential elimination" (Ordeshook and Schwartz 1987).  Let $X=\{x_1\hdots x_m\}$.  Then: 
+\begin{eqnarray*}
+P&=&\{x_1\}\bigcup\{(x_2,\hdots,x_k,x_k)\mid k=2,\hdots,m-1\}\bigcup\{(x_2,\hdots,x_k)\mid k=1,\hdots,m\}\bigcup\{\emptyset\}.
+\end{eqnarray*}
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+%player 1's right branch
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%
+% put the initial branch at (600,240), with (x,y) direction (1,1), and horizontal length 200
+\putbranch(600,240)(1,1){200}
+% give the branch one action, label it for player 1, and label the action $x_1$
+\ib{1}{$x_1$}
+
+%player 1's left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put the initial branch at (600,240), with (x,y) direction (-1,1), and horizontal length 200
+\putbranch(600,240)(-1,1){200}
+% give the branch one action, label it for player 1, and label the action $x_2$
+\ib{1}{$x_2$}
+
+%player 2's left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (400,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(400,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x_1$
+\ib{2}{$x_1$} 
+
+%player 2's left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (400,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(400,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x_2$
+\ib{2}{$x_2$}
+
+
+%player 3's left/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (200,-160), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(200,-160)(1,1){200}
+% give the branch one action, label it as player 3, and label the action as $x_1$
+\ib{3}{$x_1$}
+
+%player 3's left/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (200,-160), with (x,y) direction (-1,2) and horizontal length 200
+\putbranch(200,-160)(-1,1){200}
+% give the branch one action, label it as player 3, and label the action as $x_2$
+\ib{3}{$x_2$}
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+
+
+
+%player 3's left/left/right branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (0,-360), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(0,-360)(1,1){200}
+% give the branch one action, label it as player 4, and label the action as $x_1$
+\ib{4}{$x_1$}
+
+%player 3's left/left/left branch
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+% put a branch at (0,-360), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(0,-360)(-1,1){200}
+% give the branch one action, label it as player 3, and label the action as $x_2$
+\ib{4}{$x_2$}
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+
+
+
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the top of 4/10/03 page 7.}\label{f:twelve}
+\end{figure}
+
+\item ``Multistage elimination" (Moulin 1986) or ``amendment agenda" (Ordeshook and Schwartz 1987).  Let $X=\{x_1,\hdots,x_m\}$.  Then:
+\begin{eqnarray*}
+P&=&\{(y_1,\hdots,y_h)\mid \forall j,k=1,\hdots,h, h=1,\hdots,m, y_k=x_j\Rightarrow k\geq j\mbox{ }\\
+&&\&\mbox{ }(y_j,y_{j+1},\hdots,y_k)=(x_j,\hdots,x_j)\}.
+\end{eqnarray*}
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{1}{$x_1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{1}{$x_2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$x_1$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$x_3$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{2}{$x_2$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{2}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$x_1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{3}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{3}{$x_2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{3}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{3}{$x_4$}
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 4/10/03 page 7.}\label{f:thirteen}
+\end{figure}
+
+\begin{itemize}
+\item $x_1$ is an amendment to the amendment.  
+\item $x_2$ is the amendment.  
+\item $x_3$ is the bill.  
+\item $x_4$ is the status quo.
+\end{itemize}
+\end{itemize}
+\s
+\n  Given a binary voting tree $\Theta$ and majority preferences $P$ (total) and $R$ (antisymmetric), McKelvey and Niemi (1978) define the \textit{multistage sophisticated solution} ($MSS$).  Say a path $p$ is ``first priority" if $p\in T$; let $\pi^{1}$ be the set of first priority paths.  Path $p\in P\backslash \pi^{1}$ is ``second priority" if, for all $x\in X(p)$, $(p,x)\in\pi^{1}$.  A path $p\in T\backslash\pi^{k}$ is ``$k+1$ priority" if, for all $x\in X(p)$, $(p,x)\in\bigcup_{l=1}^k\pi^k$, etc.
+\begin{itemize}
+\item For each $p\in\pi^1$, define $MSS_{\Theta}(p)=\theta(p)$.
+\item For each $p\in\pi^2$, define:
+\begin{eqnarray*}
+MSS_{\Theta}(p)&=&\left\{\begin{array}{cl}
+MSS_{\Theta}(p,x)& \mbox{if }MSS_{\Theta}(p,x)\mbox{ }R\mbox{ }MSS_{\Theta}(p,y)\\
+&\\
+MSS_{\Theta}(p,y)& \mbox{else},
+\end{array}\right.
+\end{eqnarray*} when $X(p)=\{x,y\}$.  Note that this is well defined.
+\item For each $p\in\pi^{k+1}$, define:
+\begin{eqnarray*}
+MSS_{\Theta}(p)&=&\left\{\begin{array}{cl}
+MSS_{\Theta}(p,x)&\mbox{if }MSS_{\Theta}(p,x)\mbox{ }R\mbox{ }MSS_{\Theta}(p,y)\\
+&\\
+MSS_{\Theta}(p,y)&\mbox{else},
+\end{array}\right.
+\end{eqnarray*} when $X(p)=\{x,y\}$.  Since $P$ is finite, this stops with the ``last priority" path $\emptyset$, and $MSS_{\Theta}(\emptyset)$ is the solution.\marginpar{\tiny Also, note that $MSS_{\Theta}(p)\in\theta(T)$.}
+\end{itemize}  
+
+\s
+\n  Note that, given $(p_1,\hdots,p_m)\in T$ and $k=1,\hdots,m-1$, by construction:
+\begin{eqnarray*}
+MSS_{\Theta}(p_1,\hdots,p_k)&R&MSS_{\Theta}(p_1,\hdots,p_k,p_{k+1}).
+\end{eqnarray*}
+
+\s
+\n  Given $\Theta$ and $p\in H\backslash T$, define $\Theta\mid_{p}=(X^{\prime},P^{\prime},\theta^{\prime})$ where $X^{\prime}=X$, $P^{\prime}=\{(p_1^{\prime},\hdots,p_m^{\prime})\mid (p,p_1^{\prime},\hdots,p_m^{\prime})\in P\}$, $\theta^{\prime}(p^{\prime})=\theta(p,p^{\prime})$.  This is the sub-tree of $\Theta$ at $p$.
+
+\s
+\n Note that:
+\begin{eqnarray*}
+MSS_{\Theta}(p)&=&\left\{\begin{array}{cl}
+MSS_{\Theta\mid_{(p,x)}}(\emptyset)&\mbox{if }MSS_{\Theta\mid_{(p,x)}}(\emptyset)\mbox{ }R\mbox{ }MSS_{\Theta\mid_{(p,y)}}(\emptyset)\\
+&\\
+MSS_{\Theta\mid_{(p,y)}}(\emptyset)&\mbox{else}, 
+\end{array}\right.
+\end{eqnarray*}when $X(p)=\{x,y\}$.
+
+\s
+\n  Given $\Theta$, let $\Gamma_{\Theta}$ be a binary voting game, where after each path $p$ of votes is either:
+\begin{itemize}
+\item Simultaneous voting: $G(p)=(N,\{(p,x),(p,y)\},\tilde{S}_1,\hdots,\tilde{S}_n,g)$, where:
+\begin{eqnarray*}
+g(p)(\tilde{s}_1,\hdots,\tilde{s}_n)&=&\left\{\begin{array}{cl}
+(p,x) & \mbox{if }\#\{i\in N\mid \tilde{s}_i=x\}\geq\frac{n}{2}\\
+&\\
+(p,y) & \mbox{if }\#\{i\in N\mid \tilde{s}_i=y\}>\frac{n}{2}\\
+\end{array}\right.
+\end{eqnarray*} or
+\item Sequential Voting: $\Gamma(p)=(N,\{(p,x),(p,y)\},A,H,T,I,g)$...
+\end{itemize}
+
+\s
+\n\begin{propo}  Assume $n$ odd and linear preferences.  In any binary voting game, $\Gamma_{\Theta}$, let $\widehat{S}$ be a full reduction of $S$ by weak dominance.  For all $\widehat{s}\in\widehat{S}$, $g_{\Theta}(\widehat{s})=MSS_{\Theta}(\emptyset)$.  If all voting is sequential, then for every subgame perfect equilibrium $s$, $g_{\Theta}(s)=MSS_{\Theta}(\emptyset)$.
+\end{propo}\marginpar{\tiny What is $g_{\Theta}(\widehat{s})$?  Also, the proof of this is a real pain!}
+
+\s
+\n For $Y\subseteq X$, define $TC(Y)=M(Y,T_R)$.
+\begin{propo}  Assume $P$ is total and $R$ is antisymmetric.
+\begin{enumerate}
+\item For all $\Theta$, $MSS_{\Theta}(\emptyset)\in TC(\theta(T))$.
+\item For all finite $Y\subseteq X$ and all $x\in TC(Y)$, there exists $\Theta$ such that $\theta(T)=Y$ and $MSS_{\Theta}(\emptyset)=x$.
+\end{enumerate}
+\end{propo}
+\begin{proof}  $(i)$ Take any $x\in\theta(T)$, and let $p=(p_1,\hdots,p_m)\in T$ satisfy $\theta(p)=x$.  Then:
+\begin{eqnarray*}
+MSS_{\Theta}(\emptyset)\mbox{ }R\mbox{ }MSS_{\Theta}(p_1)\hdots R\mbox{ }MSS_{\Theta}(p_1,\hdots,p_{m-1})\mbox{ }R\mbox{ }MSS_{\Theta}(p)=x.
+\end{eqnarray*}  $(ii)$  Take any $Y$ and $x\in TC(Y)$.  Say $Y=\{y_1,\hdots,y_m\}$.\\
+
+\n Say $Z\subseteq Y$ has property $\bigstar$ if it can be indexed $Z=\{z_1,\hdots,z_k\}$ such that $x=z_1R\hdots Rz_k$.  Let $Z$ be maximal.  Claim: $Z=Y$.  If not, then for each $y\in Y\backslash Z$ and each $z_j$, we have $yPz_j$.  But then there is no path from $x$ to $y\in Y$, a contradiction.  Thus, $Z=Y$ so $Y$ has property $\bigstar$.
+
+\s
+\n  Let $x=y_1Ry_2\hdots Ry_m$.  Consider the successive elimination tree with:
+\begin{eqnarray*}
+P&=&\{y_1\}\bigcup\{(y_2,\hdots,y_k,y_k)\mid k=z,\hdots,m-1\}\bigcup\{y_2,\hdots,y_m\}\bigcup\{\emptyset\}.
+\end{eqnarray*}There is one first priority path: $(y_2,\hdots,y_{m-1})=p^1$, and $X(p^1)=\{y_{m-1},y_m\}$.  By assumption, $y_{m-1}Py_m$, so $MSS_{\Theta}(p^1)=y_{m-1}$.  An induction argument yields $MSS_{\Theta}(\emptyset)=y_1$.  
+\end{proof}
+
+\s
+\n  Given an amendment agenda $\Theta$, with $X=\{x_1,\hdots,x_m\}$, define $PW_{\Theta}(m)=m$ (???) and:
+\begin{eqnarray*}
+PW_{\Theta}(k)&=&\left\{\begin{array}{cl}
+x_k&\mbox{if }\forall j=k+1,\hdots,m, x_kR\mbox{ }PW_{\Theta}(j)\\
+&\\
+PW_{\Theta}(k+1)&\mbox{else }.
+\end{array}\right.
+\end{eqnarray*}  ``Provisional winner" or ``sophisticated equivalent."
+
+\s
+\n\begin{propo}  Assume $P$ total and $R$ antisymmetric.  Given an amendment agenda $\Theta$, $PW_{\Theta}(1)=MSS_{\Theta}(\emptyset)$.  
+\end{propo}
+\begin{proof}  Trivial for amendment agendas with $m=1$.  Suppose the claim is true for arbitrary $m$.  Then we want to show that it is true for $m+1$.  Let $\Theta$ be an amendment agenda with $X=\{x_1,\hdots,x_m,x_{m+1}\}$.  Note that $\Theta\mid_{x_1}=(X,P^{\prime},\theta^{\prime})$, where:
+\begin{eqnarray*}
+P^{\prime}&=&\{(y_1^{\prime},\hdots,y_h^{\prime})\mid (x_1,y_1^{\prime},\hdots,y_h^{\prime})\in P\}\\
+&=&\{(y_1^{\prime},\hdots,y_h^{\prime})\mid h=1,\hdots,m-1,\forall j,k=1,\hdots,h,\\
+&& y_k^{\prime}=x_j\Rightarrow j\leq k\mbox{ }\&\mbox{ }(y_j,\hdots,y_k)=(x_j,\hdots,x_j)\},
+\end{eqnarray*} is an amendment agenda of size $m-1$.  Similarly, for $\Theta\mid_{x_2}$.  So $MSS_{\Theta\mid_{x_1}}(\emptyset)=PW_{\Theta\mid_{x_1}}(1)$ and $MSS_{\Theta_{x_2}}(\emptyset)=PW_{\Theta\mid_{x_2}}(1)$.  There are two cases to consider.  
+
+First, $MSS_{\Theta\mid_{x_1}}(\emptyset)\mbox{ }P\mbox{ }MSS_{\Theta\mid_{x_2}}$.  Then $MSS_{\Theta}(\emptyset)=MSS_{\Theta\mid_{x_1}}(\emptyset)=x_j$ for some $j=m,\hdots,3,1$.  I claim that $x_j=PW_{\Theta}(1)$.  Clearly, $x_jR\mbox{ }PW_{\Theta\mid_{x_1}}(k)=PW_{\Theta}(k)$ for $k=m,\hdots,j+1$.  And for each $k=j-1,\hdots,3,1$, there exists some $h=m\hdots,j$ such that $PW_{\Theta}(h)=PW_{\Theta}(h)\mbox{ }Px_k$.  If $x_2=PW_{\Theta\mid_{x_2}}(1)$, then $x_jPx_2$ as well, so $x_j=PW_{\Theta}(1)$.  If $x_2\neq PW_{\Theta\mid_{x_2}}(1)$, then there exists $h=m,\hdots,3$ such that $PW_{\Theta}(h)=PW_{\Theta\mid_{x_2}}(h)\mbox{ }Px_2$, so again $x_j=PW_{\Theta}(1)$.
+
+The second case, $MSS_{\Theta\mid_{x_2}}(\emptyset)\mbox{ }P\mbox{ }MSS_{\Theta\mid_{x_1}}(\emptyset)$, is proved analogously.  
+\end{proof}
+
+\s
+\n Banks's (1985) characterization of amendment agenda outcomes.
+
+\s
+\n What if voters can be indifferent?
+
+\s
+\n Connections with IEWDS are trickier, but still tight.\marginpar{\tiny I don't worry about the other direction when $xIy$.  In that case, one round of ex. elim. produces $x$ and $y$, so we're done!}  
+
+\s
+\n  \begin{claimo}  In the sequential voting game with two alternatives, $x$ and $y$, let $\widehat{S}$ be a full reduction by weak dominance.  Then:
+\begin{eqnarray*}
+\{g(\widehat{s})\mid \widehat{s}\in\widehat{S}\}&=&\{g(s)\mid s\mbox{ is a subgame perfect eq.}\}
+\end{eqnarray*}
+\end{claimo}
+\begin{proof}  Suppose that $xPy$.  By induction on $n$ for all generalized quota rules, e.g. $q_x$ and $q_y$.  The claim is clearly true for $n=1$.  Now we suppose that the claim is true for $n=1,2,\hdots,m$, and suppose that $n=m+1$.  Suppose that $s\in\widehat{S}$ produces outcome $y$, and let $h=(a_1,\hdots,a_{m+1})$ be the path of play.  Let $J=\min\{i\in N\mid xP_iy\}$, and consider the subgame $\Gamma_{(a_1\hdots,a_{j-1},y)}$.  If\marginpar{\tiny a little tricky: If $i$ is indifferent then no strategies can be removed.  Suppose $i$ prefers one alternative.  If he gets the same payoff from two strategies they must lead to the same outcome, so the two strategies are really redundant.} $s_j(a_1,\hdots,a_{j-1})=y$, so $\Gamma_{(a_1,\hdots,a_{j-1},y)}$ occurs on the path of play, then every full reduction of $\Gamma$ by weak dominance corresponds to a full reduction (up to redundant strategies) of $\Gamma_{(a_1\hdots,a_{j-1},y)}$ by very weak dominance.
+\end{proof}
+
+\s
+\n What about $\geq$ 3 alternatives?
+
+\s
+\n  \textbf{Conjecture}:  \textit{In any binary voting game $\Gamma_{\Theta}$, let $\widehat{S}$ be a full reduction of $S$ by weak dominance.  Then:
+\begin{eqnarray*}
+\{g(\widehat{s})\mid \widehat{s}\in\widehat{S}\}&=&\{g(s)\mid s\mbox{ is a subgame perfect eq.}\}.
+\end{eqnarray*}
+} 
+\begin{proof}  One inclusion, $\supseteq$, follows pretty much immediately from the previous proposition.  I think the other follows from a similar argument.  (I might have to use induction on $n$ and the number of alternatives)
+\end{proof}
+
+\s
+\n  This result doesn't mention $MSS$.  In fact, it's not defined when indifferences are allowed, but you could imagine how it might work.  Now $MSS_{\Theta}(p)$ is a set and:\marginpar{\tiny ugly - this has to be fixed.}
+\begin{eqnarray*}
+MSS_{\Theta}(p)&=&\left\{z\in X(p)\mid \exists z^{\prime}\in MSS_{\Theta}(p,z)\mbox{ and for }w\in X(p)\backslash\{z\}\right.\\
+&&\left.\exists  w^{\prime}\in MSS_{\Theta}(p,w) \mbox{ st }z^{\prime} Rw^{\prime}\right\}.
+\end{eqnarray*}  This will \textit{still} give us the subgame perfect equilibrium voting paths, but the computation is a pain.\marginpar{\tiny An implicit refinement: continuation outcomes only depend on what passes, not on who votes for it!  Without this restriction, we can have outcomes outside the top cycle.  With the restriction we will be in the top cycle!!}
+
+\s
+\n  Compare:
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{}{} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{}[$y$] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[$w$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{}{}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(200,-360)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{}[$w$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(200,-360)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{}[$z$]
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 4/24/03 page 2.}\label{f:fourteen}
+\end{figure}
+
+
+
+
+
+\begin{center}
+Also: figure on the bottom right of $4/24/03$, page $2$.
+\end{center}
+\s
+\n with:
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$x,w,y$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{$w,w,w$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{$x,x,y$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{}{$y,w,w$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{}[$y$] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[$w$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{}[$x$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{}{}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$y,y$}[$y$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$z,w$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(200,-360)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{}[$w$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(200,-360)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{}[$z$]
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the top of 4/24/03 page 3.}\label{f:fifteen}
+\end{figure}
+
+\begin{center}
+Also: figure on the top right of $4/24/03$, page $3$.
+\end{center}
+
+\s
+\n Finding $MSS$ outcomes is a real pain!  Here $x$ and $w$ are both $MSS$ outcomes.\marginpar{\tiny Wait: $y$ can never be the outcome!}
+
+\s
+\n  What about amendment agendas?  Banks and Border (1988) only look at a subset of equilibria... Consider:\marginpar{\tiny Do B\&B}
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$x_1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{$x_2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{$x_1$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{}{$x_3$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{$x_2$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$x_1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$x_2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_4$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}[$x_5$ wins]
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(0,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(0,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(600,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_4$}[$x_4$ wins]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(600,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(800,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left left
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(800,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(1000,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$x_4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(1000,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$x_5$}
+
+
+
+
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 4/10/03 page 7.}\label{f:thirteen}
+\end{figure}
+
+\begin{center}
+Also: figure on the bottom right of $4/24/03$, page $3$.
+\end{center}
+
+\s
+\n  So every alternative is a subgame perfect equilibrium outcome.
+
+\s
+\n But Banks and Border only consider two types of equilibria, which
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{2}{$1$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{2}{$3$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{$2$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{1,2}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{1}{$1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{1}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{2}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{2}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{1}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{1}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{2}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{2}{$4$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{1}{$1$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{1}{$5$}
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{2}{$4$}[$2$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{2}{$5$}[$1$]
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(0,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(0,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$5$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$4$}[$2$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$5$}[$1$]
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{1}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{1}{$5$}
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(600,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{2}{$4$}[$2$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(600,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{2}{$5$}[$1$]
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(800,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left left
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(800,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$5$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(1000,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$4$}[$2$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(1000,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$5$}[$1$]
+
+
+
+
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 4/10/03 page 7.}\label{f:thirteen}
+\end{figure}
+
+\n correspond to ``trajectories" of type $1$ or type $2$.  There are two possible outcomes, $x_2$ and $x_3$.  $x_2$ is supported by the \underline{type $1$} trajectory.  $(x_5,x_5,x_3,x_2)$:
+\begin{eqnarray*}
+\begin{array}{ccccc}
+\underline{x_5}&\underline{x_4}&\underline{x_3}&\underline{x_2}&\underline{x_1}\\
+x_5&x_5&x_3&x_2&x_2\\
+\end{array}
+\end{eqnarray*}\n and $x_3$ is supported by the \underline{type $2$} trajectory. $(x_5,x_4,x_3)$:
+\begin{eqnarray*}
+\begin{array}{ccccc}
+\underline{x_5}&\underline{x_4}&\underline{x_3}&\underline{x_2}&\underline{x_1}\\
+x_5&x_4&x_3&x_3&x_3\\
+\end{array}
+\end{eqnarray*}
+
+\s
+\n  Given an agenda $(x_1,\hdots,x_m)$, we say that  $(y_1,\hdots,y_m)$ is a \textit{trajectory} (or ``provisional selection") if $y_m=x_m$ and for all $j=1,\hdots,m-1$
+\begin{itemize}
+\item $y_j\in\{x_j,y_{j+1}\}$
+\item $y_j=x_j$ if $x_j\in\bigcap_{h=j+1}^m P(y_h)=P(y_{j+1},\hdots,y_m)$
+\item $y_j=y_{j+1}$ if $x_j\notin\bigcap_{h=j+1}^mR(y_h)=R(y_{j+1},\hdots,y_m)$
+\end{itemize}
+
+\s
+\n A SSP equilibrium $s$ is \textit{consistent} if, after paths $p,p^{\prime}$ with $X(p)=X(p^{\prime})$, $g_p(s)=g_{p^{\prime}}(s)$.  \marginpar{\tiny UGH: this has to be reformulated to be forward-looking!}
+
+\s
+\n\begin{claimo}  In any amendment agenda game $\Gamma_{\Theta}$ with sequential voting, $x$ is the outcome of a consistent SSP equilibrium if and only if there is a trajectory with $y_1=x_1$.
+\end{claimo}
+
+\s
+\n  In the above example, $x_1$ is no the maximal element of any trajectory: the equilibrium specified needs $x_5$ to beat $x_4$ at one point and $x_4$ to beat $x_5$ at another!
+
+\s
+\n  Banks and Border's type 1 \& 2 trajectories impose a refinement stronger than consistency, because they require ties to always be broken the same way: either always in favor of the earlier alternative, or always in favor of the later alternative.
+
+\s
+\n  In the above example:
+\begin{center}  Figure on the top of $4/24/03$ page $6$.  
+\end{center}
+\n Thus, the set of subgame perfect equilibrium outcomes includes $x_1\notin UC_m\bigcup UC_d$.
+
+\s
+\n  In fact, there are two better ways to define covering when ties are possible:\marginpar{\tiny Should be relative to a subset $Y\subseteq X$.}
+\begin{itemize}
+\item ``McKelvey Coverings"  $x\mbox{ }MC\mbox{ }y:xPy\mbox{ }\&\mbox{ }P(x)\subseteq P(y)\mbox{ }\&\mbox{ }R(x)\subseteq R(y)$.
+\item ``Deep Coverings" $x\mbox{ }DC\mbox{ }y:R(x)\subseteq P(y)$.
+\end{itemize}  You can check that $UC_m\bigcup UC_d\subseteq UMC\subseteq UDC$, and $x_1\notin UDC$.
+
+\s
+\n  Clearly, the type $1$ \& $2$ refinements have bite.
+
+\s
+\n  I conjecture that there are consistent equilibrium outcomes outside $UMC$.  Indeed:\marginpar{\tiny Note: I have all this crossed out in the original hand-written notes, but this is OK - it's about consistent equilibria!!!}
+\begin{eqnarray*}
+\begin{array}{ccc}
+\underline{x_3}&\underline{x_2}&\underline{x_1}\\
+x_3&x_3&x_1\\
+\end{array}
+\end{eqnarray*}
+
+\begin{center}  Also see figure at the top of $4/24/03$ page $7$.
+\end{center}\n Here, $x_2 MC x_1$, but $x_1$ is the maximal element of a trajectory.  This couldn't happen with a type $1$ or type $2$ trajectory.
+
+\s
+\n\begin{propo}  In any amendment agenda game $\Gamma_{\Theta}$ with sequential voting, if $x$ is a consistent subgame perfect equilibrium, then $x\in UDC(\theta(T))$.
+\end{propo}\begin{proof}  Let $(y_1,\hdots,y_m)$ be a trajectory with $y_1=x_1,\hdots$
+\begin{eqnarray*}
+\begin{array}{cccc}
+\underline{x_m}&\underline{x_2}&\hdots&\underline{x_1}\\
+&&&y_1=x\\
+\end{array}
+\end{eqnarray*}
+\end{proof}
+
+\s
+\n  In contrast to the $n$ odd and liner preferences case, where the $S-W$ algorithm yields a unique trajectory and unique amendment agenda outcome, there may in general be lots of trajectories with many outcomes.  
+
+\s
+\n  Is there a generalization of the $S-W$ algorithm that helps find all of these outcomes?  
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,440)(0,1){200}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$5$}
+
+
+
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$5$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{$5$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{}{$3$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{$4$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$5$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$2$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$5$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(0,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(0,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}[$\bullet$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(600,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(600,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(800,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}[$\bullet$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left left
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(800,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(1000,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(1000,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 5/1/03 page 1.}\label{f:sixteen}
+\end{figure}
+
+\begin{center}  Also see figure on top right of $5/1/03$ page $1$.
+\end{center}
+
+\s
+\n  Here the arrows in a row tell us the possible outcomes in corresponding subtrees.\marginpar{\tiny In the notes the previous figure is also rotated $90$ degrees counterclockwise, meaning that the arrows in columns tell us the possible outcomes in the corresponding subtrees.}
+\begin{center} Also see figure on bottom of $5/1/03$ page $1$.
+\end{center}
+
+\s
+\n  To find all subgame perfect equilibrium outcomes:
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,440)(0,1){200}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$5$}
+
+
+
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$5$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{$5$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{}{$3$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{$4$} 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left
+% put a branch at (-300,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-300,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$5$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right
+% put a branch at (-300,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-300,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $y$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 3s left right left
+% put a branch at (100,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(100,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right right
+% put a branch at (100,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(100,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left
+% put a branch at (500,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(500,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $y$
+\ib{}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right
+% put a branch at (500,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(500,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right right left
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(900,-160)(-1,2){100}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 3s right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(900,-160)(1,2){100}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$2$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$5$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 4s left right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(0,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left right left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(0,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}[Key for $x_1$]
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(200,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 3s left right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(200,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$4$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right left right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(600,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s right left right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(600,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(800,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$3$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 3s right right left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(800,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(1000,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{$2$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{e}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 3s right right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(1000,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{$1$}
+
+
+
+
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(100,140){400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 5/1/03 page 1.}\label{f:sixteen}
+\end{figure}
+
+\s
+\n  Here, we give larger arrows to $3$ in the fourth row because it legitimately gets the small arrow in that row by beating $x_5$ and $x_4$.  This makes it possible for $x_1$ to get an arrow in the fifth row.  
+
+\begin{center}  See also figure on the bottom of $5/1/03$ page $2$.  
+\end{center}
+
+\s
+\n  We make $x_1$ the final outcome, but down the left side we have to use trajectory $(x_5,x_5,x_3,x_1)$.  (Recall $x_2$ doesn't appear on the left).  (In reference to the figure on the bottom of $5/1/03$ page 2.)
+
+\s
+\n  We can make $x_3$ the outcome here using trajectory $(x_5,x_4,x_3,x_3)$.  (Also in reference to the figure on the bottom of $5/1/03$ page 2.)
+
+\section{Endogenous Amendment Agendas}
+\s
+\n  $N$ a set of agents, $X$ a compact metric space, $u_i:X\longrightarrow \mathbb{R}$ continuous.  Special cases: finite and spatial models.  $x_0=$ status quo.  $\mathcal{B},\mathcal{D}$.
+
+\s
+\n  Agents propose sequentially:
+\begin{eqnarray*}
+\begin{array}{cc}
+1.&x_i\\
+2.&x_2\\
+\vdots&\vdots\\
+k.&x_k\\
+\end{array}
+\end{eqnarray*}
+
+
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-2,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{}{$x_k$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(2,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{}{$x_{k-1}$}
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(-100,40)(-1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{}[$\vdots$] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,40)(1,1){200}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{}{}[$\vdots$]  
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(700,40)(-1,1){200}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{}[$\vdots$] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,40)(1,1){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[$\vdots$] 
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s left left left left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(-400,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{}[$x_k$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 3s left left left right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(-400,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{}[$x_0$]
+
+
+
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 4s right right right left 
+% put a branch at (900,-160), with (x,y) direction (-1,2) and horizontal length 100
+\putbranch(1000,-360)(-1,2){75}
+% give the branch one action, label it as player 3, and label the action as $y$, and the outcome as $x$
+\ib{}{}[$x_1$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=4}
+
+%player 3s right right right right
+% put a branch at (900,-160), with (x,y) direction (1,2) and horizontal length 100
+\putbranch(1000,-360)(1,2){75}
+% give the branch one action, label it as player 3, and label the action as $x$, and the outcome as $x$
+\ib{}{}[$x_0$]
+
+
+
+
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+\infoset(-400,-360){1400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s\s\s\s\s\s\s\s
+\caption[]{Figure on the bottom of 5/1/03 page 1.}\label{f:sixteen}
+\end{figure}
+
+
+
+\s
+\n Voting is simultaneous (with IEWDS, or sequential with SPE).  In $x_h$ versus $x_{h-1}$,
+\begin{eqnarray*}
+\mbox{winner}&=&\left\{\begin{array}{ll}
+x_h&\mbox{if }\{i\mid i\mbox{ votes }h\}\in\mathcal{B}\\
+x_{h-1}&\mbox{if }\{i\mid i\mbox{ votes }h-1\}\in\mathcal{D}\\
+\end{array}\right.
+\end{eqnarray*}  This is well-defined.
+
+\s
+\n  Procedural Ties versus Preferential Ties.
+
+\s
+\n  We use ``consistent equilibria" in voting subgames, so given $(x_1,\hdots,x_k)$, the possible outcomes are terminal alternatives in corresponding trajectories.  
+
+\s
+\n Given $(x_1,\hdots,x_k)$, we say that $(y_0,\hdots,y_h)$ is a \textit{provisional selection of order $h$} if $y_0=x_0$ and $\forall$ $j=1,\hdots,h$:
+\begin{itemize}
+\item $y_j\in\{x_j,y_{j-1}\}$.
+\item $y_j=x_j$ if $x_j\in P_{\mathcal{B}}(y_0,\hdots,y_{j-1})$ (open graph).
+\item $y_j=y_{j-1}$ if $x_j\notin R_{\mathcal{B}}(y_0,\hdots,y_{j-1})$ (closed graph, i.e. $\exists l=0,\hdots,j-1$ s.t. $x_l P_{\mathcal{D}} x_j$)
+\end{itemize}  It is a \textit{provisional selection} if...
+
+\s
+\n  A \textit{voting equilibrium mapping} $Y$ maps agendas to provisional selections.
+\begin{eqnarray*}
+Y(x_1,\hdots,x_k)&=&(y_0,Y_1(x_1,\hdots,x_k),\hdots,Y_k(x_1,\hdots,x_k)).
+\end{eqnarray*}
+
+\s
+\n  A \textit{simple voting equilibrium mapping}...
+
+\s
+\n  Banks and Gasmi(?) (1987).  A special case.  They resolve ties in favor of alternatives proposed later - CREATES A NONEXISTENCE PROBLEM!
+
+\s
+\n  Austen-Smith (1987).  Assumes unique best responses and forgets about best response problems.  See figure $2$.  He has a nice point about ``sophisticated sincerity."
+
+\s
+\n  \textit{Approach 1}:  Try to get a continuous selection of $B_3$, say $\phi$.  Then $2$ solves $\max\{u_2(\phi(x))\mid x\in R(x_0,x_1)\}$.  But $B_3$ doesn't have one...\\
+\textit{Approach 2}:  Break indifference in $2$'s favor.  This gives a selection $\phi$ such that $b_2=u_2\odot\phi$ is upper-semi continuous.
+
+\s
+\n Of course, figure 2(?) can be patched up by having $3$ propose $z^{\prime}$ when indifferent.
+
+\s
+\n Assuming the weak ``type $1$" selection, $3$'s problem is:
+\begin{eqnarray*}
+&&\max_{x_3}u_3(x_3)\\
+&&\mbox{such that }x_3\in R(x_0,x_1,x_2).
+\end{eqnarray*}
+
+\s
+\n  If $R(x_0,x_1,x_2)$ is continuous (upper and lower) then the theorem of the maximum implies that $3$'s solutions are upper-hemi continuous and closed valued.  Since $X$ is compact, $3$'s optimal proposal $B_3(x_0,x_1,x_2)$ has closed graph in $x_2$.  Maybe...
+\begin{center}
+[Include figure from the middle bottom of 5/1/03 page 5.]
+[Include figure from the margin of 5/1/03 page 5.]
+\end{center}
+
+\s
+\n  If we define $b_2(x_0,x_1,x_2)=\max u_2(x)$ with $x\in B_3(x_0,x_1,x_2)$ breaking $3$'s indifference in $2$'s favor, this will be upper-semi continuous in $x_2$.
+
+\s
+\n But then $2$'s \textit{optimal outcome}  correspondence $B_2(x_0,x_1)$ does \textit{not} have nice properties - it may not have closed graph.  And:
+\begin{eqnarray*}
+b_1(x_0,x_1)&=&\sup u_1(x)\mbox{ }x\in B_2(x_0,x_1)
+\end{eqnarray*} may not be upper semi continuous.
+
+\s
+\n  D-the-D example: Suppose we break $3$'s indifference in favor of $2$.  At $a$, $1$'s payoff is zero.  Moving to $a$ from the left, it is $\geq\frac{1}{3}=\varepsilon$, violating upper semi continuity.  
+
+
+
+
+
+
+
+
+
+\begin{figure}[htb]
+\hspace*{\fill}
+\begin{egame}(600,280)
+
+%NOTE: for arrows, you need to reset this after each call to the putbranch command
+%to set the arrow style to put an arrow at the end, put an e in the brackets {}
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s left
+% put the initial branch at (600,280), with (x,y) direction (-2,1), and horizontal length 400
+\putbranch(300,240)(-1,1){400}
+% give the branch one action, label it for player 1, and label the action $y$
+\ib{3}{}[$2$]
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 1s right
+% put the initial branch at (600,280), with (x,y) direction (2,1), and horizontal length 400
+\putbranch(300,240)(1,1){400}
+% give the branch one action, label it for player 1, and label the action $x$
+\ib{3}{}[$1$]
+
+
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%players 2s left left
+% put a branch at (-100,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(425,115)(-1,1){275}
+% give the branch one actions, label it as player 2, and label the action as $y$
+\ib{}{}[$\rightarrow a$] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s left right
+% put a branch at (-100,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(25,-35)(1,1){125}
+% give the branch one actions, label it as player 2, and label the action as $x$
+\ib{$c$}{}[]  
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right left
+% put a branch at (700,40), with (x,y) direction (-1,1) and horizontal length 200
+\putbranch(575,-35)(-1,1){125}
+% give the branch one action, label it as player 2, and label the action as $y$
+\ib{}{}[] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(300,-10)(1,1){150}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[$b$] 
+
+
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(-100,-160)(1,0){800}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(700,-160)(-1,0){800}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[] 
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(150,-160)(1,0){500}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[] 
+
+
+
+%set the arrow style
+\renewcommand{\egarrowstyle}{}
+%set the size of the arrows to be 2
+\psset{arrowscale=2}
+
+%player 2s right right
+% put a branch at (700,40), with (x,y) direction (1,1) and horizontal length 200
+\putbranch(450,-160)(1,0){200}
+% give the branch one action, label it as player 2, and label the action as $x$
+\ib{}{}[] 
+
+
+
+% draw an information set between the nodes at (100,140)
+% and (500,140)
+%\infoset(-400,-360){1400}{2}
+%
+\end{egame}
+\hspace*{\fill}\s\s\s\s\s
+\caption[]{Figure on the bottom of 5/1/03 page 6.}\label{f:seventeen}
+\end{figure}
+
+\s
+\n A more subtle problem: $R(x_0,x_1,x_2)$ may \textit{not} be lower hemi continuous.  The weak provisional selection might screw things up from the beginning, and it can lead to nonexistence of equilibria!  
+
+\begin{center}  Also see figure from the bottom of $5/1/03$ page $6$.
+\end{center}  $b$ is the only possible best response, but...
+ 
+\s
+\n  Same problem in Banks and Gasmi:
+\begin{center}
+[Also see figure from the top of the extra note written for Maggie Penn from 5/7/03]
+\end{center}
+\n  THIS IS WHAT IS WRITTEN ON THE EXTRA NOTE:  Suppose $1$ proposes $a$ and $2$ proposes $b$.  The points that weakly beat $a$ and $b$ are the darker shaded region and $c$.  Using the usual convention, $3$ proposes $c$, giving $2$ a ``low" payoff.  But if $2$ moves to $b^{\prime}$, $c$ is no longer available.  $3$'s optimal proposal will be near $c^{\prime}$, which is discretely better for $2$.  In fact, $2$ has no optimal proposal.
+
+\s
+\n  THIS IS WHAT IS FROM THE LECTURE:  To solve all of this, think about the largest set of outcomes we can support as outcomes when $3$ proposes.  Let $2$ proposals with provisional selection of order $2$ $y_0,y_1,y_2$ be given, and define $3$'s security level as:
+\begin{eqnarray*}
+b_3(y_0,y_1,y_2)&=&\sup u_3(x)\\
+&&\mbox{such that }x\in P_\mathcal{B}(y_0,y_1,y_2)\bigcup\{y_2\}.
+\end{eqnarray*}  This is lower-semi continuous.
+\begin{center}
+[Also see figure from the bottom of 5/1/03, page 7.]
+\end{center}  Then the possible optimal outcomes are:
+\begin{eqnarray*}
+B_3(y_0,y_1,y_2)&=&\{x\in B_3(y_0,y_1,y_2)\mid u_3(x)\geq b_3(y_0,y_1,y_2)\}.
+\end{eqnarray*}  This has closed graph: check.  And it has non-empty valeus: $\forall\mbox{ }n\mbox{ }\exists\mbox{ } x_n\in P_{\mathcal{B}}(y_0,y_1,y_2)\bigcup\{y_2\}$ such that $u_3(x_n)\geq b_2(y_0,y_1,y_3)-\frac{1}{n}$;  by compactness, assume WLOG $x_n\longrightarrow x$; then $x\in B_3(y_0,y_1,y_2)$.  THESE PROPERTIES WILL BE INHERITED CORRESPONDENCES FOR EARLIER AGENTS!
+
+\s
+\n  Define:
+\begin{eqnarray*}
+b_2(y_0,y_1)&=&\sup_{z\in X}\inf_{x\in X} u_2(x)\\
+&&x\in B_3(y_0,y_1,y_2)\\
+&&z\in P_{\mathcal{B}}(y_0,y_1)\bigcup\{y_1\}
+\end{eqnarray*} and
+\begin{eqnarray*}
+B_2(y_0,y_1)&=&\{x\in X\mid \exists\mbox{ }z\in R_{\mathcal{B}}(y_0,y_1)\mbox{ s.t. }x\in B_3(y_0,y_1,y_2)\mbox{ }\&\mbox{ }u_2(x)\geq b_2(y_0,y_1)\}
+\end{eqnarray*}  (check non-empty values and closed graph.  (See Appendix A)).
+
+\s
+\n  Same for $B_1(y_0)$.  Every alternative in here is the outcome of some simple equilibrium.  
+
+\s
+\n  \begin{theo}  Simple equilibrium outcomes $\subseteq\mbox{ }PO$.
+\end{theo}
+
+\s
+\n\begin{theo}  Core Equivalence.
+\end{theo}
+
+\s
+\n\begin{theo}  MVT.
+\end{theo}
+
+\section{Rubinstein Bargaining}
+\s
+\n  The elements of the model:
+\begin{itemize}
+\item  N=\{1,2\}.
+\item $X=\{(x_1,x_2)\in\mathbb{R}^2_+\mid x_1+x_2=1\}$.
+\item $u_i(x_1,x_2)=\phi_i(x_i)$ where $\phi:[0,1]\longrightarrow[0,1]$ is continuous, onto, strictly increasing, and strictly concave.
+\item $\delta_i\in[0,1)$.
+\end{itemize}
+
+\s
+\n  The bargaining protocol: in any period $t$ (odd):
+\begin{itemize}
+\item $1$ makes an offer $p^1(p_1^1,p_2^1)$.
+\item $2$ accepts or rejects.
+\item If $2$ accepts, the game ends with outcome $(p^1,t)$ and payoffs are $\delta_i^{t-1}\phi_i(p_i^1)$.
+\item If $2$ rejects, go to period $t+1$ and repeat with $2$ offering.
+\end{itemize}
+
+\s
+\n  Define $f:[0,1]\longrightarrow[0,1]$ by $f(u_1)=\phi_2(1-\phi_1^{-1}(u_1))$, i.e. $f(u_1)$ is the utility $2$ gets when $1$ gets $u_1$.  Note that $f$ is strictly decreasing, continuous, onto, and strictly concave.
+\begin{center}
+[Also see figure from top of 5/8/03 page 2.]
+\end{center}
+
+\s
+\n  Stationary strategies are $(p^1,\overline{u}_1)$ and $(p^2,\overline{u}_2)$.  Then continuation values are:
+\begin{eqnarray*}
+v_1(\mbox{offer})&=&\left\{\begin{array}{ll}
+\phi_1(p_1^1)&\mbox{if } \phi_2(p_2^1)\geq \overline{u}_2\\
+&\\
+\delta_1v_1(\mbox{receive})&\mbox{else}
+\end{array}\right.\\
+v_1(\mbox{receive})&=&\left\{\begin{array}{ll}
+\phi_1(p_1^2)&\mbox{if }\phi_1(p_1^2)\geq\overline{u}_1\\
+&\\
+\delta_1v_1(\mbox{offer})&\mbox{else}
+\end{array}\right.\\
+v_2(\mbox{offer})&=&\left\{\begin{array}{ll}
+\phi_2(p_2^2)&\mbox{if } \phi_1(p_1^2)\geq \overline{u}_1\\
+&\\
+\delta_2v_2(\mbox{receive})&\mbox{else}
+\end{array}\right.\\
+v_2(\mbox{receive})&=&\left\{\begin{array}{ll}
+\phi_2(p_2^1)&\mbox{if }\phi_2(p_2^1)\geq\overline{u}_2\\
+&\\
+\delta_2v_2(\mbox{offer})&\mbox{else}
+\end{array}\right..\\
+\end{eqnarray*}
+
+\s
+\n  Strategies are an equilibrium if $(1)$ proposals are optimal and $(2)$ responses are optimal, i.e. $p_1^i+p_2^i=1$ and:\marginpar{\tiny one shot deviation principle.}
+\begin{eqnarray}
+\phi_2(p_2^1)&=&\left\{\begin{array}{ll}
+\overline{u}_2&\mbox{if }\phi_1(p_1^1)\geq \delta_1v_1(\mbox{receive})\\
+&\\
+<\overline{u}_2&\mbox{else}
+\end{array}\right.\\
+\nonumber\phi_1(p_1^2)&=&\left\{\begin{array}{ll}
+\overline{u}_1&\mbox{if }\phi_2(p_2^2)\geq\delta_2v_2(\mbox{receive})\\
+&\\
+<\overline{u}_1&\mbox{else}
+\end{array}\right.\\
+\nonumber&&\\
+\overline{u}_2&=&\delta_2v_2(\mbox{offer})\\
+\nonumber\overline{u}_1&=&\delta_1v_1(\mbox{offer}).
+\end{eqnarray}
+
+\s
+\n  Can we have $\phi_1(p_1^1)<\delta_1v_1(\mbox{receive})$ in equilibrium?  If so, we must have $v_1(\mbox{receive})=\phi_1(p_1^2)$, otherwise we would have:
+\begin{eqnarray*}
+v_1(\mbox{receive})&=&\delta_1v_1(\mbox{offer})=\delta_1v_1(\mbox{receive})
+\end{eqnarray*} meaning that $v_1(\mbox{receive})=0$, contradicting $\phi_1(p_1^1)<\delta_1v_1(\mbox{receive})$.
+
+\s
+\n  So $v_1(\mbox{receive})=\phi_1(p_1^2)$, and we have $\phi_1(p_1^1)<\delta_1\phi_1(p_1^2)$.  Moreover, $\phi_1(p_1^2)\geq \overline{u}_1$, for otherwise we would have $v_1(\mbox{receive})=\delta_1v_1(\mbox{offer})=\delta_1\phi_1(p_1^1)<\phi_1(p_1^2)$, a contradiction.  Therefore, $\phi_1(p_1^2)=\overline{u}_1$.  But then $v_1(\mbox{receive})=\phi_1(p_1^2)=\overline{u}_1=\delta_1v_1(\mbox{offer})$.  Since $v_1(\mbox{offer})=\delta_1\phi_1(p_1^1)$ or $\delta_1v_1(\mbox{receive})$, a contradiction.
+
+\s
+\n  Therefore, $\phi_1(p_1^1)\geq\delta_1v_1(\mbox{receive})$, so $\phi_2(p_2^1)=\overline{u}_2$.  And $\phi_2(p_2^2)\geq\delta_2v_2(\mbox{receive})$ and $\phi_1(p_1^2)=\overline{u}_1$.\marginpar{\tiny no-delay.}
+
+\s
+\n So stationary equilibria are characterized by $p_1^i+p_2^i=1$ and:
+\begin{eqnarray*}
+\phi_2(p_2^1)&=&\overline{u}_2\\
+\phi_1(p_1^2)&=&\overline{u}_1
+\end{eqnarray*} and:
+\begin{eqnarray*}
+\overline{u}_2&=&\delta_2\phi_2(p_2^2)\\
+\overline{u}_1&=&\delta_1\phi_1(p_1^1).
+\end{eqnarray*}
+
+\s
+\n Substituting, the equilibrium offers are given by $p_1^i+p_2^i=1$ and:
+\begin{eqnarray*}
+\phi_2(p_2^1)=\delta_2\phi_2(p_2^2)\mbox{  }\&\mbox{  }\phi_1(p_1^2)=\delta_1\phi_1(p_1^1).
+\end{eqnarray*} Then:
+\begin{eqnarray*}
+f(\phi_1(p_1^1))=\delta_2f(\phi_1(p_1^2))=\delta_2f(\delta_1\phi_1(p_1^1)),
+\end{eqnarray*} so $1$'s payoff $phi_1(p_1^1)$ solves:
+\begin{eqnarray*}
+f(u_1)&=&\delta_2f(\delta_1u_1)\mbox{           }\bigstar
+\end{eqnarray*}  Moveover, if $u_1^*$ solves $\bigstar$, then define:
+\begin{eqnarray*}
+p_1^1&=&\phi_1^{-1}(u^*)\\
+p_2^1&=&1-p_1^1\\
+p_1^2&=&\phi_1^{-1}(\delta_1u_1^*)\\
+p_2^2&=&1-p_1^2.
+\end{eqnarray*}  Then:
+\begin{eqnarray*}
+\phi_2(p_2^1)=f(\phi_1(p_1^1))=f(u_1^*)=\delta_2f(\delta_1u_1^*)=\delta_2\phi_2(1-\phi_1^{-1}(\delta_1u_1^*))=\delta_2\phi_2(1-p_1^2)=\delta_2\phi_2(p_2^2)
+\end{eqnarray*} and
+\begin{eqnarray*}
+\phi_1(p_1^2)=\phi_1(\phi_1^{-1}(\delta_1u_1^*))=\delta_1u_1^*=\delta_1\phi_1(p_1^1)
+\end{eqnarray*} so $\bigstar$ is necessary and sufficient  for a stationary equilibrium.  
+
+\s
+\n\begin{propo}  In the Rubinstein bargaining model, there is a unique stationary subgame perfect equilibrium, and it is no-delay.
+\end{propo}
+\begin{proof}  For existence, note that at $u_1=0$,  $f(0)>\delta_2f(\delta_10)$ and at $u_1=1$, $f(1)<\delta_2f(\delta_11)$.  Existence follows from the intermediate value theorem and the continuity of $f(\cdot)$.  For uniqueness, note that $f(u_1)-\delta_2f(\delta_1u_1)$ is strictly decreasing.  To see this, assuming differentiability: \marginpar{\tiny So this function is differentiable almost everywhere.}
+\begin{align*}
+&f(u_1)-\delta_2f(\delta_1u_1)=\phi_2(1-\phi_1^{-1}(u_1))-\delta_2\phi_2(1-\phi_1^{-1}(\delta_1u_1))\\
+&\frac{d}{du_1}=\phi_2^{\prime}(1-\phi_1^{-1}(u_1))\left(-\frac{1}{\phi_1^{\prime}(u_1)}\right)-\delta_2\phi_2^{\prime}(1-\phi_1^{-1}(\delta_1u_1))\left(-\frac{\delta_1}{\phi_1^{\prime}(\delta_1u_1)}\right)<0\\
+&\Longleftrightarrow \frac{\delta_1\delta_2\phi_2^{\prime}(1-\phi_1^{-1}(\delta_1u_1))}{\phi_1^{\prime}(\delta_1u_1)}<\frac{\phi_2^{\prime}(1-\phi_1^{-1}(u_1))}{\phi_1^{\prime}(u_1)}
+\end{align*} which indeed holds by strict concavity of $\phi_1$ and $\phi_2$.
+\end{proof}
+
+\s
+\n  Example:  $\phi_1(x)=x$ and $\phi_2(x)=x$.  Then the equilibrium is given by:
+\begin{eqnarray*}
+p_2^1=\delta_2p_2^2&\mbox{ }\&\mbox{ }&p_1^2=\delta_1p_1^1\mbox{ }(=\delta_1(1-p_2^1)=\delta_1(1-\delta_2p_2^2))\\
+1-p_2^2=\delta_1(1-\delta_2p_2^2)&\Rightarrow&1-\delta_1=p_2^2(1-\delta_1\delta_2)\\
+\Rightarrow p_2^2=\frac{1-\delta_1}{1-\delta_1\delta_2} &\mbox{ }\&\mbox{ }&p_1^2=\frac{p_1^2}{\delta_1}=\frac{1}{\delta_1}\left(1-\frac{1-\delta_1}{1-\delta_1\delta_2}\right)=\frac{1}{\delta_1}\left(\frac{1-\delta_1\delta_2-1+\delta_1}{1-\delta_1\delta_2}\right)\\
+&&=\frac{1-\delta_2}{1-\delta_1\delta_2}.
+\end{eqnarray*}
+
+\s
+\n
+\begin{center}
+[See figure on the bottom left of $5/15/03$, page 1.]
+\end{center}
+
+\s
+\n A picture of the stationary subgame perfect equilibrium payoffs:
+\begin{center}
+[See figure on the bottom left of $5/15/03$, page 2.]
+\end{center} Here $u_1^*=\phi_1(p_1^1)$, $u_2^*=f(u_1^*)=\delta_2\phi_2(p_2^2)$, so $\frac{u_2^*}{\delta_2}=\phi_2(p_2^2)$, and $\delta_1u_1^*=f^{-1}\left(\frac{u_2^*}{\delta_2}\right)$.
+
+\s
+\n Note that for $u_1>u_1^*$, $f(u_1)-\delta_2f(\delta_1u_1)<0$, i.e. $f(u_1)<\delta_2f(\delta_1u_1)$ implies that $f^{-1}\left(\frac{f(u_1)}{\delta_2}\right)>\delta_1u_1\mbox{ }(3)$, which implies that $\frac{f^{-1}\left(\frac{f(u_1)}{\delta_2}\right)}{\delta_1}>u_1$.
+
+\begin{center}
+[See figure on the bottom of $5/15/03$, page 2.]
+\end{center}
+
+\s
+\n  What about other subgame perfect equilibria?  
+
+\s
+\n\begin{propo} In the Rubinstein bargaining model there is a unique subgame perfect equilibrium, and it is the stationary subgame perfect equilibrium.
+\end{propo}
+\begin{proof}\marginpar{\tiny Apologies for using ``max" instead of ``sup" - easily adapted.}  Let $u_1$ be the highest payoff $1$ gets in any subgame perfect equilibrium in any subgame in which he makes a proposal, and suppose that it is higher than his stationary equilibrium payoff.  It is pretty clear that $2$ must accept $1's$ proposal.  Let $u_2=f(u_1)$.
+\begin{center}
+[See figure on middle left of $5/15/03$, page 3.]
+\end{center}
+\noindent Since $2$ accepts, it must be that his payoff from rejecting, $\delta_2v_2$, satisfies $u_2\geq\delta_2v_2$.  Let $v_1=f^{-1}(v_2)$ so $v_1\geq f^{-1}\left(\frac{u_2}{\delta_2}\right)\mbox{ }(1)=f^{-1}\left(\frac{f(u_1)}{\delta_2}\right)$.  If $2$ only gets $v_2$ when he proposes, it's because $1$ rejects any lower offer, so if $\widehat{u}_1^{\varepsilon}$ is $1$'s payoff from proposing after a lower proposal with payoff $v_1-\varepsilon$, we must have $v_1-\varepsilon\leq\delta_1\widehat{u}_1^{\varepsilon}$.  Taking limits, $v_1\leq\delta_1\widehat{u}_1\mbox{ }(2)$ when $\widehat{u}_1=\lim\widehat{u}_1^{\varepsilon}$.  But since $u_1$ exceeds $1$'s stationary equilibrium payoff:\marginpar{\tiny If $1$ proposes to take more $(u_1)$ than his stationary payoffs, then it must be that $2$ would propose less $\frac{f(u_1)}{\delta_2}$, which is only optimal if, upon rejecting, $1$ could obtain more $\frac{f^{-1}\left(\frac{f(u_1)}{\delta_2}\right)}{\delta_1}$ than $u_1$, but then $u_1$ can't be the highest possible payoff for $1$.}
+\begin{eqnarray*}
+\delta_1u_1<\mbox{ }(3)\mbox{ }f^{-1}\left(\frac{f(u_1)}{\delta_2}\right)\leq\mbox{ }(1)\mbox{ }v_1\mbox{ }(2)\mbox{ }\delta_1\widehat{u}_1
+\end{eqnarray*} and therefore, $u_1<\widehat{u}_1$, and for small enough $\varepsilon$, we have $u_1<\widehat{u}_1^{\varepsilon}$, a contradiction.  Since subgame perfect equilibrium payoffs are unique, so are equilibrium strategies.
+\end{proof}
+
+\s
+\n Now consider the product of payoffs in equilibrium, where proposals are $p^1=(p_1^1,p_2^1)$ and $p^2=(p_1^2,p_2^2)$:
+\begin{eqnarray*}
+\phi_1(p_1^1)\phi_2(p_2^1)&=&\frac{\phi_1(p_1^2)}{\delta_1}\delta_2\phi_2(p_2^2)
+\end{eqnarray*} If $\delta_1=\delta_2=\delta$, then:
+\begin{eqnarray*}
+\phi_1(p_1^1)\phi_2(p_2^1)&=&\phi_1(p_1^2)\phi_2(p_2^2)\mbox{ }(1)
+\end{eqnarray*}  Moreover,
+\begin{eqnarray*}
+\left(\phi_1(p_1^1),\phi_2(p_2^1)\right)&\neq&\left(\phi_1(p_1^2),\phi_2(p_2^2)\right).\mbox{ }(2)
+\end{eqnarray*}Lastly, as $\delta\to 1$, we have:
+\begin{eqnarray*}
+\left(\phi_1(p_1^1),\phi_2(p_2^1)\right)-\left(\phi_1(p_1^2),\phi_2(p_2^2)\right)\to0.\mbox{ }(3)
+\end{eqnarray*}Combining $(1)$, $(2)$, and $(3)$, we see that $\left(\phi_1(p_1^1),\phi_2(p_1^1)\right)$ converges to the unique solution to:
+\begin{eqnarray*}
+\max_{x\in X}u_1(x)u_2(x).
+\end{eqnarray*}
+\begin{center}
+[See figure on bottom right of $5/15/03$, page 4.]
+\end{center}
+
+\s
+\n\begin{propo}  In the Rubinstein bargaining model with a common discount factor $\delta$, as $\delta\to 1$, the unique subgame perfect equilibrium payoffs converge to the Nash solution.
+\end{propo}
+
+\section{Baron-Ferejohn (- Harrington) Bargaining}
+\s
+\n  Elements:
+\begin{itemize}
+\item $N=\{1,\hdots,n\}$.
+\item $X=\{x=(x_1,\hdots,x_n)\in\mathbb{R}_+^n\left|\sum_{i\in N}x_i=1\right.\}$.
+\item $u_i(x)=x_i$.
+\item $\delta\in[0,1)$.
+\end{itemize}
+
+\s
+\n  Protocol (closed rule model):  In any period $t$,
+\begin{itemize}
+\item $i$ is selected to propose with probability $\frac{1}{n}$.
+\item the selected $i$ makes a proposal $p^i\in X$.
+\item all individuals vote $y$ or $n$.
+\item If $\#\{j|j\mbox{ votes }y\}>\frac{n}{2}$, then the game ends with $(p^i,t)$ and payoffs $(1-\delta)\delta^tp_j^i$.
+\item Else go to period $t+1$ and repeat.
+\end{itemize}
+
+\s
+\n Baron-Ferejohn Folk Theorem: 
+\begin{center}
+[See figure on $5/13/03$ after page 5 but before page 6.]
+\end{center}
+
+\s
+\n  Stationary pure strategies are $(p^i,\overline{x}^i)$.  We also allow mixed proposal strategies $\pi^i\in\mathcal{P}(X)$.
+
+\s
+\n  Define the \textit{acceptance set} $A$ by:
+\begin{eqnarray*}
+A_i&=&\{x\in X|x_i\geq\overline{x}^i\}\\
+A_C&=&\bigcap_{i\in C}A_i\\
+A&=&\bigcup_{C:|C|>\frac{n}{2}}A_C.
+\end{eqnarray*}
+
+\s
+\n  A strategy profile is $\sigma=((\pi^1,A_1),\hdots,(\pi^n,A_n))$.
+
+\s
+\n Continuation Values are:
+\begin{eqnarray*}
+v_i(\mbox{proposal stage})&=&\sum_{j\in N}\frac{1}{n}\left[\int_Ax_i\pi^j(dx)+\delta\pi^j(X\backslash A)v_i(\mbox{proposal stage})\right]\\
+v_i(\mbox{proposal stage})&=&\frac{\sum_{j\in N}\frac{1}{n}\int_Ax_i\pi^j(dx)}{\sum_{j\in N}\frac{1}{n}\left[1-\delta\pi^j(X\backslash A)\right]}.
+\end{eqnarray*}
+
+\s
+\n Strategies are an equilibrium if $(1)$ proposals are optimal and $(2)$ votes are optimal:
+\begin{enumerate}
+\item If $\sup{\{u_i(x)\mid x\in A\}}>\delta v_i(\mbox{proposal stage})$, then:
+\begin{eqnarray*}
+\pi^i(\argmax\{u_i(x)\mid x\in A\})=1.
+\end{eqnarray*}  If reversed, then $\pi^i(X\backslash A)=1$.  If equal, then:
+\begin{eqnarray*}
+\pi^i(\argmax\{u_i(x)|x\in A\})+\pi^i(X\backslash A)=1.
+\end{eqnarray*}
+\item The voting strategies are two-alternative simultaneous voting games, with outcomes ``$x$ passes" and ``$x$ fails" and payoffs $x_i$ and $\delta v_i(\mbox{proposal stage})$.  We eliminate strategies weakly dominated in the voting stage:\marginpar{\tiny Don't worry about this headache.}
+\begin{eqnarray*}
+\mbox{vote }y&\Longleftrightarrow&x_i\geq\delta v_i(\mbox{proposal stage}).
+\end{eqnarray*}
+\end{enumerate}
+
+\s
+\n Note that there is no stationary equilibrium where $\pi^j(X\backslash A)=1$ for all $j$.  (Why?)  So if $i$ proposes, the total amount needed to get everyone's vote is:\marginpar{\tiny Write weak inequalities first.}\marginpar{\tiny $\hdots$ at the end, note that if $\sum\int_Ax_k\overline{\pi}(dx)=0$, we clearly have $<$.  If $\sum\int_Ax_k\overline{\pi}(dx)>0$, then we have $<$ again.}
+\begin{eqnarray*}
+\sum_{k\in N}\delta v_k(\mbox{proposal stage})&=&\sum_{k\in N}\delta\left(\frac{\sum_{j\in N}\frac{1}{n}\int_A x_k\pi^j(dx)}{\sum_{j\in N}\frac{1}{n}\left[1-\delta\pi^j(X\backslash A)\right]}\right)\\
+\sum_{k\in N}\delta\left(\frac{\sum_{j\in N}\frac{1}{n}\int_A x_k\pi^j(dx)}{\sum_{j\in N}\frac{1}{n}\left[1-\delta\pi^j(X\backslash A)\right]}\right)&<\hdots<&\frac{\sum_{k\in N}\int_Ax_k\left(\sum_{j\in N}\frac{1}{n}\pi^j\right)(dx)}{1-\left(\sum_{j\in N}\pi^j\right)(X\backslash A)}\\
+\sum_{k\in N}\frac{\int_Ax_k\overline{\pi}(dx)}{\overline{\pi}(A)}&=&\sum_{k\in N}\int_Ax_k\overline{\pi}(dx|A)\\
+&=&\int_A\sum_{k\in N}x_k\overline{\pi}(dx|A)\\
+&=&\sum_{k\in N}\overline{x}_k\leq 1.
+\end{eqnarray*}  Then $p^i(\delta v_1,\hdots,\delta v_{i-1},\delta v_i+1-\sum_{k\in N}\delta v_k,\delta v_{i+1},\hdots,\delta v_n)$ is in $A$, and it follows that $\sup\{u_i(x)|x\in A\}>\delta v_i$ so $\pi^i(\argmax\{u_i(x)|x\in A\})=1$.
+
+\s
+\n\begin{propo}  In the Baron-Ferejohn model of bargaining, every stationary equilibrium is no-delay.
+\end{propo}
+
+\s
+\n So: $v_i(\mbox{proposal stage})=\sum_{j\in N}\frac{1}{n}\int x_i\pi^j(dx)$.
+
+\s
+\n Strategies are \textit{symmetric} if $v_i(\mbox{proposal stage})=v_j(\mbox{proposal stage})=v$ for all $i,j\in N$.
+
+\s
+\n\begin{propo}  In the Baron-Ferejohn bargaining model with $n$ odd, there is a unique symmetric stationary equilibrium continuation value $\frac{1}{n}$.  In equilibrium, proposer $i$ gives $\frac{\delta}{n}$ to $\frac{n-1}{2}$ and keeps $1-\left(\frac{n-1}{2}\right)\frac{\delta}{n}$.\marginpar{\tiny probability of being proposed to is $\frac{1}{2}$.}
+\end{propo}
+\begin{proof}  Proposer $i$ must give $\frac{n-1}{2}$ individuals $\delta v$, and $i$ keeps $1-\frac{n-1}{2}\delta v$.  So:
+\begin{eqnarray*}
+v&=&\frac{1}{n}\left(1-\frac{n-1}{2}\delta v\right)+\frac{n-1}{n}\left(\mbox{Prob}(i\mbox{ is proposed to})\delta v+0\right)
+\end{eqnarray*} which implies that Prob$(i\mbox{ is proposed to})=$Prob$(j\mbox{ is proposed to})=\frac{1}{2}$.  So:
+\begin{eqnarray*}
+v&=&\frac{1}{n}\left(1-\frac{n-1}{2}\delta v\right)+\frac{n-1}{n}\left(\frac{1}{2}\delta v\right)=\frac{1}{n}.\\
+p_i^i&=&1-\frac{\delta}{n}.
+\end{eqnarray*}
+\end{proof}
+
+\s
+\n Are there symmetric stationary equilibria?  No - Eraslan.
+
+
+\end{document}
