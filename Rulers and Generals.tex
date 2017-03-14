@@ -1,0 +1,1193 @@
+%\documentclass[10pt,twocolumn]{article}
+\documentclass[11pt,]{article}
+\title{Rulers and Generals}
+
+\usepackage{amsmath,amssymb,graphicx,amsthm}
+\usepackage{setspace}
+\usepackage{palatino}
+\usepackage{url}
+
+%\usepackage[left=0.5in,top=0.75in,right=0.5in,bottom=1in,nohead]{geometry}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\singlespacing
+\author{Jeremy Kedziora\\ Randall W. Stone}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[]{Lemma}
+\newtheorem{proposition}[]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[]{Assumption}
+\newtheorem*{example}{Example 1}
+
+
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Democratic states win more of the wars they fight, win them more quickly, and pay lower costs than do autocratic states.  We offer a novel explanation for this observation: democratic states are more successful in war because autocrats are more likely to suffer from a commitment problem that prevents their generals from using their expertise on the battlefield.  We derive this argument from a model with incomplete information in which battles allow rulers to make inferences regarding the competence of generals.  We illustrate our argument with examples from World War II. %Consequently, when a general expects severe punishment should he be removed from command he has an incentive to avoid taking the risk of attacking in war.  As a result, autocrats provide high-powered incentives (i.e., threats) to motivate their generals to fight, so generals do not use their superior knowledge about whether local circumstances favor the offense or the defense.  This makes them more likely to suffer decisive defeats. 
+
+\end{abstract}
+
+%\begin{quotation}\begin{center}To keep you is no benefit.  To destroy you is no loss.
+%\begin{flushright}$\sim$ the Khmer Rouge\end{flushright}
+%\end{center}
+%\end{quotation}
+\begin{quotation}\begin{center}...in this country, it is wise to kill an admiral from time to time to encourage the others...
+\begin{flushright}$\sim$ Voltaire's \textit{Candide}\end{flushright}
+\end{center}
+\end{quotation}
+\doublespace
+
+\section{Introduction}
+\noindent Democratic states win more of the wars they fight, win them more quickly, and pay lower costs than do autocratic states (Lake 1992; Siverson 1995; Bennett and Stam 1996; Reiter and Stam 1998a). Explanations for this democratic wartime advantage either suggest that democracies are better at prosecuting war than autocracies (e.g. Reiter and Stam 1998b, Lake 1992, Bueno de Mesquita et al. 1999) or suggest that democratic states are more careful about selecting which wars to fight (e.g. Reiter and Stam 1998a).  We suggest that the mechanism is delegation: \textit{democratic leaders are better able to take advantage of the skills and expertise of battlefield commanders because they are better able to make credible commitments}.  %We argue that each of these arguments is either incomplete or unsupported by subsequent empirical research, and so none of them has presented a convincing mechanism to account for the democratic advantage.
+
+Battlefield commanders possess information and expertise that are not available to political leaders, so leaders must rely on commanders to make operational decisions, and can only assess commander ability by examining the battlefield outcomes derived from those operational decisions.  We formalize this delegation problem in a model in which a general must decide whether or not to accept battle after observing a private signal about whether local conditions are favorable for accepting battle. If the general accepts battle, the leader observes the outcome of the battle, but does not observe local battlefield conditions. Generals may be competent or incompetent, which affects their ability to correctly identify whether local conditions are favorable for battle, and the leader prefers to win the war, giving him an incentive to replace incompetent generals. This situation creates incentive problems for generals, because the leader's decision about whether to retain the general's services may distort the general's decision about whether to accept battle.  
+
+Regime type has consequences for battlefield outcomes through this delegation mechanism because civil-military relations differ in authoritarian and democratic countries---sometimes quite dramatically. Irregular leadership change is much more frequent in dictatorships than in democracies, and frequently involves a military coup. Consequently, dissatisfied military officers can represent threats to the leadership.  The incentives facing autocrats to preemptively remove future political opponents and the options they have to punish disgraced military commanders are not constrained by democratic institutions, so autocrats may not be able to make credible commitments to refrain from punishing failed generals.  In contrast, democratic institutions, for example rule of law, place constraints on leaders that prevent them from punishing retired generals.  We take advantage of this observation to argue that democratic leaders have an advantage in war fighting because their ability to commit to providing a general with a comfortable retirement after removing him from command will influence the willingness of the general to exploit his expertise on the battlefield.
+
+Our analysis makes several contributions to the study of war.  At the most general level, we propose a mechanism to explain the observed democratic advantage in warfare.  We argue that democratic states are more likely to win the wars they fight than their autocratic counterparts because autocrats are more likely to suffer from a particular commitment problem that prevents their generals from using their expertise on the battlefield. Because of this autocratic commitment problem, democratic states will benefit from better leadership on the battlefield, and consequently be more effective at warfare. Leaders can make inferences about the competence of their generals from the outcome of battles, and this may distort the tactical decisions of the generals, depending on how this information will be used.  In particular, when generals expect severe punishment should they be removed from command, we find two kinds of pooling equilibria in which generals ignore information about whether the current tactical situation is favorable.  This suggests a foundation in rational calculations for the observation made by Reiter and Stam (1998a, 1998b, 2002) that democracy encourages a culture of individual responsibility and leadership that manifests itself favorably on the battlefield.  
+
+Furthermore, focusing on a mechanism based in civil-military relations generates additional testable hypotheses, because civil-military relations vary substantially across types of authoritarian countries, with striking consequences for regime stability and international behavior (Geddes 2003, Weeks 2008).  The logic of our model implies that authoritarian countries with traditions or institutionalized interest groups that constrain leaders' treatment of retired generals should escape the worst consequences of the ruler's delegation dilemma.  In Geddes' terms, this would include military regimes and single-party dictatorships; personalist regimes, however, such as the Soviet Union under Stalin, or Hitler's Germany, should be least constrained and consequently subject to the most dramatic distortions.
+
+%Incentives to execute former commanders could arise, for example, because autocratic leaders fear that they may be removed in a coup.
+
+At a micro level, our model provides an explanation of battlefield tactics and outcomes.  Our analysis indicates that the disadvantages of dictatorship express themselves at the tactical level:  generals do not have incentives to make use of their expertise and local knowledge if they expect severe punishment after being removed from command. There exist two pooling equilibria in our model in which the generals fail to make use of their expertise.  If the current commanding general is believed to be more talented than the supply of potential replacements,  he has incentives to refuse to seek decisive engagements.  As a result, autocracies miss opportunities to seize victory.  On the other hand, if the current commanding general is believed to be less talented than the supply of potential replacements, he has incentives to seek a decisive engagement \textit{whether or not his expertise indicates that it is appears to be favorable to do so}.  This leads to risky gambles, which may result in decisive defeat. In contrast, generals who do not expect severe punishment--for example those serving democratic leaders--seek decisive engagements when and only when it appears favorable to do so, so their engagements are more likely to have favorable outcomes.  
+
+Finally, we offer an explanation for the deterioration in command-and-control that occurs when autocracies begin to lose wars.  Strong incentives for risk taking arise in our model when the ruler believes that the general is less talented than the pool of replacement officers, because the ruler will fire the general if he refuses to accept combat.  The ruler's prior belief about the competence of the general can be interpreted as a measure of past performance.  If the general has suffered defeats in the past, the ruler believes that the general is likely to be incompetent, and prefers to find a replacement unless provided with proof to the contrary.  An incompetent general would refuse to meet the enemy if granted the discretion to withdraw, so the leader takes away discretion after suffering defeat. When the war begins to turn against an autocracy, therefore, generals begin to find themselves in an untenable position.  Blamed for past defeats, they can exonerate themselves only by achieving an immediate victory, and are forced to gamble for survival.  As a result, the first reversal of fortune leads to a series of tactical errors that snowball into disaster.  
+
+We illustrate our argument by contrasting the relationship between Churchill and his generals with the relationships between Stalin and Hitler, respectively, and their generals during World War II.  Stalin and Hitler both believed that their generals were overly risk averse, and as a result they overrode their military commanders with threats.  Orders not to retreat, accompanied by explicit threats, were responsible for the scale of many of the Soviet defeats in 1941, and for the surrender of German armies at Stalingrad and in Tunis.  On the other hand, Churchill's relationships with his commanders in Egypt and East Asia show a different dynamic.  Churchill also believed that his commanders were too risk averse, but he gave them more discretion, and when his generals firmly disagreed with his orders they allowed themselves to be replaced rather than launch premature offensives.  Our finding is that democracies are more likely to ultimately win their wars because they are better at losing; by taking advantage of local knowledge, battlefield commanders are able to limit the scope of defeats, allowing them to fight on another day.
+
+%Ironically, this suggests that in an autocratic state, a deep pool of military talent will result in worse outcomes in war, in expectation.  
+
+%When generals are patriotic and do care about the war outcome, then their willingness to make use of their expertise becomes increasingly constrained as their expected punishment after being fired becomes severe.  Third, because these incentives cause their generals to be extremely risk averse, autocrats are compelled to provide high-powered incentives (i.e., threats) to motivate their generals to fight.  This, however, prevents generals from exploiting their superior knowledge about whether local circumstances favor the offense or the defense, and makes it more likely that they will suffer decisive defeats.
+
+%Our final contribution is a set of testable implications.  First, autocratic generals should be less cautious than democratic generals, because their leaders refuse to grant them discretion.  Instead, and particularly where the pool of replacements is expected to be talented, autocrats are unable to refrain from providing high-powered incentives (i.e., threats) to motivate their generals to fight.  Because of this, autocracies with strong military traditions should be both more likely to seek decisive engagements than democracies and autocracies without a strong military tradition, and also more likely to suffer decisive defeats.  By contrast, autocracies without a strong military tradition should be least likely to seek decisive engagements, and so be most likely to end war with a negotiated settlement.  We illustrate our argument by contrasting the relationship between Churchill and his generals with the relationship between Hitler and his generals during World War II.  
+
+
+
+\begin{center}
+\textbf{\Large{Existing Explanations for Why Democracies Win}}\normalsize\\
+\end{center}Existing explanations for why democratic states tend to win wars have argued that democratic states either possess greater fighting ability or exhibit greater care when they select the conflicts in which they engage.  Previous authors have posited several reasons why democratic states might be better at warfare than autocrats.  Democratic society may foster greater leadership skills (Reiter and Stam 1998b).  Democratic states may be able to form overwhelming coalitions of states with similar regimes in response to aggression (Lake 1992).  Democratic states may be wealthier than autocrats, and so able to devote more resources to the military during a war.  Finally, democratic states may be able to mobilize a greater share of societal resources (Lake 1992, Bueno de Mesquita et al. 1999).    %Some of these explanations receive little empirical support, and others leave key mechanisms unspecified.
+
+A few notable instances notwithstanding, the claim that democratic states are able to form overwhelming alliances during wars does not appear to hold generally.\footnote{\normalsize\doublespacing The data analyzed by Lake (1992), for example, is ambiguous on this point.  Lake includes 30 wars in which democratic states participated.  Of these 30 wars, 6 involved a coalition whose membership included multiple democratic states, and 4 were won by that coalition.  In three of these wars, the Boxer Rebellion and World Wars I and II, the coalition also included autocratic states.}  In most wars, democratic states do not appear to stand together, rescue one another from defeat, or exclude autocrats from their coalitions (see Simon and Gartzke 1996 and also Reiter and Stam 1998a).  In addition, although democratic states are wealthier on average, they do not appear to be systematically able to extract more resources than autocratic states (Kugler and Domke 1986).  Moreover, the democratic advantage does not appear to depend upon the ability to mobilize resources, because it persists in empirical analyses that control for military capabilities (Reiter and Stam 1998a, Clark and Reed 2003).
+
+Explanations for democratic effectiveness in war that involve selection generally focus on the incentives facing democratic leaders, whose publics are sensitive to costs and defeats in war (Filson and Werner 2004). By contrast, autocrats do not face meaningful elections at regular intervals and can repress dissent, so they less likely to lose power following a military defeat.\footnote{\normalsize\doublespacing See Brody 1992 and Norpoth 1987 for an analysis of the US and UK, respectively; see Bueno de Mesquita and Siverson 1995 for a broader argument.} Concern for the electoral consequences of military defeat means that democratic governments only initiate wars that they are likely to win, and because they initiate wars cautiously, democratic states will appear to have a higher probability of winning to analysts examining the data.
+
+%From a theoretical perspective, a governmental power struggle can be conceptualized as an expected utility calculation which compares the reward associated with retaining power weighted by the probability of doing so and the cost associated with losing power weighted by the probability of doing so.  
+
+An objection to this line of reasoning is that the consequences associated with losing power are likely to be more severe for autocratic leaders, e.g. imprisonment or death, than for democratic rulers (Chiozza, Gleditsch, and Goemans 2009, Chiozza and Goemans 2011).  This should induce caution, if defeat precipitates challenges to the regime. Furthermore, empirical studies suggest that there are good reasons to doubt this selection-based explanation for why democratic states appear to be more likely to win wars. Chiozza and Goemans (2004) demonstrate that defeat in war significantly reduces the tenure only of mixed regime and autocratic leaders and has no effect at all on the tenure of democratic leaders. This suggests that selection should operate in the opposite direction:  autocratic leaders should be most careful when selecting themselves into wars.  In addition, Reiter and Stam (1998a) show that democracies are significantly more likely to win the wars in which they participate both as initiators and as targets. This suggests that, while there may be selection effects that shape the data generating process, there also appears to be an independent effect of democracy--implying that democratic states are better at fighting (see also Clark and Reed 2003). These effects persist even controlling for military capabilities and the contributions of alliance partners.
+
+It appears that something happens during the process of fighting wars that provides an advantage to democratic regimes. Reiter and Stam (1998b) argue that the the advantage is observed at the tactical level:  democratic states exhibit better leadership, initiative, and logistics in war.  They also find that these factors appear to have a strong and significant effect on the likelihood of winning battles during the process of warfighting.  Our argument below builds on this finding.  We provide an institutional explanation for the superior leadership and initiative exhibited by democratic military officers during war by modeling the delegation problem that a leader faces when yielding command over his armed forces during war.\footnote{\normalsize See Bendor and Meirowitz (2004) for a review of the delegation literature in American politics.}
+
+\begin{center}
+\textbf{\Large{Delegation During War}}\normalsize\\
+\end{center}
+An expanding literature focuses on the politics of warfighting (e.g. Wagner 2000; Filson and Werner 2002, 2004; Slantchev 2003a; Slantchev 2003b; Powell 2004).\footnote{\normalsize\doublespacing Of this work, only Filson and Werner (2004) consider the effect of democracy on war outcome by analyzing the \textit{process} of fighting a war.  They assume that democratic states are more sensitive to costs and focus on the transmission of information in equilibrium.  We take a different approach in this paper by modeling the strategic framework surrounding the decision by the ruler to delegate battlefield decisions to generals.}  A key insight from this work is that the process of war fighting reveals information.  Indeed, if this were not the case, informational explanations for war initiation would fail to explain why war ends (Blainey 1973).  Our model explores the implications of this information revelation mechanism for the relationship between a ruler and a general.
+
+Our approach owes much to existing models of competence revelation.  In an influential paper, Holmstr\"{o}m (1999) studies a model of career concerns in which the ability of an individual is revealed through time via observations of performance.  An incentive problem arises when the individual desires to influence the process of learning about his ability.  Like this paper, our ruler and his generals are incompletely informed about the generals' competence.  The general's actions and their consequences allow the leader and the general to learn about his competence.\footnote{\normalsize\doublespacing To our knowledge, the closest political science analogue to this is the analysis of Canes-Wrone, Herron, and Shotts (2001).   They focus on the effect of eliminating the uncertainty about whether or not the policy was successful, find that executives may be willing to pander to popular opinion by offering a policy they believe to be wrong.}  The ruler has a coarse instrument: stripping the general of command.  Because the general is able to censor the ruler's information---no information is revealed if no battle is fought---the combination of ruler incentives and general incentives leads to inefficient tactical choices when the consequences of losing command are severe.  This can induce the general to either err in favor of caution or reckless aggression, depending on the leader's prior beliefs.
+
+
+
+\section{The Model}
+We consider a two-period model of war in which a \textit{ruler} $(R)$ must choose whether or not to replace one \textit{general} $(G_j,j\in\{1,2\})$ with another after observing the results of his command of military forces in war.  Each general $G_j$ possesses a \textit{competence level} denoted by $\theta_{j}\in\{c,i\}=\Theta$ and determined by Nature.  When $\theta_{j}=c$, general $G_j$ is competent, while $\theta_{j}=i$ indicates $G_j$ is incompetent.  Competence influences the ability of the general to infer the correct course of action, and is unobserved by all actors.  Throughout, we will denote the prior probability at the beginning of period $1$ that $G_j$ has competence level $\theta_{j}$ by $\mu_0(\theta_{j})$.  We do not require that $\mu_0(\theta_{1})=\mu_0(\theta_{2})$.  
+
+
+
+In each period $t\in\{1,2\}$, the \textit{state of the war} is given by $\omega_t\in\{0,1\}=\Omega$; when $\omega_t=1$ the tactical situation is favorable in period $t$, while when $\omega_t=0$, the tactical situation is unfavorable.  Like competence, the state of the war is unobserved and determined by Nature.  For simplicity, we will assume that the prior probability that the state of the war is such that it is favorable to accept battle is $\frac{1}{2}$.
+
+
+The final primitive of the model is a set of possible military status quos $K=\{1,2,\hdots,N\}$.  We assume that the initial military status quo will be $k_0$; a new military status quo may be realized as the war progresses, as described below.  Let $\gamma(k)$ denote the value associated with ending the game in peace at each military status quo $k$.  We assume that military victory is valuable during the peace process, i.e. for all $k,k^{\prime}\in K$, $\gamma(k)>\gamma(k^{\prime})$ if $k>k^{\prime}$, and we normalize $\gamma(1)=0$.
+
+We focus on the following sequence of moves:
+\begin{itemize}
+\item[] Period 1:
+\begin{enumerate}
+\item Nature determines $\theta_{1}$, the competence of the period $1$ general $G_1$, $\theta_{2}$, the competence of his potential replacement $G_2$, and $\omega_1$, the period $1$ state of the war.
+
+\item $G_1$ then observes a signal about the state of the war, $s_1\in\{0,1\}=S$.  The ability of the general to correctly observe the state of the war depends upon his competence level in the following way: 
+\begin{align*}
+p(s_t=\omega_t|\theta_{j})=\left\{\begin{array}{ll}
+1&\mbox{if }\theta_{j}=c\\
+\frac{1}{2}&\mbox{if }\theta_{j}=i.
+\end{array}\right.
+\end{align*}That is, at any time, if the general is competent, the signal he observes correctly identifies the state of the war.  If the general is incompetent, the signal is pure noise.  
+
+\item $G_1$ decides whether to accept battle. This could correspond to mounting offensive operations, or to holding a defensive position against an advancing force.  For general $G_j$ denote this decision by $a_j$ where $a_j=1$ is a decision to accept battle while $a_j=0$ is a decision to avoid battle.
+
+\item Nature draws a new military status quo $k_1$ from $K$ according to a probability distribution over the set of military status quos, denoted as $\pi$.  If $k_1=1$, then the ruler and general are defeated in war, payoffs are allocated, and the game ends.  If $k_1=N$, then the ruler and general are victorious in war, payoffs are allocated, and the game ends.  
+
+\item If the ruler and general are neither defeated nor victorious in war, i.e. if $k_1\neq1,N$, then the ruler and general observe the (possibly) new military status quo $k_1$ and the ruler decides whether to retain $G_1$ or replace him with $G_2$.
+\end{enumerate}
+
+\item[] Period 2:
+\begin{enumerate}
+\item Nature determines $\omega_2$, the period $2$ state of the war.
+\item If the ruler retained $G_1$ then $G_1$ observes a new signal about the state of the war, $s_2\in S$.  If the ruler replaced $G_1$ then $G_2$ observes $s_2$.
+\item If the ruler retained $G_1$, then $G_1$ decides whether to accept battle; if the ruler replaced $G_1$ then $G_2$ decides whether to accept battle.
+\item Nature draws a new military status quo $k_2$ from $K$ according to a probability distribution $\pi\in\Delta(K)$.  Payoffs are allocated and the game ends.
+\end{enumerate}
+
+\end{itemize}
+
+In models of delegation the institutional roles of players are represented by giving them differing levels of information.  Here, we represent the institutional expertise of the general by giving him greater access to information about battlefield conditions, moderated by his competence.  Both players know the current military status quo, neither know the competence of the general, and only the general might have knowledge about whether accepting battle is favored.  
+
+\begin{figure*}[t] \large Figure \ref{Assumptions}.  How Accepting Battle and the State of the War Affect Military Status Quo.
+\begin{center}
+\includegraphics[scale=0.42,clip]{Assumption1.pdf}%\hfill
+\includegraphics[scale=0.42,clip]{Assumption2and3.pdf}%\hfill
+\end{center}\caption{\footnotesize The graphic on the left demonstrates Assumption 1 by plotting military status quo on the x axis and probability on the y axis.  In this example the current military status quo is $5$.  If the general avoids battle then with probability 1 the military status quo remains $5$, given by the blue area.  If the general accepts battle then the probability of each military status quo is given by the dark gray.  The graphic on the right demonstrates Assumptions 2 and 3 by plotting military status quo on the x axis, probability on the left y axis, and utility on the y axis.  The utility for accepting battle when it is favorable to do so is given by the light gray hashed line and is larger than the utility for accepting battle when it is unfavorable to do so is given by the dark gray hashed line (Assumption 2).  Accepting battle when it is favorable to do so makes the probability of all new military status quos closer to victory than $5$ increase relative to when it is unfavorable (Assumption 3).}\label{Assumptions}
+\end{figure*}
+
+To incorporate the competence of the general into the outcome of a particular military engagement, we assume that the likelihood of moving to a better military status quo depends on whether the general accepted battle and on the state of the war.  Thus, for any military status quo $k\in K$, let $\pi(k|a_j,\omega_t)$ denote the probability that the next military status quo is $k$ given action $a_j$ and state of the war $\omega_t$.  Assume:
+\begin{assumption}Defense is less risky than offense: for $k\in K\backslash\{1,N\}$ and any $\omega_t$, $\pi(k|0,\omega_t)=1$.\label{defense}
+\end{assumption}\noindent The first assumption is that if the general chooses to avoid battle, then the military status quo does not change.  This captures in a simple way the notion that accepting battle is more risky than withdrawing, while on the defense, or maneuvering, while on the offense. In addition:
+\begin{assumption}Accepting battle is preferred to avoiding battle when the tactical situation is favorable, and the reverse when it is unfavorable, i.e. $\sum_{k^{\prime}}\pi(k^{\prime}|1,\omega=1)\gamma(k^{\prime})>\gamma(k)$ and $\sum_{k^{\prime}}\pi(k^{\prime}|1,\omega=0)\gamma(k^{\prime})<\gamma(k)$.\label{FOSD}\footnote{\normalsize\doublespacing This is slightly weaker than first-order stochastic dominance.  Assumptions of first order stochastic dominance are useful in cases where we want to say that one distribution is unambiguously better than another.}
+\end{assumption}\noindent The second assumption requires that when it is favorable to accept battle during war (i.e. $\omega_t=1$), the expected value from doing so is larger than that of avoiding battle.  Similarly, when it is unfavorable to accept battle (i.e. $\omega_t=0$), the opposite is true.  This assumption ties the competence of the general indirectly to outcomes in war; when the general is competent, he can determine when accepting battle will lead to a more favorable resolution of the war and when it will not.\footnote{\normalsize\doublespacing It is worth noting that the structure we apply to the technology of war, $\pi$, is such that the war is only influenced by the competence of the general to the extent that it is influenced by choosing the correct action at the correct time.  In our model, each general is fully capable of executing the chosen strategy.}
+\begin{assumption}There exists $k^*\in K\backslash\{0,N\}$ such that for all $k>k^*$ we have $\pi(k|1,1)>\pi(k|1,0)$ and for all $k\leq k^*$ we have $\pi(k|1,1)<\pi(k|1,0)$.\label{distributions}
+\end{assumption}\noindent The third and final assumption is primarily technical; it requires (loosely) that all victories in battle are more likely when the tactical situation is favorable than when it is unfavorable, and all defeats in battle are more likely when it is unfavorable than when it is favorable.
+
+
+
+\begin{center}
+\textbf{\Large{Preferences}}\normalsize\\
+\end{center}
+We assume that the ruler cares only about the battlefield outcome.  Given this, the utility of the ruler is simply $u_R(k_2)=\gamma(k_2)$, the value associated with the military status quo at the end of the second period.  In addition, we assume that the general cares about winning the war and also about holding onto his position:
+\begin{align*}
+u_{G_1}(k_2)&=\alpha\gamma(k_2)+\left\{\begin{array}{ll}
+b&\mbox{if }R\mbox{ retains him, }k_2>1\\
+d&\mbox{if }R\mbox{ replaces him, }k_2>1\\
+0&\mbox{otherwise}\\
+\end{array}\right.\\
+u_{G_2}(k_2)&=\alpha\gamma(k_2)
+\end{align*}
+\noindent We can think of $\alpha\in[0,1]$ as a measure of \textit{patriotism}; when $\alpha=0$, the general cares only about retaining command.  By contrast, when $\alpha=1$, the general cares as much about the outcome of the fighting as the ruler does.  The parameter $b\geq 0$ is the benefit to $G_1$ for retaining command, while $d<0$ represents the punishment visited upon him in the event that he is removed.  
+
+
+\begin{center}
+\textbf{\Large{Strategies and Beliefs}}\normalsize\\
+\end{center}
+\noindent  We assume that all actions in the game are observable, as is the realization of a new military status quo.  Although neither player knows the ability of the general with certainty, this information is likely to be quite valuable in the future conduct of the war, and so each player would like to be able to make inferences about the competence of the general after observing events on the battlefield.  Because the competence of the general is unknown to both players, the only information known to the general but not the ruler is the signal the general gets about the state of the war, $s_t$, which we refer to as the type of the general.  
+
+
+
+A strategy for the general must tell him whether or not to accept battle at each military status quo upon observing each signal, given beliefs; a strategy for the ruler must tell him whether or not to remove the general from his command at each newly realized status quo upon observing his action.  Formally, for general $G_j$, denote a pure strategy for accepting or avoiding battle as $a_{j}(k,s,\mu)$, a mapping from the current military status quo, signal, and beliefs $\mu$ into the decision to accept $(1)$ or avoid battle $(0)$.  Similarly, denote a removal strategy for the ruler by $r(k,a,\mu)$, a mapping from the newly realized military status quo, the action taken in war by the general, and beliefs into the decision to remove the general from command ($1$) or retain him ($0$).  Denote a profile of such strategies as $\sigma=(a_{1},a_{2},r)$.  
+
+
+
+The general may have two opportunities to update his beliefs in the course of a single period.  First, he may update his beliefs about competence and the state of the war after observing the signal.  At any time, denote the current probability assessment, i.e. beliefs, of $G_j$ regarding his competence and the state of the war as $\mu^t_{j}$.  Given any current belief system $\mu$, we can compute the marginal posterior belief of the general over his competence after observing the signal $s_t$ as:
+\begin{align*}
+\nonumber\mu^t_{j}(\theta_{j}|s_t)&=\sum_{\omega\in\Omega}\mu_{j}(\theta_{j},\omega|s_t)=\frac{\sum_{\omega\in\Omega}p(s_t| \theta_{j},\omega)p(\omega)\mu(\theta_{j})}{\sum_{\omega\in\Omega}\sum_{\theta_{j}\in\Theta}p(s_t|\theta_{j},\omega)p(\omega)\mu(\theta_{j})}
+\end{align*}and the marginal posterior belief over the state of the war as:
+\begin{align*}
+\nonumber\mu^t_{j}(\omega|s_t)&=\sum_{\theta_{j}\in\Theta}\mu_{j}(\theta_{j},\omega|s_t)=\frac{\sum_{\theta_{j}\in\Theta}p(s_t|\theta_{j},\omega)p(\omega)\mu(\theta_{j})}{\sum_{\omega\in\Omega}\sum_{\theta_{j}\in\Theta}p(s_t|\theta_{j},\omega)p(\omega)\mu(\theta_{j})}
+\end{align*}
+
+\noindent by the law of total probability and repeated applications of Bayes rule.  From these expressions, it is straightforward to derive that:
+\begin{align}
+\mu_j^t(c_j|s_t)&=\mu(c_j)\\
+\mu_j^t(\omega_t=1|s_t)&=\left\{\begin{array}{ll}
+\mu(c)+\frac{1}{2}\mu(i)&\mbox{if }s_t=1\\
+&\\
+\frac{1}{2}\mu(i)&\mbox{if }s_t=0.
+\end{array}\right.
+\end{align}Upon realization of the signal in either period of the game, the posterior beliefs of $G_j$ about his own competence will not change from his prior beliefs.\footnote{\normalsize\doublespacing This is a consequence of the assumption that the state of the war in which it is favorable to take the offensive occurs with a probability equal to the state of the war in which is it unfavorable to take the offensive.}  At the same time, $G_j$ may update his beliefs about the state of the war; these new beliefs will depend on whether or not he believes he observed the signal correctly, and so on his \textit{a priori} confidence in his own ability.  Note that the general always believes that an offensive is more likely to be favored than not if he observes the signal indicating so.
+
+
+
+The second opportunity for the general to update his beliefs regarding his competence occurs following the battlefield outcome if he chooses to accept battle.  Since this will only be relevant for the first period general $G_1$, we restrict attention to him.  The marginal posterior belief of the general over his competence after observing the battlefield outcome is:
+\begin{align*}
+\nonumber\mu^2_{1}(\theta_{1}|k_1,a,s_1)&=\sum_{\omega\in\Omega}\mu_{1}(\theta_{1},\omega|k_1,a,s_1)=\frac{\sum_{\omega\in\Omega}\pi(k_1|a,\omega)p(s_1| \theta_{1},\omega)p(\omega)\mu(\theta_{1})}{\sum_{\omega\in\Omega}\sum_{\theta_{1}\in\Theta}\pi(k_1|a,\omega)p(s_1|\theta_{1},\omega)p(\omega)\mu(\theta_{1})}.
+%\mu^2_{G_j}(\theta_{G_j}|k_t)&=\sum_{\omega\in\Omega}\mu_{G_j}(\theta_{G_j},\omega|k_t)\\
+%&=\frac{\sum_{\omega\in\Omega}\pi(k_t|1,\omega)\mu_{G_j}(\omega|s_t)\mu^1_{G_j}(\theta_{G_j}|s_t)}{\sum_{\omega\in\Omega}\sum_{\theta_{G_j}\in\Theta}\pi(k_t|1,\omega)\mu_{G_1}(\omega|s_t)\mu^1_{G_j}(\theta_{G_j}|s_t)}
+\end{align*}From this expression it follows that:\footnote{\normalsize\doublespacing The general will also be able to form posterior beliefs over $\omega_1$, but since the second period state of the war is independent of the first period state of the war, these beliefs will be irrelevant and so we ignore them.}
+\begin{align}
+\mu^2_{1}(c|k_1,a_1,s_1)&=\left\{\begin{array}{ll}
+\frac{\pi(k_1|1,1)\mu(c)}{\pi(k_1|1,1)\mu(c)+\frac{1}{2}\mu(i)(\pi(k_1|1,1)+\pi(k_1|1,0))}&\mbox{if }a_1=1, s_1=1\\
+&\\
+\frac{\pi(k_1|1,0)\mu(c)}{\pi(k_1|1,0)\mu(c)+\frac{1}{2}\mu(i)(\pi(k_1|1,1)+\pi(k_1|1,0))}&\mbox{if }a_1=1, s_1=0\\
+&\\
+\mu(c)&\mbox{if }a_1=0.\\
+\end{array}\right.
+\end{align}If the first period general chooses to fight a battle, then he may update his beliefs about his own competence according to the battlefield outcome.  The implication of this is that there are no free lunches; the general in the first period must risk the outcome of a battle in order to make any updated judgment about his competence.  
+
+
+
+The ruler can only update his beliefs after he has observed the action taken by the general in the first period.  Note that he does not observe the first period signal $s_1$ and therefore has a joint posterior over $\theta_{1}$ and $s_1$.  The marginal posterior belief over general competence (or signal $s_1$) is then obtained by simply averaging out $s_1$ (or $\theta_{G_1}$):
+\begin{align}
+\mu_R(\theta_{1}|k_1,a,\sigma)&=\frac{\sum_{s\in S}\sum_{\omega\in\Omega}\pi(k_1|a,\omega)p(a|k_0,s,\sigma)p(s| \theta_{1},\omega)p(\omega)\mu(\theta_{1})}{\sum_{s\in S}\sum_{\omega\in\Omega}\sum_{\theta\in\Theta}\pi(k_1|a,\omega)p(a|k_0,s,\sigma)p(s|\theta_{1},\omega)p(\omega)\mu(\theta_{1})}
+%\mu_R(s_1|k_1,a,\sigma,\mu_0)&=\frac{\sum_{\theta_{1}\in \Theta}\sum_{\omega\in\Omega}\pi(k_1|a,\omega)p(a|k_0,s_1,\sigma)p(s_1| \theta_{1},\omega)p(\omega)\mu_0(\theta_{1})}{\sum_{s\in S}\sum_{\omega\in\Omega}\sum_{\theta\in\Theta}\pi(k_1|a,\omega)p(a|k_0,s,\sigma)p(s|\theta_{1},\omega)p(\omega)\mu_0(\theta_{1})}\\
+%&\equiv\mu_R(s_1).
+\end{align}
+
+\noindent Finally, if the ruler decides to remove the first period general $G_1$, then the beliefs of the ruler regarding the competence of his general are set to his prior beliefs about the competence of the available replacement, $G_2$, $\mu_0(\theta_2)$.
+
+
+
+It only remains to determine what the ruler ought to believe when he observes an impossible event, for example, a battle when the strategies of the general dictate that he avoid battle regardless of the signal.  Given the usual freedom associated with specifying beliefs off the equilibrium path, we will rely on what we think is the most reasonable set of beliefs about off-path behavior.  Our assumption throughout will be that:
+\begin{enumerate}
+\item If the ruler observes a battle when the strategy of the general dictated avoiding battle irrespective of the signal, then he believes with certainty that the general observed the signal indicating that the tactical situation was favorable.  Thus: $\mu_R(\theta_{1})=\mu_{1}^2(\theta_{1}|s_1=1)$.
+%\begin{align*}
+%=\frac{\sum_{\omega\in\Omega}\pi(k_1,1,\omega)p(1| \theta_{G_1},\omega)p(\omega)\mu_0(\theta_{G_1})}{\sum_{\omega\in\Omega}\sum_{\theta\in\Theta}\pi(k_1,1,\omega)p(1|\theta_{G_1},\omega)p(\omega)\mu_0(\theta_{G_1})}
+%\end{align*}
+\item If the ruler observes no battle when the strategy of the general dictated accepting battle irrespective of the signal, then he believes with certainty that the general observed the signal indicating that the tactical situation was unfavorable: $\mu_R(\theta_{1})=\mu_{1}^1(\theta_{1}|s_1=0)$.
+%\begin{align*}
+%\mu_R(\theta_{G_1})&=\frac{\sum_{\omega\in\Omega}p(0|\theta_{G_1},\omega)p(\omega)\mu_0(\theta_{G_1})}{p_0\mu_R(c)+\frac{1}{2}\mu_0(i)}.%\frac{p_0\mu_R(c)}{p_0\mu_R(c)+\frac{1}{2}\mu_R(i)}
+%\end{align*}
+\end{enumerate}  
+
+
+
+\noindent Given this extensive form and information structure, we will focus on a Perfect Bayesian Equilibrium.  A candidate for an equilibrium of the game will include: $(1)$ strategies for the generals that identify which military status quos, signals, and beliefs will induce them to take the offensive; $(2)$ a strategy for the ruler that identifies what actions/performance in war and which beliefs will induce the ruler to remove the general; $(3)$ a belief system for each player derived from strategies.  Our focus throughout will be on the first-best outcome from the perspective of the ruler, and what factors induce the general to diverge from that outcome.
+
+
+
+\begin{center}
+\textbf{\Large{The Second Period}}\normalsize\\
+\end{center}
+
+\noindent Whatever the general chooses to do in the first period, his action will induce a new set of beliefs at the beginning of the second period.  These new beliefs will, in turn, induce a new set of actions for each military status quo.  Therefore, we will begin our analysis of the model by analyzing the behavior of the general in the second period, as a function of his beliefs about his own competence induced by the actions and outcome of the first period.  Once we have characterized the second period behavior of the general, we can then consider the first period of the game.  
+
+
+
+Given a first period signal $s_1$, action $a_1$, and outcome $k_1$, the belief system of the general about his own level of competence will be: $\mu_1^2(\theta_1|k_1,a_1,s_1)$ if the ruler retained $G_1$ at the end of the first period.  If the ruler replaced $G_1$ with $G_2$, then the belief system of the general about his competence will be $\mu_0(\theta_2)$.  Finally, the belief system of the ruler will be $\mu_R(\theta_1|k_1,a_1,\sigma)$ if the ruler retained $G_1$ and $\mu_0(\theta_2)$ if he replaced $G_1$ with $G_2$.
+
+At the beginning of the second period, nature determines the state of the war, $\omega_2$, and the general observes the signal $s_2$.  He then may decide whether or not to accept battle.  However, after observing the signal $s_2$, the general has an opportunity to update his beliefs regarding his own competence, and the state of the war.  He does so as described above in equations $(1)$, $(2)$, and $(3)$.
+
+
+
+Given a current belief system $\mu$ and the beliefs derived from the observation of the signal $s_2$, if general $G_j$ chooses to accept battle in the second period having observed a signal $s_2$, his expected utility will be:
+\begin{align*}
+\mu_j(\omega_2=1|s_2)&\sum_{k_2>1}\pi(k_2|1,1)\{\alpha\gamma(k_2)+b\}+\mu_j(\omega_2=0|s_2)\sum_{k_2>1}\pi(k_2|1,0)\{\alpha\gamma(k_2)+b\}\\
+%&=\mu(c)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,s_2)\{\alpha\gamma(k^{\prime})+b\}+\mu(i)\left(\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\{\alpha\gamma(k^{\prime})+b\}\right).
+&=\sum_{k^{\prime}>1}\left(\mu(c_j)\pi(k^{\prime}|1,s_2)+\mu(i_j)\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\right)\{\alpha\gamma(k^{\prime})+b\}.
+\end{align*}Define this expression as $w(s_2,\mu)$.  With probability $\mu(\omega_2=1|s_2)$, $G_j$ believes that it is favorable to accept battle, having observed the second period signal $s_2$, and so expects to obtain the payoff for accepting battle under favorable conditions.  With probability $\mu(\omega_2=0|s_2)$, $G_j$ believes it is unfavorable to accept battle and expects to obtain the payoff for fighting under unfavorable conditions.  From this expected utility:
+
+
+
+\begin{lemma}In the second period of the game:
+\begin{enumerate}
+\item The expected utility for fighting when it appears favorable to do so is at least as good as fighting when it appears unfavorable to do so: $w(1,\mu)\geq w(0,\mu)$.  %The expected utility for fighting is always larger when the signal indicating that taking the offensive would be favorable has been observed.
+\item In any equilibrium strategy profile, $a_1^*$ and $a_2^*$ partition $K\backslash\{1,N\}$ into three regions:
+\begin{align*}
+(i)\hspace{5mm}K_1(\mu)&=\{k\in K|a_j^*(k_1,s_t,\mu)=1\}\\
+(ii)\hspace{5mm}K_2(\mu)&=\{k\in K|a^*_j(k_1,1,\mu)=1,a^*_j(k_1,0,\mu)=0\}\\
+(iii)\hspace{5mm}K_3(\mu)&=\{k\in K|a^*_j(k_1,s_t,\mu)=0\}.
+\end{align*}For any military status quo $k\in K_1(\mu)$, it must be that $k<k^{\prime}$ for $k^{\prime}\in K_2(\mu)$.  Similarly, for any military status quo $k\in K_2(\mu)$, it must be that $k<k^{\prime}$ for $k^{\prime}\in K_3(\mu)$.  
+%if $a^*_j(k,s,\mu)=1$ for some $k\in K$, then $a^*_j(k^{\prime},s,\mu)=1$ for all $k^{\prime}<k$.  If $a^*_j(k,s,\mu)=0$ for some $k\in K$, then $a^*_j(k^{\prime},s,\mu)=0$ for all $k^{\prime}>k$.  
+\end{enumerate}\label{second period expected utility}
+\end{lemma}  \noindent In this first result, we argue that the general determining whether to accept battle is always better off if he fights after observing that the tactical situation is favorable, i.e. $s_2=1$, than after observing that it is unfavorable (part $(1)$).  This leads immediately to part $(2)$.  Any Perfect Bayesian Equilibrium must involve a strategy profile in which we can partition $K\backslash\{0,N\}$ into three sets as a function of the current beliefs.  If possibility $(i)$ obtains, then $k$ is such that the general fights irrespective of the signal $s_2$; if possibility $(iii)$ obtains, then $k$ is such that the general avoids battle irrespective of the signal $s_2$; finally, if possibility $(ii)$ obtains, then the signal $s_2$ matters.  
+
+\begin{figure*}[t] \large Figure \ref{Lemma1}.  Lemmas 1 and 2.
+\begin{center}
+\includegraphics[scale=0.42,clip]{Lemma1.pdf}%\hfill
+\includegraphics[scale=0.42,clip]{Lemma2.pdf}%\hfill
+\end{center}\caption{\footnotesize The graphic on the left demonstrates Lemma 1 part 2 by plotting military status quo on the x axis and utility on the y axis.  The light blue areas represent the utility for making peace at each military status quo, monotonically increasing as the military status quo moves closer to victory.  In the second period of the game this is the utility associated with avoiding battle.  The dark gray hashed line is the expected utility for accepting battle given an unfavorable signal while the light gray hashed line is the expected utility for accepting battle given a favorable signal.  Accepting battle under either signal is better than avoiding battle at military status quos close to defeat ($K_1(\mu)$ in the Lemma), and worse than avoiding battle at military status quos close to victory ($K_3(\mu)$ in the Lemma).  At intermediate military status quos, e.g. $5$, $6$, and $7$, generals who get a favorable signal prefer to accept battle while those who get an unfavorable signal prefer to avoid battle.  The graphic on the right demonstrates Lemma 2; when belief that the general is competent increases there are more intermediate military status quos in which he prefers to accept battle on the favorable signal and avoid battle on the unfavorable signal.}\label{Lemma1}
+\end{figure*}
+
+Moreover, these three regions are ordered.  When the ruler and his general are close to defeat, the general will choose to accept battle no matter what his expertise tells him about the advisability of doing so.  This is because the value of the current military status quo, as a basis for ending the war, is small.  Whatever signal the general observes, he could be mistaken.  If he observed the signal indicating that it is not favorable to accept battle, then the possibility that he is mistaken is enough to justify an fighting, because the value for retaining the current military status quo as the basis for peace is so small.  Similarly, if he observed the signal indicating that the tactical situation is favorable, then the risk that he is mistaken is not enough to justify avoiding battle, again because the value for retaining the current military status quo is small.  Therefore, the general will accept battle no matter what signal he observes.  When the general is close to victory, the value of the current military status quo as a basis for ending the war is high, and so by similar logic an attack cannot be justified since it puts this very favorable military status quo at risk.  Therefore the general will avoid battle regardless of the signal.  Finally, there may be an intermediate range of military status quos where the general would prefer to accept battle upon observing that the tactical situation is favorable, and avoid battle after observing that it is unfavorable.  In these intermediate military status quos, the general's action is a function of the signal observed, so the outcome is a function of the general's competence.  
+
+
+
+\begin{lemma}For any belief systems $\mu^{\prime}$ and $\mu$:
+\begin{enumerate}
+\item the expected utility for taking the offensive on a good signal is larger if the general is more confident that he is competent; $w(1,\mu^{\prime})> w(1,\mu)$ if and only if $\mu^{\prime}(c)>\mu(c)$.
+
+\item the expected utility for taking the offensive on a bad signal is smaller if the general is more confident that he is competent; $w(0,\mu^{\prime})< w(0,\mu)$ if and only if $\mu^{\prime}(c)>\mu(c)$.
+
+\item as the general becomes more confident that he is competent, he wishes to use his expertise under wider circumstances; if $\mu^{\prime}(c)>\mu(c)$ then:
+\begin{enumerate}
+\item $K_2(\mu)\subseteq K_2(\mu^{\prime})$.
+\item $K_1(\mu^{\prime})\subseteq K_1(\mu)$ and $K_3(\mu^{\prime})\subseteq K_3(\mu)$.
+\end{enumerate}
+\end{enumerate}
+\label{expected utility and competence}
+\end{lemma}\noindent In Lemma \ref{expected utility and competence} part $(3)$, as the general becomes increasingly confident that he is competent, the utility for accepting battle when the signal indicates that the tactical situation is favorable increases (part $(1)$), while the utility associated with fighting when the signal indicates that it is not favorable decreases (part $(2)$).  As a result, as the general becomes more confident in his competence, i.e., that he has the ability to observe correctly whether the tactical situation is favorable, the region in which he will rely on the observed signal will expand. Consequently, the general will accept battle if and only if the tactical situation appears to be favorable for a larger range of military status quos.
+
+The realization of a new military status quo therefore will induce a new set of beliefs, $\mu$, about the competence of the general, which in turn will induce a new partition of the set of military status quos, $\{K_1(\mu),K_2(\mu),K_3(\mu)\}$.  This partition will then dictate the optimal action for the general at each military status quo, and in particular, at the military status quo realized as the outcome of the first period.  These future actions are what the ruler must take into account when he considers whether or not to retain the services of his first-period general.
+
+
+
+\begin{center}
+\textbf{\Large{The First-Best Solution for the Ruler}}\normalsize\\
+\end{center}
+Before we analyze the strategic behavior in the first period of the model, we ask what the ruler would choose to do with the information provided by the signal if it were available to him, given that he was endowed with a level of competence and saddled with uncertainty about it.  This will be the benchmark case by which we can judge how close to ideal behavior the ruler can get by determining how to fire his general.  
+
+
+
+The first step is to establish the preferences of the ruler over competence:
+
+\begin{lemma}  For any belief system $\mu_R(\theta_1|k_1,a_1,\sigma)$ about the competence of $G_1$, prior belief system $\mu_0(\theta_2)$ about the competence of $G_2$, and military status quo $k_1$, when the ruler and $G_1$ have the same beliefs about the competence of the general, i.e. if $\mu_R(\theta_1|k_1,a_1,\sigma)=\mu_1^2(\theta_1|k_1,a,s_1)$, then the ruler will weakly prefer $G_1$ if and only if he believes $G_1$ is at least as likely to be competent as $G_2$, i.e. if and only if $\mu_R(c_1|k_1,a_1,\sigma)\geq\mu_0(c_2)$.\label{preferences over competence}
+\end{lemma}\noindent The ruler will always prefer the general in which he has more confidence - a larger belief that the general is competent.  It follows from this that, if the ruler were to observe the signal, choose whether to accept battle, and update his beliefs about competence accordingly, he would always choose to replace his general and so ``reset" his confidence if he believed the replacement to be more likely to be competent.
+
+Given this, we can define the value to the ruler for continuing the game into the second period.  Let $\overline{\mu}(k_1,a_1,s_1)=\max\{\mu_0(c_2),\mu_1^2(c_1|k_1,a_1,s_1)\}$ indicate the belief of the ruler that the general in which he has more confidence is competent.  For convenience define:
+\begin{align*}
+\mathcal{P}(k,\mu,s)&=\mu(c)\pi(k|1,s)+\mu(i)\frac{\pi(k|1,1)+\pi(k|1,0)}{2}.
+\end{align*}Finally, let the value to the ruler for continuing into the next period be:
+\begin{align*}
+V(k_1,a_1,s_1)&=\left\{\begin{array}{l}
+\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)\mbox{ if }k_1\in K_1(\overline{\mu}(k_1,a_1,s_1))\\
+\\
+\frac{1}{2}\left(\sum_{k_2>1}\mathcal{P}(k_2,\overline{\mu}(k_1,a_1,s_1),1)\gamma(k_2)+\gamma(k_1)\right)\mbox{ if }k_1\in K_2(\overline{\mu}(k_1,a_1,s_1))\\
+\\
+\gamma(k_1)\mbox{ if }k_1\in K_3(\overline{\mu}(k_1,a_1,s_1)).\\
+\end{array}\right.
+\end{align*}Therefore, because the ruler is informed about the signal by assumption, he would prefer to accept battle in the first period upon observing signal $s_1$ if:
+\begin{align*}
+&\underbrace{\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,s_1)V(k_1,1,s_1)}_{\mbox{expected utility for fighting}} \geq\underbrace{V(k_1=k_0,0,s_1).}_{\mbox{expected utility for not fighting}}
+\end{align*}The left hand side of this expression is constant in the initial military status quo during the first period, $k_0$.  Note that by the definition of $\{K_1(\mu),K_2(\mu),K_3(\mu)\}$, $V(k_1=k_0,0,s_1)$ is weakly increasing in $k_0$, whether or not the signal in the first period indicates that it is favorable to take the offensive.  Since $V(k_1=k_0,0,s_1)$ is weakly increasing in initial military status quo $k_0$ and the left hand side is constant, it follows that for each signal, there must exist a critical military status quo beyond which the ruler would prefer not to accept battle in the first period.  Finally, it is not hard to see that this critical military status quo will be larger for the signal indicating that the tactical situation is favorable, i.e. $s_1=1$, than for the signal indicating that it is unfavorable.  Thus:
+\begin{proposition} (First-Best Use of Expertise) If the ruler could observe the signal $s_1$, then the strategy for $G_1$ that is first-best for the ruler induces partition $\{K^1_1(\mu_0),K^1_2(\mu_0),K^1_3(\mu_0)\}$ of $K\backslash\{1,N\}$ in the first period, as defined in Lemma \ref{second period expected utility}.  For any $k\in K_1^1(\mu_0)$ and $k^{\prime}\in K_2^1(\mu_0)$, $k<k^{\prime}$.  Similarly, for any $k\in K_2^1(\mu_0)$ and $k^{\prime}\in K_3^1(\mu_0)$, $k<k^{\prime}$.
+%\begin{align*}
+%\begin{array}{cc}
+%a_1(k_0,1,\mu_0)=\left\{\begin{array}{ll}
+%1&\mbox{for all }k_0\leq k^*(1)\\
+%0&\mbox{for all }k_0> k^*(1)
+%\end{array}\right.&
+%a_1(k_0,0,\mu_0)=\left\{\begin{array}{ll}
+%1&\mbox{for all }k_0\leq k^*(0)\\
+%0&\mbox{for all }k_0> k^*(0).
+%\end{array}\right.
+%\end{array}
+%\end{align*}Finally, $k^*(0)\leq k^*(1)$.
+\label{firstbest}
+\end{proposition}\noindent That is, just as in Lemma \ref{second period expected utility}, if the leader were to observe the information available to the first period general, then if the military status quo were sufficiently close to defeat, the leader would prefer to accept battle regardless of the signal; if sufficiently close to victory, the leader would prefer to avoid battle no matter the signal.  If the military status quo is neither sufficiently close to victory nor sufficiently close to defeat, then the leader would prefer to make use of expertise, fighting when the signal indicates that the tactical situation is favorable and avoiding battle otherwise.
+
+
+\begin{center}
+\textbf{\Large{The First Period}}\normalsize\\
+\end{center}We have established in Proposition \ref{firstbest} that there are circumstances in the first period in which the ruler would prefer that the general make use of his expertise on the battlefield.  Our interest in this section is to determine under what circumstances the ruler can induce the general to do this, i.e. to follow that first-best strategy for the ruler.  We want to focus on the case in which the expertise of the general matters to the ruler.  Therefore fix prior beliefs $\mu_0$ and initial military status quo $k_0$ such that $k_0\in K_2^1(\mu_0)$.  Thus, the initial battlefield conditions are such that the leader would like the general to follow his signal and accept battle if and only if it appears to be favorable to do so.  
+
+
+
+It is easy to see that if the general does indeed follow his signal in the first period, this will induce beliefs for the ruler that are identical to the beliefs held by the general:
+
+
+
+\begin{lemma}For any prior beliefs $\mu_0$:
+\begin{enumerate}
+\item if $G_1$ accepts battle on $s_1=1$ and avoids battle on $s_1=0$, the updated beliefs of the ruler about the competence of $G_1$ are the same as the updated beliefs of $G_1$ about his competence, i.e. $\mu_R(\theta_{1}|k_1,a,\sigma)=\mu_{1}(\theta_{1}|k_1,a,s_1)$.
+\item if $G_1$ avoids battle irrespective of $s_1$, then the beliefs of the ruler about the competence of $G_1$ are the same as the beliefs of $G_1$ about his competence -  both are equal to the prior, i.e. $\mu_R(\theta_{1}|k_1,a,s_1)=\mu_1^2(\theta_{1}|k_1,a,s_1)=\mu_0(\theta_1)$; 
+\end{enumerate}
+\label{beliefs2}
+\end{lemma}\noindent Given our analysis of the second period, this means that the ruler will know exactly what $G_1$ will do in the second period, and by Lemma \ref{preferences over competence}, will always prefer the general who is revealed to be more competent after the battle outcome at the end of the first period.
+
+%\item  military status quo $k_1$ is such that $a_1(k_1,s,\mu_0)=1$ for $s\in\{0,1\}$ then $\mu_R(\theta_{1}|k_1,a,\mu_0)=\mu_0(\theta_{1})$.  For almost all parameter values of the model $\mu_R(\theta_1|k_1,a,\mu_0)\neq\mu_1^2(\theta_1|k_1,a,\mu_0)$.  If $G_1$ accepts battle irrespective of the signal $s_1$, the updated beliefs of the ruler about the competence of $G_1$ are the same as the prior, but have diverged from the beliefs of the first-period general.  
+
+%\item military status quo $k_1$ is such that $a_1(k_1,s,\mu_0)=0$ for $s\in\{0,1\}$ then $\mu_R(\theta_{1}|k_1,a,s_1)=\mu_1^2(\theta_{1}|k_1,a,s_1)=\mu_0(\theta_1)$.  If $G_1$ avoids battle irrespective of $s_1$, the updated beliefs of the ruler about the competence of $G_1$ are the same as the prior and the beliefs of the first-period general.  
+
+
+\begin{center}
+\textbf{\Large{Career Minded Generals}}\normalsize\\
+\end{center}We will begin discussion of the equilibria of the model by considering the case in which the general cares only about holding on to his command, and not at all about winning the war ($\alpha=0$).  
+We focus on initial conditions under which the ruler would prefer that the general follow his signal.  
+\begin{proposition}If $\alpha=0$, then there exists a Perfect Bayesian Equilibrium in mixed strategies in which the ruler can induce $G_1$ to adopt the strategy that is first-best for the ruler.\label{the ruler can get his first best}
+\end{proposition}
+This result argues that the ruler can induce the optimal (from his perspective) behavior of his general by endowing the safe option of defense with some risk by removing the general probabilistically when he avoids battle.  This risk must be $(1)$ large enough that the general who observes a good signal would prefer to take the risks associated with an offensive, rather than secure the current battlefield status quo via defense and $(2)$ small enough that the general who observes a bad signal must find the risks associated with an offensive large relative to the risks associated with defense.  When $b>0$, it will always be possible to attain a continuum of payoff equivalent (for the ruler) equilibria in which the ruler realizes his first best outcome using just such a mixed strategy.\footnote{\normalsize\doublespacing When $b=0$, then it is trivial that a first-best equilibrium will exist for the ruler; the general follows his signal and the ruler never punishes.}
+
+
+
+The Perfect Bayesian equilibrium identified in Proposition \ref{the ruler can get his first best} really does require that $\alpha=0$.  This is because having unpatriotic generals actually alleviates a commitment problem for the ruler.  In general, by Lemma \ref{preferences over competence}, when the ruler observes the action $a_1$ taken by $G_1$ and the battlefield outcome $k_1$, he will prefer the general he believes to be more competent to carry on for him in the second period - he will be unable to commit not to remove $G_1$ if $G_1$ appears to be less competent than $G_2$.  However, when $\alpha=0$, then no matter what the second period general believes about his competence, so long as $b>0$, he will prefer not to take the risk of fighting and so preserve with certainty his payoff for continuing to hold his command.  This implies that the ruler will be indifferent between $G_1$ and $G_2$ at the end of the first period, \textit{no matter what the strategy of $G_1$ was or what new military status quo was realized}.  This means that the ruler can always commit to employ the mixed strategy identified in the proof of Proposition \ref{the ruler can get his first best}.
+
+
+\begin{center}
+\textbf{\Large{Patriotic Generals}}\normalsize\\
+\end{center}If $\alpha>0$ so that the generals are patriotic, then the ruler faces a commitment problem that complicates the way in which he can use the threat of removal of the first period general $G_1$.  Generically, the ruler will not be indifferent between $G_1$ and $G_2$ after observing the outcome of the first period, and so cannot commit to employ a particular strategy to induce the first period general to use his expertise.  %To analyze the representation that can be obtained by the ruler under these conditions, fix the strategy of the ruler so that he breaks indifference between $G_1$ and $G_2$ in favor of $G_1$ and chooses the general he believes to be more competent \textit{when it matters}.  
+
+
+
+\begin{proposition} (First-Best with Small Punishment)  Assume that $\alpha>0$.  If $d$ is sufficiently large, then there exists a Perfect Bayesian Equilibrium in which the general accepts battle when it appears to be favorable to do so and avoids battle otherwise in the first period.  In this equilibrium, the first period general uses his expertise and the ruler obtains his first-best outcome.  That is, there exists a Perfect Bayesian Equilibrium in which for any $k_1$:
+\begin{align*} 
+\begin{array}{cc}
+a_1^*(k_0,s_1,\mu_0)=\left\{\begin{array}{ll}
+1&\mbox{if }s_1=1\\
+&\\
+0&\mbox{if }s_1=0
+\end{array}\right.&
+r^*(k_1,a_1,\mu)=\left\{\begin{array}{ll}
+1&\mbox{if }\mu_R(c_1|k_1,a_1,\sigma)<\mu_0(c_2)\\
+&\mbox{ and }k_1\in K_2(\max\{\mu_R(c_1|k_1,a_1,\sigma),\mu_0(\theta_2)\})\\
+&\\
+0&\mbox{otherwise}
+\end{array}\right.
+\end{array}
+\end{align*}
+and $a^*_1(k_1,s_2,\mu_1^2(\theta_1))$ and $a_2^*(k_1,s_2,\mu_0(\theta_2))$ are as specified in the section analyzing the second period.\label{if d is large the ruler can get his first-best}
+\end{proposition}\noindent In Proposition \ref{if d is large the ruler can get his first-best}, we argue that if the first-period general $G_1$ expects little punishment in the event that he is removed from command, then he will, in equilibrium, choose to follow his signal.  The general will fight after observing that it is favorable to do so and avoid battle after observing that it circumstances are not favorable.  There are two parts to the intuition underlying this equilibrium.  First, when $G_1$ observes the good signal, he would prefer to accept battle.  However, fighting carries with it some risk; if he is wrong about the tactical situation, the newly realized battlefield status quo will be less advantageous in expectation.  The ruler will observe this failure, and revise his belief that the first period general is competent downwards.  If the defeat in the first period is bad enough, the ruler will lose confidence in $G_1$ and replace $G_1$ with $G_2$.  Expectations of light punishment make this risk worth taking.  
+
+
+
+Second, after observing the bad signal, $G_1$ would prefer not to fight.  Without the test of $G_1$'s abilities provided by the battlefield, neither $G_1$ nor the leader will change their beliefs about $G_1$'s competence.  However, if the leader believes that $G_2$, the potential replacement for $G_1$, is expected to be more competent, it is nevertheless optimal to replace $G_1$ with $G_2$.  If the punishment for being removed is light, the patriotic first period general would prefer to suffer this punishment rather than a likely battlefield defeat.  
+
+
+
+%Proposition \ref{if d is large the ruler can get his first-best} suggests that the ruler can make use of the expertise of his general in the first period if post-command punishment is small.  The same is not true when the general expects that he will be severely punished if he loses his command.  
+
+In the next two results, we consider equilibrium play when the general fears that punishment will be severe should he lose command.
+\begin{proposition}(Caution with Large Punishment) Assume that $\alpha>0$.  If $\mu_0(c_1)>\mu_0(c_2)$ and $d$ is sufficiently small, then there exists a Perfect Bayesian Equilibrium in which the general avoids battle irrespective of the signal.  In this equilibrium, the first period general does not make use of his expertise and is overly timid.  That is, there exists a Perfect Bayesian Equilibrium in which for any $k_1$:
+\begin{align*}
+\begin{array}{cc}
+a^*_1(k_0,s_1,\mu_0)=\left\{\begin{array}{ll}
+0&\mbox{if }s_1=1\\
+&\\
+0&\mbox{if }s_1=0\\
+\end{array}\right.
+&
+r^*(k_1,a_1,\mu)=\left\{\begin{array}{ll}
+1&\mbox{if }\mu_R(c_1|k_1,a_1,\sigma)<\mu_0(c_2)\\
+&\mbox{ and }k_1\in K_2(\mu_0(\theta_2))\\
+&\\
+0&\mbox{otherwise}
+\end{array}\right.
+\end{array}
+\end{align*}and $a^*_1(k_1,s_2,\mu_1^2(\theta_1))$ and $a^*_2(k_1,s_2,\mu_0(\theta_2))$ are as described in the section analyzing the second period.\label{if d is small then generals can be timid}
+\end{proposition}  \noindent Proposition \ref{if d is small then generals can be timid} characterizes a Perfect Bayesian Equilibrium in which the first period general is overly timid; he chooses not to make use of his expertise, and never accepts battle.  The intuition is simple; as alluded to above, the ruler faces a commitment problem in that he will unambiguously prefer the general that he is more confident is competent.  Since $R$ is \textit{ex ante} more confident that $G_1$ is competent, if beliefs do not change, the ruler will retain the first period general.  Since beliefs about the competence of $G_1$ do not change without facing the test of the battlefield, this implies that if he avoids battle, he can retain his command with certainty, since the ruler will still be more confident that he is competent than that $G_2$ is competent.  Alternatively, if he chooses to fight, he will face the risk of failure and punishment.  Since $G_1$ expects that the punishment for failure will be severe, the risk of fighting is not worth taking.
+
+
+
+\begin{proposition} (Reckless Aggression with Large Punishment) Assume that $\alpha>0$.  If $\mu_0(c_1)<\mu_0(c_2)$, $k_0\in K_2(\mu_0(\theta_2))$, and $d$ is sufficiently small, then there exists a Perfect Bayesian Equilibrium in which the first period general accepts battle irrespective of signal.  In this equilibrium, the first period general does not make use of his expertise and is overly aggressive.  That is, there exists a Perfect Bayesian Equilibrium in which:
+\begin{align*}
+a^*_1(k_0,s_1,\mu_0)=\left\{\begin{array}{ll}
+1&\mbox{if }s_1=1\\
+&\\
+1&\mbox{if }s_1=0\\
+\end{array}\right.
+\end{align*}and for any $k_1\in K\backslash\{0,N\}$, $a^*_1(k_1,s_2,\mu_1^2(\theta_1))$ and $a^*_2(k_1,s_2,\mu_0(\theta_2))$ are as described in the section analyzing the second period.  In equilibrium, the ruler always removes $G_1$ if $a_1=0$, and sometimes removes $G_1$ if $a_1=1$.\label{if d is small then generals can be aggressive}
+\end{proposition}\noindent  Proposition \ref{if d is small then generals can be aggressive} characterizes a Perfect Bayesian Equilibrium in which the first period general is overly aggressive; he chooses not to make use of his expertise, and always accepts battle.  The intuition for this result is analogous to that for Proposition \ref{if d is small then generals can be timid}; in his prior beliefs, the ruler is more confident that $G_2$ is competent than that $G_1$ is competent.  If the first period general decides not to fight, he will have done nothing to improve the confidence of the ruler in his abilities.  Since the ruler was already more confident in his potential replacement, he will be replaced.  Therefore, if $G_1$ chooses to avoid battle, he will suffer certain punishment.  The risk of being replaced still exists when he fights, but is not certain.  If $G_1$ expects that punishment will be severe should he be replaced, he will prefer to take the risk of punishment associated with fighting, rather than the certainty of punishment associated with avoiding battle.  
+
+
+
+\begin{center}
+\textbf{\Large{Discussion}}\normalsize\\
+\end{center}In war, the commander of the armed forces often possesses information and expertise that are not available to the ruler of a state.  Since the commanding general serves at the pleasure of the ruler of the state, the difficulty for the ruler is in determining how to apply the coarse sanction of removal from command to induce his commanding general to make use of his expertise.  Unfortunately for the ruler, he suffers from a commitment problem.  Because he would prefer that the resources of the state be used by the person he believes to be the most talented, if his general fails on the battlefield, he will not be able to commit to retain his services.  Perhaps more extreme, if the general does nothing to distinguish himself on the field, the ruler will not be able to commit to retain his services.  This will distort the incentives of the general to use his expertise, and the distortions will be stronger if being fired from command is associated with punishment.  
+
+These distortions come in two varieties.  If the potential replacement for the commanding general is believed to be less likely to be competent (Proposition \ref{if d is small then generals can be timid}), then any threats made by the ruler to fire his commanding general if action is not taken are not credible. Thus, the ruler cannot commit to remove a general from command who refuses to accept action. As a result, the general will be timid in war and fail to take advantage of the opportunities that are available.  This suggests that the war effort will bog down into stalemate, not because of the tactical situation, but because of the delegation problem facing the leader and the general.
+
+A more pernicious distortion occurs in the case where the potential replacement for the commanding general is believed to be more likely to be competent (Proposition \ref{if d is small then generals can be aggressive}). Now the ruler can credibly threaten  to remove the general for failing to accept combat, but can no longer commit to retain a general who fails to accept combat. In this case, the leader prefers to replace the general if there is no battle to provide new information.  As a result, even competent generals will be overly aggressive in war and will accept combat when they know the tactical situation to be unfavorable.  This suggests that the war effort will be more likely to result in catastrophic defeats for the ruler, again not because of the military circumstances, but because of the delegation problem facing the leader and the general.
+
+These distortions can be overcome to a degree if the general is sufficiently motivated by professional considerations to be willing to accept painful personal consequences as the price of doing what is known to be right---if the general is what we call a ``patriotic'' type. However, these motivations will have to be extraordinarily strong to motivate a general who expects to be punished upon retirement. In autocratic regimes, and particularly in personalist dictatorships,  rulers are not constrained by the rule of law to treat their generals humanely in the event that they are removed from command. Consequently, delegation problems are intense. By contrast, states with democratic regimes, which are bound by rule of law, will be much more constrained in how they treat their failed generals. As a result, highly professional officers may be willing to make career-ending decisions to defy the political leadership. When this is the case our results indicate that democratic states will enjoy higher-quality battlefield representation than can be obtained by autocratic states.  Thus autocrats tend to lose wars, while democrats tend to win them.
+
+
+
+\section{Empirical Illustrations}
+The model implies that wartime leaders face an inference problem.  Because they do not possess the expertise to determine when to take risks during war, they must rely on their generals to do so.  If generals have incentives to act on the basis of their expertise (i.e. accepting battle when circumstances are favorable and avoiding battle otherwise), rulers can make inferences about their competence in war.  When generals lack these incentives, rulers cannot reliably infer the quality of their generals from battlefield outcomes or from their generals' decisions about whether to take risks.  
+
+
+
+The incentives of the general to make use of local knowledge in war are complicated by the fact that battlefield outcomes are stochastic; although high-quality generals are more likely to choose appropriate tactics that maximize the probability of victory, success is never assured.  Thus, a competent general who takes the right action at the right time can \textit{still} perform badly in war and be fired.  It follows that taking the offensive during war can be personally risky for the general, especially if failure will be punished severely.
+
+
+
+This suggests that what rulers can infer from their generals' decisions depends upon the political regime.  In a democracy that credibly guarantees the welfare of a retired general, high-quality generals are willing to take risks and thereby separate themselves from low-quality generals in expectation.  Even democratic leaders, however, are uncertain what to infer when a general keeps his command on the defensive, because this could indicate that the officer is poor quality or that the officer is high quality and observes local circumstances that are unfavorable for the offense.  In the model, given this uncertainty, democratic leaders (those who can guarantee the safety of a general after he is fired) will grant the general discretion so long as they are sure that the state of the war is not too likely to favor taking the offensive.  This is reflected in the way Churchill dealt with his generals in Africa during WWII.  When the prior beliefs of rulers are that war is likely to be favorable for an offensive, democratic leaders tend to fire their generals when they refuse to advance.  Since they do not expect to be punished beyond removal from command, however, patriotic and talented democratic generals prefer to be fired rather than initiate a disastrous offensive.
+
+
+
+In an authoritarian setting that provides no comparable guarantees for a retired general's welfare, generals who were granted discretion would refuse to advance regardless of their local knowledge of battlefield conditions.  The only way that a ruler can overcome this timidity is to refuse his generals the discretion to make use of their expertise via threats.  In this sense, the seemingly paranoid and fanatical micromanagement of the Eastern Front in World War II by both Hitler and Stalin had a rational foundation.  In these regimes, generals are given strict instructions to advance when on the offensive and not to retreat when on the defensive.  As a result, high-quality generals are not able to make use of their local knowledge unless they are sufficiently patriotic to be willing to pay substantial penalties.  The tactical consequences are that generals in authoritarian regimes should be less cautious than their counterparts in democratic regimes, and should be more likely to suffer decisive defeats as a result.  These problems become more severe when a war begins to turn against an autocratic state, because the accumulation of unfavorable outcomes undermines the confidence of the ruler in his commanders.  When the ruler has prior beliefs that his commanders are no more talented than their potential replacements, he can no longer commit to retaining their services if they do not take bold actions.  As a result, commanders accept greater risks after the tide of the war begins to turn against them.  An initial reversal, perhaps due to bad luck, leads to a series of tactical errors which culminate in disaster. 
+
+\begin{center}
+\textbf{\Large{Delegation in the Red Army}}\normalsize\\
+\end{center}
+Stalin regarded the Soviet Army as the leading threat to the stability of his regime and its officer corps as ideologically suspect elites, many of whose members had served under Tsar Nicholas II.  In the run-up to war with Germany he carried out an extensive purge of the officer corps, which coincided with the climax of the Great Purge, or the Yezhovshchina of 1937-38.  According to the official Soviet account, 
+
+\begin{quotation}\noindent
+From May 1937 to September 1938 the victims of repression included nearly half the regimental commanders, nearly all brigade commanders, and all commanders of army corps and military districts, as well as members of military councils and heads of political directorates in the military districts, the majority of political commissars in army corps, divisions, and brigades, almost one-third of the regimental commissars, and many instructors at military academies.\footnote{\textit{Istoriia Velikoi otechestvennoi voiny Sovetskogo Soiuza 1941-45 v 6 tomakh}, Moscow 1960-1965, Vol. 6, 124. Quoted in Heller and Nekrich 1986, 304-5.}
+\end{quotation}
+
+The result, as the leading Russian historians of the war explained, was that "The Red Army was decapitated" (Heller and Nekrich, 304.)  Stalin could have had little confidence that the inexperienced officers who took over these positions on the eve of war were substantially more competent than any other set of junior officers who might have been selected in their place, and the officers in question must have been painfully aware of the fact.  Furthermore, the widely publicized executions of the top leadership, including three of the army's five marshals, underscored the danger of attracting Stalin's attention.  Some of those purged were not killed, but in many cases not only the accused but also their families were imprisoned, tortured and executed.
+
+The Red Army was caught unprepared when Germany launched the invasion of the Soviet Union with Operation Barbarossa  on June 22, 1941.  The German army and its allied forces were superior to the Soviet forces in western border regions in terms of manpower, number of tanks, artillery pieces, and most categories of aircraft, and they achieved tactical surprise.  Soviet forces were rapidly driven back.  Most of the Soviet airforce on the Western Front was destroyed on the ground in the opening days of the offensive.  Major army groups were cut off from retreat, surrounded and forced to surrender.  In July German forces overran Minsk; in August they reached Kiev; by December they were on the outskirts of Moscow.  
+
+There were numerous causes of this catastrophe, most attributable to Stalin's mistakes, but a key aggravating factor was Stalin's insistence on punishing tactical retreats.  A standard phrase that was included in Stalin's orders to his generals was, ``This task must be carried out regardless of losses'' (Parish, 78).  While his forces reeled backwards in disarray and barely escaped encirclement, he ordered hopeless counterattacks, and when the last chance to withdraw in good order from an untenable position approached, he demanded that they make a last stand.  This policy was codified a year later by Stavka Order No. 277 (July 28, 1942), which made unauthorized retreat a crime subject to court martial (Parish, 97).  Nikita Khrushchev, who spent the war as a military commissar on the Southern and Southwestern fronts, explained in his memoirs that ``The situation was such that a commander dared not say he was abandoning a defensive position.  This was totally ruled out, because he might have to pay for it later'' (Khrushchev, 336-37).  Over the course of the war, Stalin systematically fired generals who suffered defeats, failed to capture or hold important objectives, or seemed to him to demonstrate lack of initiative, and most of these unfortunates were subsequently executed.  The list includes five Marshals, two Army Generals, four Colonel Generals, seven Admirals, 20 Lieutenant Generals, and 73 Major Generals.  Michael Parrish estimates that one quarter of the officers of general rank killed in the war were executed by the state or died while in custody (Parrish, 84).
+
+The model for treating disgraced generals was set within the first weeks of the war, after the crushing fall on June 28 of Minsk, the capital of the Bielorussian Republic.  Within days agents of the NKVD arrested the officers commanding the Western Front, including Army General Dmitrii G. Pavlov and his top staff members (Parish, 80).  Marshal Georgii Zhukov’s memoirs confirm that Gen. Pavlov, along with members of his staff, Gen. Klimovskikh, Gen. Grigoryev, and Gen. Klich were summoned to Moscow on June 30 and put on trial (Zhukov, 281). Pavlov was accused of cowardice, convicted, and shot on July 22, 1941 along with six subordinate generals, and on Oct. 1, 1942, the military tribunal of the NKVD in Gor’kii sentenced his parents, wife, son, and mother-in-law to 5 years imprisonment.  Pavlov's deputy in command of the Air Force on the Western Front, Maj. Gen. I. I. Kopets, escaped execution by committing suicide; however, Stalin's orders had specifically called for the arrest of a senior Air Force commander, so his deputy, Maj. Gen. A. I. Taiurskii, paid the penalty instead. The document trail indicates that the initial arrest contained a charge that the officers had engaged in a ``military conspiracy,'' but Stalin ordered the military tribunal to ``cut out the nonsense''---the offense was incompetence, not disloyalty (Parrish 81).  Soviet commanders had been put on notice that retreat was not an option.
+
+The battle for Kiev became a glaring example of the dangers of overriding local discretion.  By the end of July, Soviet forces were falling back to the north and the south of Kiev, and the forces occupying the city were in danger of being encircled.  Marshal Zhukov was serving as Chief of the General Headquarters at the time, and he claims in his memoirs that he recommended to Stalin that Kiev be evacuated on July 29, and for this reason was relieved of his position and sent back to the front.  He claims to have renewed these arguments on August 19 to the general who replaced him, Shaposhnikov, and again on September 8 to Stalin personally (Zhukov, 311-12, 319, 321).\footnote{Zhukov's memoirs are self-serving, and depict him as remarkably forthright in his encounters with Stalin. However, it is probably true that he anticipated the need to withdraw from Kiev, as so many Soviet officers did, and that Stalin rebuffed any suggestions along these lines that were made.}  Gen. Semen Budennyi, commander of the Southwestern Direction (\textit{Napravlenie} in Russian, a command that included the Southern and Southwestern Fronts) requested permission to withdraw the forces in Kiev beyond the Dniepr River, but his request was rejected.  Zhukov  quotes stenographic records of Stalin's telephone conversations on August 8 and again on September 8 with the commander of forces in Kiev, Mikhail Kirponos, who vehemently denied allegations that he was considering withdrawal from the city (Zhukov, 317-18, 321-23).  Even admitting that he was entertaining such a plan could have been grounds for court martial.\footnote{Nikita Khrushchev, who served as military commissar to Kirponos and then to Budennyi, records in his memoirs that he suspected the Ukrainian Commissar of Internal Affairs, V. T. Sergiyenko, of reporting this to Stalin after Kirponos moved his headquarters out of the city (Khrushchev, 331).}  The last conversation ended with Stalin's instructions, "Kiev is not to be evacuated and the bridges are not to be demolished without special permission from Headquarters" (Zhukov, 323, author's translation).  By this time the orders had already been given that sent German panzer armies scrambling to encircle the Soviet Southwestern Front, and the encirclement was completed on September 16.  The operation, the largest encirclement in history, trapped over 450,000 Soviet troops comprising five armies, which consisted of 43 divisions.  Even after the encirclement, Stalin initially ordered Kirponos to take his command post back to Kiev rather than authorizing him to try to break out of encirclement; Kirponos obeyed, and fell in combat (Khrushchev, 342-43). 
+
+The Soviet side of the Eastern Front illustrated the dictator's dilemma in garish terms.  Stalin had a well-deserved reputation for brutality, and he had no confidence in his officer corps, so he could not credibly promise not to execute generals who failed to stand their ground.  Generals who lost battles were likely incompetent; after all, most of his generals were inexperienced.  Therefore he should remove them from command, and it was too dangerous to fire generals without executing them.  Furthermore, if he failed to mete out punishments for retreating, his generals would rationally fall back to avoid the punishments that followed failure.  Consequently, his best response was to strip his battlefield commanders of discretion and rely on threats to drive them at the Germans.  The consequence was a series of disasters.  In the course of 1941 the German forces carried out nine major encirclements, each capturing more than 100,000 POWs, and numerous smaller operations.  The momentum of the war shifted in 1942, however, which gave Stalin faith in his new commanders and broke the vicious circle.
+
+\begin{center}
+\textbf{\Large{Delegation in the Third Reich}}\normalsize\\
+\end{center}
+Hitler's mismanagement of his army is legendary:  he overestimated his own military competence, distrusted his advisors, overruled professional advice, and attempted to micromanage complex operations over vast distances.  One of his generals was reported to remark that it would have been better to have the war run by a civilian than by a corporal (Speer 1970).  However, many of his mistakes are consistent with the argument presented here.  First, his distrust of subordinates' excuses for inaction is consistent with a sophisticated awareness of the incentives they faced to avoid risks.  Second, his frequent reassignment of commanders and efforts to disrupt the formation of any stable center of authority besides his own were consistent with insecurity, and indeed he narrowly avoided a coup attempt in 1938 and faced a coup attempt that almost succeeded in 1944.  He clearly mistrusted some of his most talented generals on the Eastern Front, including Manstein and Kleist, and Rommel was implicated in the 1944 coup attempt.  This insecurity, combined with the brutality of his regime and the erratic nature of his own personality, made it impossible for him to provide credible guarantees to any of his subordinates.  
+
+
+
+Moreover, this point was reinforced by the arbitrary manner in which Hitler relieved his generals of command.  Speer reports, for example, that the commander of the Army Group operating in the Caucasus was relieved because of reports that a group of German officers had wasted time planting a German flag on the highest peak in the region (Speer 1970, 239-40).  Hitler fired his generals when they exercised independent judgment, as Gen. Fedor von Bock did when he ignored Hitler's instructions to bypass Voronezh in his advance towards Stalingrad in 1942 (Mitcham 158).  Failure was inexcusable.  Gen. Count Hans von Sponeck, commander of the XLII Corps, was relieved of command after the failure of the attack on Sevastopol in December 1941.  He was imprisoned immediately, and ultimately executed in 1944.  
+
+
+
+Hitler overrode the advice of his High Command, and delayed and ultimately doomed his assault on Moscow in 1941, by redirecting the bulk of his forces against Leningrad in the North and Kiev in the South.  The assault nevertheless came within a few miles of success, but was stopped by the counterattack on December 5 of forces brought across Siberia from the Soviet Far East.  At the end of a 1,000 mile supply line, with exhausted forces that were not prepared for winter weather, and facing the danger of encirclement, Hitler's generals asked for permission to withdraw to more defensible positions.  Hitler refused.  Instead, he relieved of command his principal generals, who had led the conquest of most of European Russia and the capture of 3.3 million prisoners in the course of five months:  von Bock, the commander of the Central Army Group; von Leeb, commander of Army Group North, and von Rundstedt, commander of Army Group South.  When von Kluge, Bock's successor at Moscow, requested permission to withdraw from exposed positions, Hitler again refused.  When Guderian, the leader of the Panzer group that had led the breakthrough that encircled Kiev, flew to headquarters to ask for permission to withdraw, Hitler asked him, ``Do you think that Frederick the Great's grenadiers enjoyed dying for their country either?"  When Guderian stealthily began withdrawals, Hitler fired him.  Hoepner, another leading armor general, was fired and stripped of his rank, pension and decorations (Bullock 1991, 737).
+
+
+
+Hitler's generals argued against the offensive towards Stalingrad and the Caucasus in spring 1942, but Hitler insisted.  Gen. Franz Halder, his chief of staff, was replaced after he attempted to dissuade Hitler from launching his attack on the Caucasus.  According to Speer, ``Hitler was triumphant.  Once again he had proved that he was right and the generals wrong--for they had argued against an offensive and called for defensive tactics, occasionally straightening up the front" (Speer, 1970, 236).  When Gen. Victor von Schwedler, commander of the IV Corps, called upon Hitler to abandon the effort to take Stalingrad after the advance bogged down in September, Hitler relieved him of command (Mitcham 232).  
+
+
+
+It was in this atmosphere, established by Hitler's arbitrary willingness to dispense with and sometimes severely punish subordinates, that one of the greatest military disasters to befall the Third Reich during World War II took place.  Speer reports that as the first bad news of the Russian counterattack at Stalingrad arrived on November 19, 1942, Hitler mused that ``Our generals are making their old mistakes again.  They always overestimate the strength of the Russians" (Speer, 1970, 247).  A few days later it became clear that the Sixth Army had been encircled, and the German chief of staff, Kurt Zeitzler, argued impassionedly that its only option was to attempt to break out to the West and meet up with reinforcements.  Hitler disagreed, arguing that the forces moving to relieve Stalingrad would be sufficient to break through the Soviet cordon and Stalingrad could be held.  ``Finally, after the discussion had gone on for half an hour, Hitler's patience snapped:  `Stalingrad simply must be held.  It must be; it is a key position'.  For the time being the discussion ended after this dispute" (Speer, 1970, 248).  On November 21 Hitler delivered a direct order that the Sixth Army was to stand fast and wait for resupply by air.  Gen. Friedrich Paulus, the Sixth Army's commander, was urged by his staff to disregard the order and attempt to break out of the encirclement to the South.  The time to attempt to break out of the Soviet encirclement of Stalingrad was immediately after the circle closed.  His commanders argued that this was the only way to save even a portion of Sixth Army from certain destruction.  Paulus demurred.  ``I will obey," he is reported to have said (Mitcham 1988).
+
+
+
+Hitler continued to find it necessary to use threats to compel his reluctant generals to take action for the remainder of the war.  The rigidity thus induced amongst the German General Staff contributed to further serious defeats.  For example, even after the counterattack in December failed to break the Soviet ring and as the evidence mounted that Stalingrad could not be adequately supplied from the air despite Goering's assurances that it would be, Hitler continued to insist that Stalingrad must be held at all costs.  In January Keitel made a deal with Zeitzler to support his proposal to evacuate as much of the Sixth Army as possible from the remaining pocket of territory that it held, but Keitel reneged when in Hitler's presence and insisted that Stalingrad would hold (Speer 1970, 250).
+
+
+
+The momentum of the war turned decisively against Germany when Stalingrad fell, and Hitler's commanders fell back, unable to hold extended lines against superior force.  Throughout 1943 and 1944, Hitler repeatedly ordered his generals to hold their ground and not to attempt to break out when encircled.  In January 1944 Erich von Manstein, who had led the daring advance through the forest that turned the French line in 1940, now commander of Army Group South, requested permission to withdraw his right flank.  Hitler refused, and the XLII and XI Corps of 8th Army were surrounded at Cherkassy.  In March Manstein again requested discretion, and was refused; a few days later the 1st Panzer Army was surrounded on the River Bug.  Ewald von Kleist (the leader of the Panzer divisions that had cut off the First French Army in 1940) ordered the evacuation of Crimea, but was countermanded by Hitler, and the 17th Army was cut off from retreat. At the end of March, Hitler relieved Manstein and Kleist of command (Mitcham 101-2, 252-53).
+
+%The performance by Erwin Rommel, known to his British opponents as the `Desert Fox,' is perhaps the most striking counter-example to our argument; he was anything but risk averse.  Rommel came to his command in Africa with a strong reputation for daring, having been decorated in Italy during the First World War, and having led the 7th Panzer Division to victories in France in 1940.  Indeed, Rommel was a daring officer who took risks that were not authorized, and ignored direct orders not to withdraw.  He disregarded orders to wait for the arrival of his full force before launching attacks on British positions in Libya, and in a series of bold attacks that often sent his armor into exposed positions behind enemy lines, he drove the British forces back into Egypt.  He won victories, in short, by taking extraordinary risks and being very lucky.  In spite of violating orders and losing battles, he was never punished either for disobedience or failure, most likely for two reasons.  First, Hitler's attention was riveted on the Soviet front and rarely strayed to Africa.  Second, Hitler had an extremely high opinion of Rommel. 
+
+The pattern was similar in North Africa once the Germans were pushed onto the defensive.  In spite of substantial evidence that suggested that he was a competent commander, Erwin Rommel was given very little discretion when driven onto the defensive.  When Rommel returned to Africa after being evacuated for medical reasons after his defeat at the second battle of Alamein (October 1942), he was ordered not to retreat.  Hitler wrote, ``With me the entire German people is watching your heroic defensive battle in Egypt...in your situation there can be no thought but of persevering, of yielding not one yard... To your troops therefore you can offer no other path than that leading to victory or death" (Lewin 1984, 139).  Bucking the trend of his contemporaries, Rommel nevertheless organized an orderly retreat that prevented the imminent destruction of the Afrika Korps.  Surprisingly, he was not punished for insubordination, perhaps protected by his previous record.  By this point his army suffered from supply shortages and the British had established control of the air, so the tactical situation had turned decisively against the Germans in North Africa.  (The escape of the Afrika Korps frustrated Winston Churchill, who raged that his own commanders had failed to seize the moment because they were too cautious.)
+
+Having successfully retreated to Tunisia, however, Rommel faced orders to stand his ground in an untenable strategic position.  Following the allied TORCH landings in Morocco and Algeria, the German forces were trapped between British and American forces advancing from the East and the West.  Rommel himself avoided capture because he was evacuated again for medical reasons, but the surrender of 238,000 German and Italian troops in Tunisia was a decisive defeat that could have been avoided by a timely retreat to Italy.  In his subsequent command of Army Group B in Italy and France, he was again denied operational flexibility.  His commander in Italy insisted on a forward defense of Sicily and Rome, which allowed Allied amphibious landings in the rear to repeatedly encircle German forces.  After the Normandy landings, Rommel and his superior officer Rundstedt sought operational flexibility and were again overruled by Hitler.\footnote{Rommel was executed, but not because of incompetence or insubordination; he had been linked to the unsuccessful July 1944 plot against Hitler, and chose poison rather than a trial.}
+   
+\begin{center}
+\textbf{\Large{Churchill's Generals}}\normalsize\\
+\end{center}
+Winston Churchill's relations with his military commanders in North Africa illustrates the inference problems facing a democratic leader, but also the advantages of credible commitment.  Churchill was a hands-on commander -- his critics argued that he was so active as to make a fault of this virtue -- and he consistently worried that his commanders were excessively passive.  He pressed his generals to take their forces on the offensive, and on several occasions he relieved them of command when he was sufficiently convinced that the prospects for assuming the offensive were favorable, yet they lacked initiative.  However, he granted his officers wide discretion to determine the disposition of their troops, their movements and their tactics.
+
+Churchill made a positive initial appraisal of Gen. Archibald Wavell, his C-in-C Middle East.  Wavell turned back the Italian advance in the North African desert in September 1940, and followed this up with victories in December and January, capturing 38,000 prisoners at Sidi Barrani, and advancing from Egypt into Libya, capturing 45,000 prisoners at Bardia and 30,000 at Tobruk (Churchill 1949, 614-16).  Nevertheless, Churchill wasted no opportunity to exhort him to greater exertions.  ``I shall try my utmost to support you in every way [logistically]," Churchill wrote in January 1941, ``and I must ask in return that you convince me that every man in the Middle East is turned to the highest possible use�" (Churchill 1950, 20).  He became skeptical as Wavell resisted his instructions for a speedy conclusion of the campaign against Italian forces in Ethiopia.  ``The results showed how unduly the commanders on the spot had magnified the difficulties and how right we were at home to press them to speedy action" (Churchill 1950a, 84).  Additional strains arose over the conduct of the war in Iraq, Greece and Crete, and Churchill was dissatisfied with the pace of forming up armored brigades out of the tanks he smuggled through the Mediterranean.  After much coaxing, Wavell consented to launch Operation Battleaxe, an offensive against Rommel's forces in the Libyan desert, but not without delay (it was launched on June 15, 1941), and warned darkly that the condition of the British tanks would put them at a disadvantage against the Germans.  When the operation failed, Churchill relieved him of command and replaced him with Claude Auchinleck (Churchill 1950a, 343-45).  Consistent with the model, a general serving a democracy in which the rule of law was well-entrenched, Wavell preferred to follow his judgement and retain the defensive, even in the face of Churchill's decision to remove him.  
+
+%Throughout these strained relations, however, Churchill rarely overruled Wavell's judgment.  
+
+Dismissing Wavell did not put an end to Churchill�s frustration with his commanding officers in Egypt.  He began his relationship with Auchinleck with high expectations, and gave him wide latitude, writing in July, ``After all the facts have been laid before you it will be for you to decide whether to renew the offensive in the Western Desert, and if so when" (Churchill 1950a, 396-97).  It soon became clear, however, as Churchill writes, that ``there were serious divergences of views and values between us.  This caused me sharp disappointment" (Churchill 1950a, 400).  Churchill's telegrams emphasized that the strategic situation was likely to get worse before it got better and urged decisive employment of the means at hand, while Auchinleck emphasized the need for additional reinforcements, reserves, and training.   ``Generals only enjoy such comforts in Heaven," Churchill writes.  ``And those who demand them do not always get there" (Churchill 1950a, 399).  Churchill offers an assessment of the difference in incentives facing leaders and generals:
+\begin{quotation}\small\singlespace\noindent Generals are often prone, if they have the chance, to choose a set-piece battle, when all is ready, at their own selected moment, rather than to wear down the enemy by continued unspectacular fighting.  They naturally prefer certainty to hazard.  They forget that war never stops, but burns on from day to day with ever-changing results not only in one theatre but in all.  At this time the Russian armies were in the crisis of their agony. (Churchill 1950a, 401)
+\end{quotation}
+These officers seemed to him consistently to overemphasize every difficulty and underutilize every opportunity to advance and tie down German forces.  From his global perspective, the purpose of the British Army in Egypt was to exert pressure, to tie down German forces, and to divert resources from the German effort on the Eastern Front.  His understanding of local conditions, however, was essentially limited to what his commanders told him.  Auchinleck rejected proposals from the Chiefs of Staff for an offensive in September.  Consequently, Churchill ordered Auchinleck to come personally to London to discuss plans for his offensive.
+\begin{quotation}\small\singlespace\noindent We could not induce him to depart from his resolve to have a prolonged delay in order to prepare a set-piece offensive on November 1. He certainly shook my military advisers with all the detailed argument he produced.  I myself was unconvinced.  But General Auchinleck's unquestioned abilities, his powers of exposition, his high, dignified, and commanding personality, gave me the feeling that he might after all be right, and that even if wrong he was still the best man. (Churchill 1950a, 405)
+\end{quotation}
+
+The initial stages of the operation were highly successful, but the Eighth Army was subsequently defeated by Rommel at Gazala and Tobruk.  Churchill believed that the failure to adequately prepare for a siege and long-term defense of Tobruk was a significant blunder (Churchill 1950b, 413-19).  He objected, furthermore, to Auchinleck's decision to withdraw from the Libyan frontier to prepare a defense in depth after the fall of Tobruk, rather than to hold his ground (ibid, 421).  Auchinleck had similar concerns about the commander of his own Eighth Army, General Ritchie, whom he relieved from command before taking personal command for the first battle of Alamein.  He succeeded in holding the position, and Rommel retreated to Libya.  However, Churchill had come to have deep concerns about Auchinleck's leadership, and these were exacerbated by distance and the difficulty of communicating in telegrams.  Churchill resolved to travel to Egypt in August 1942, and once on the spot he relieved Auchinleck of command and replaced him with General Alexander.  
+
+The contrast between Churchill's handling of his commanders and Hitler's and Stalin's is striking because each leader had the same concerns.  Each leader was aware that his battlefield commanders took a different attitude towards risk than he did, and each was inclined to brush aside their objections and urge them to take more initiative.  War is not won without taking risks.  On the offensive, they urged their commanders to be bold, and on the defensive, they urged them not to give ground.  Logistical difficulties and problems of supply were no excuse for passivity.  Each leader relieved key generals of command when they believed that they were being excessively cautious.  However, Churchill granted his generals a vastly greater range of discretion.  In spite of his misgivings, he recognized that good military decisions could only be made by those with local knowledge, so he delegated and waited for the outcome.  This did not prevent him from criticizing the disposition of forces, the appointment of commanders, and the tactics employed, from chafing at timetables and occasionally overruling his generals.  His rule, however, was to trust his generals and give them operational control.  His generals, for their part, were willing to be relieved rather than take aggressive action they believed to be against their best judgement throughout the war.  The result was that in spite of numerous reversals, the Eighth Army avoided decisive defeats; it was able to protect its key assets and survive to fight another engagement.  Hitler's and Stalin's efforts to control their generals' tactics in detail through threats, on the other hand, committed them to risky advances and hopeless defenses that led to decisive defeats.
+
+
+
+\section{Conclusion}
+Explanations for the superior performance of democratic countries in war have focused on a wide range of factors.  Soldiers of democratic countries are held to be more highly motivated than those of non-democracies; yet accounts of the factors that inspire loyalty in soldiers at the individual level focus on the interpersonal bonds that form in small groups rather than on ideological motivations.  Leaders of democratic countries are argued to be more highly motivated to win wars than dictators because victory in war provides public goods (Bueno de Mesquita et al. 1999, 2003); yet the consequences of failure in war are generally much more severe for non-elected leaders (Goemans 2000, 2009) and democracies are more likely to win wars even when researchers control for the resources mobilized.  Democracies are believed to select more carefully the wars in which they participate, and to benefit from the assistance of democratic allies, but the democratic advantage does not disappear when democracies are targets or when we control for alliances.
+
+
+We argue that democratic countries enjoy an advantage in warfare over non-democratic countries because they provide better incentives to their military commanders.  In democratic and non-democratic contexts, leaders are uncertain of the quality of their generals and face compelling incentives to remove them if they appear to be incompetent.  This creates two related incentive problems if losing command is costly for the general, and which applies depends upon the beliefs of the ruler about the competence of his generals.  If the general is believed to be better than the expected quality of a replacement, he has incentives to avoid taking risks that could reveal information to the leader, because threats to remove him from command are not credible.  On the other hand, if the general is believed to be worse than the expected replacement, he has incentives to take excessive risks in a gamble for survival.  The difference between democratic and non-democratic leaders is that only democratic leaders are constrained to treat retired generals humanely, and non-democratic leaders often have incentives to punish them.  As a result, generals under autocratic regimes are more cautious in the first instance and more reckless in the second.  Autocratic leaders, therefore, are unable to take advantage of the local knowledge and expertise of their generals to choose the wisest circumstances to launch attacks or to prepare defenses.  With worse leadership on the battlefield, they prosecute warfare less effectively.  The qualitative illustrations offered above from the Second World War appear to be representative of a broader trend.  
+
+We make three contributions.  First, we offer an explanation for the democratic advantage in warfare, which focuses attention on the delegation problem involved in putting generals in command of troops.  Democracies make better use of local battlefield knowledge because they make credible commitments to their generals. Second, we offer an explanation for battlefield tactics and outcomes.  When generals in autocratic regimes are believed to be skilled, they are overly cautious; when leaders begin to doubt their competence, they become reckless, and take risks that may lead to decisive defeat.  Third, we explain the characteristic deterioration in command-and-control that occurs as autocratic regimes begin to lose wars.  As his generals suffer a series of tactical reversals, the ruler rationally updates his beliefs about their competence.  Generals anticipate this, and find themselves playing the reckless pooling equilibrium where they accept battle regardless of the risks because they will be removed from command, and doubtless punished, if they act cautiously.  Armies under autocratic rule are more likely to suffer decisive defeats because they take risks at inappropriate times.   Consequently, an early reversal of fortune leads to serious tactical mistakes that culminate in a long slide to disaster.  %The next step in the project is systematic quantitative testing.
+
+
+
+
+
+
+
+
+%\newpage
+\section*{Appendix: Proofs}
+%\singlespace
+
+
+\noindent\textbf{Lemma \ref{second period expected utility}.}
+\begin{proof}  To see part $1$, by definition: $w(1,\mu)=\sum_{k_2>1}\mathcal{P}(k_2,\mu,1)\alpha\gamma(k_2)$ which is at least as large as: $w(0,\mu)=\sum_{k_2>1}\mathcal{P}(k_2,\mu,0)\alpha\gamma(k^{\prime})$ if and only if $\sum_{k_2>1}\pi(k_2|1,1)\gamma(k_2)>\sum_{k_2>1}\pi(k_2|1,0)\gamma(k_2)$.
+%\begin{align*}
+%\mu(c)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\alpha\gamma(k^{\prime})&\geq\mu(c)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\alpha\gamma(k^{\prime})\\
+%\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\alpha\gamma(k^{\prime})&\geq\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\alpha\gamma(k^{\prime})
+%\end{align*}
+By assumption \ref{FOSD}, the claim follows from first order stochastic dominance.  To see part $2$, I claim that in the second period if $a^*_j(k,s,\mu)=1$ for some $k\in K$, then $a^*_j(k^{\prime},s,\mu)=1$ for all $k^{\prime}<k$.  If $a^*_j(k,s,\mu)=0$ for some $k\in K$, then $a^*_j(k^{\prime},s,\mu)=0$ for all $k^{\prime}>k$.  Note that $G_j$ prefers to attack on signal $s_2$ at military status quo $k$ if: $\sum_{k_2>1}\mathcal{P}(k_2,\mu,s_2)\gamma(k_2)> \gamma(k)$.  Since the left hand side is constant in current military status quo $k$, and the right hand side is strictly increasing in $k$, the claim follows immediately by part $(1)$.  From this either: $(i)$ $w(1,\mu)\geq w(0,\mu)\geq \alpha\gamma(k)+b$ or $(ii)$ $w(1,\mu)\geq \alpha\gamma(k)+b\geq w(0,\mu)$ or $(3)$ $\alpha\gamma(k)+b\geq w(1,\mu)\geq w(0,\mu)$.  Given these three possibilities, any Perfect Bayesian Equilibrium must involve a strategy profile in which we can partition $K\backslash\{0,N\}$ into exactly the three sets defined in the proposition statement as a function of the current beliefs.  %If possibility $(1)$ obtains, then $k$ is such that $a(k,s_2,\mu)=1$ irrespective of the signal $s_2$; if possibility $(3)$ obtains, then $k$ is such that $a(k,s_2,\mu)=0$ irrespective of the signal $s_2$; finally, if possibility $(2)$ obtains, then the signal $s_2$ matters.  The general will prefer to take the field having observed the signal that indicates that it is favorable to do so, and will avoid battle when he observes that it is unfavorable to take the offensive.  
+\end{proof}
+
+
+
+
+
+
+
+
+%Given the definitions of $K_1(\mu)$, $K_2(\mu)$, and $K_3(\mu)$, and the realization of military status quo $k_1$ at the end of the first period, we can further characterize rules that define exactly which military status quos fall into each set.  Consider $K_1(\mu)$.  Then by definition, in any Perfect Bayesian Equilibrium, the set of military status quos that fall into this set will be $k_1$ such that:
+%\begin{align*}
+%\left(\mu+\frac{1-\mu}{2}\right)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1-\mu}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})\geq\gamma(k_1)\\
+%\left(\mu+\frac{1-\mu}{2}\right)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})+\frac{1-\mu}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})\geq\gamma(k_1)
+%\end{align*}Solving for $\mu$ we require that:
+%\begin{align*}
+%\mu_1^2(c|k_1,s_1=1)&\geq\frac{\gamma(k_1)-\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}\\
+%\mu_1^2(c|k_1,s_1=0)&\leq\frac{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})-\gamma(k_1)}{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}.
+%\end{align*}Next consider $K_2(\mu)$.  Then by definition in any Perfect Bayesian Equilibrium, the military status quos that fall into this set will be $k_1$ such that:
+%\begin{align*}
+%\mu_1^2(c|k_1,s_1=1)&\geq\frac{\gamma(k_1)-\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}\\
+%\mu_1^2(c|k_1,s_1=0)&\geq\frac{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})-\gamma(k_1)}{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}.
+%\end{align*}Finally, consider $K_3(\mu)$.  Then by definition in any Perfect Bayesian Equilibrium, the military status quos that fall into this set will be $k_1$ such that:
+%\begin{align*}
+%\mu_1^2(c|k_1,s_1=1)&\leq\frac{\gamma(k_1)-\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}\\
+%\mu_1^2(c|k_1,s_1=0)&\geq\frac{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})-\gamma(k_1)}{\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})}.
+%\end{align*}
+
+
+
+
+
+
+
+
+\noindent\textbf{Lemma \ref{expected utility and competence}.}
+\begin{proof}  To see part $(1)$, suppose that $w(1,\mu^{\prime})> w(1,\mu)$.  Then by definition: $\sum_{k_2>1}\mathcal{P}(k_2,\mu^{\prime},1)\alpha\gamma(k_2)>\sum_{k_2>1}\mathcal{P}(k_2,\mu,1)\alpha\gamma(k_2)$ or $\left(\mu^{\prime}(c)-\mu(c)\right)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})>\left(\mu(i)-\mu^{\prime}(i)\right)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})$.
+
+%\begin{align*}
+%&\mu^{\prime}(c)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\{\alpha\gamma(k^{\prime})+b\}+\mu^{\prime}(i)\left(\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\{\alpha\gamma(k^{\prime})+b\}\right)\\
+%&>\mu(c)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\{\alpha\gamma(k^{\prime})+b\}+\mu(i)\left(\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\{\alpha\gamma(k^{\prime})+b\}\right)\\
+%&\sum_{k_2>1}\mathcal{P}(k_2,\mu^{\prime},1)\alpha\gamma(k_2)>\sum_{k_2>1}\mathcal{P}(k_2,\mu,1)\alpha\gamma(k_2)\\
+%&\left(\mu^{\prime}(c)-\mu(c)\right)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})>\left(\mu(i)-\mu^{\prime}(i)\right)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})
+%\end{align*}
+Since: $\sum_{k_2>1}\pi(k_2|1,1)\gamma(k_2)>\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)$ it follows that the second to last inequality is true must imply that $\mu^{\prime}(c)>\mu(c)$.  Now suppose that $\mu^{\prime}(c)>\mu(c)$.  Then the conclusion follows immediately since: $\sum_{k_2>1}\pi(k_2|1,1)\alpha\gamma(k_2)>\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)$.  Part $(2)$ follows by exactly analogous argument.  To see part $(3)$, suppose that $\mu^{\prime}(c)>\mu(c)$ and take any $k\in K_2(\mu)$.  Then we want to see that $k\in K_2(\mu^{\prime})$.  Since $k\in K_2(\mu)$, by definition it must be that $w(1,\mu)>\alpha\gamma(k)$ and $w(0,\mu)<\alpha\gamma(k)$.  But then by Lemma \ref{expected utility and competence} it follows immediately that: $w(1,\mu^{\prime})>w(1,\mu)>\alpha\gamma(k)$ and also that: $w(0,\mu^{\prime})< w(0,\mu)<\alpha\gamma(k)$.
+ But then by definition, $k\in K_2(\mu^{\prime})$, as required.  Part $(2)$ follows immediately from part $(1)$ and the fact that $K_1(\cdot)$, $K_2(\cdot)$, and $K_3(\cdot)$ form a partition of $K\backslash\{0,N\}$.
+\end{proof}
+
+
+
+
+
+
+
+
+\noindent\textbf{Lemma \ref{preferences over competence}.}
+\begin{proof}By assumption $\mu_R(\theta_1)=\mu_1^2(\theta_1|k_1,a,s_1)$.  Without loss of generality assume that $\mu_R(c_1)>\mu_R(c_2)$, i.e. the ruler believes that $G_1$ is more competent than $G_2$.  By Lemma \ref{expected utility and competence}, we have five cases to consider.  
+
+\noindent\textbf{Case $\mathbf{(1)}$} it could be that $k_1\in K^2_3(\mu_1^2(\theta_1|k_1,a,s_1))\bigcap K^2_3(\mu_0(\theta_2))$.  Then by definition of $K^2_3(\cdot)$, this implies that: $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,a,s_1))=0$ and $a_2(k_1,s_2,\mu_0(\theta_2))=0$, $s_2\in\{0,1\}$.  Therefore $r(k_1,a,\mu_R)=1$ implies that expected utility to $R$ is $\gamma(k_1)$, while $r(k_1,a,\mu_R)=0$ implies that expected utility to $R$ is again $\gamma(k_1)$, consistent with the claim.  
+
+\noindent\textbf{Case $\mathbf{(2)}$} it could be that $k_1\in K^2_2(\mu_1^2(\theta_1|k_1,a,s_1))\bigcap K^2_3(\mu_0(\theta_2))$.  Then $a_2(k_1,s_2,\mu_0(\theta_2))=0$ for $s_2\in\{0,1\}$ while:
+\begin{align*}
+a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,a,s_1))&=\left\{\begin{array}{ll}
+1&\mbox{if }s_2=1\\
+0&\mbox{if }s_2=0.
+\end{array}\right.
+\end{align*}Therefore, $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is $\gamma(k_1)$, while $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ is:
+\begin{align*}
+&\frac{1}{2}\left(p(s_2=1|\omega_2=1)\sum_{k_2>1}\pi(k_2|1,1)\gamma(k_2)+p(s_2=0|\omega_2=1)\gamma(k_1)\right)\\
+&+\frac{1}{2}\left(p(s_2=1|\omega_2=0)\sum_{k_2>1}\pi(k_2|1,0)\gamma(k_2)+p(s_2=0|\omega_2=0)\gamma(k_1)\right)\\
+%&=\frac{1}{2}\left(\left(\mu_R(c)+\frac{\mu_R(i)}{2}\right)\sum_{k_2>1}\pi(k_2|1,1)\gamma(k_2)+\frac{\mu_1^2(i)}{2}\gamma(k_1)\right)\\
+%&+\frac{1}{2}\left(\frac{\mu_R(i)}{2}\sum_{k_2>1}\pi(k_2|1,0)\gamma(k_2)+\left(\mu_R(c)+\frac{\mu_R(i)}{2}\right)\gamma(k_1)\right)\\
+%&=\frac{1}{2}\left(\mu_R(c)\sum_{k_2>1}\pi(k_2|1,1)\gamma(k_2)+\mu_R(i)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)\right)+\frac{\gamma(k_1)}{2}\\
+&=\frac{1}{2}\left(\sum_{k_2>1}\mathcal{P}(k_2,\mu_R,1)\gamma(k_2)+\gamma(k_1)\right)
+\end{align*}By definition, $k_1\in K^2_2(\mu_1^2(\theta_1))$ implies that: $\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\gamma(k^{\prime})\geq\gamma(k_1)$.  From the assumption that $\mu_R(\theta_1)=\mu_1^2(\theta_1|k_1,a,s_1)$, this immediately implies that the ruler will prefer to retain $G_1$, the \textit{a priori} more competent general.  The same argument holds if $\mu_0(c_2)>\mu_1^2(c_1|k_1,a,s_1)$, \textit{mutatis mutandis}.  
+
+\noindent\textbf{Case $\mathbf{(3)}$} it could be that $k_1\in K^2_2(\mu_1^2(\theta_1|k_1,a,s_1))\bigcap K^2_2(\mu_0(\theta_2))$.  Then by definition:
+\begin{align*}
+\begin{array}{cc}
+a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,a,s_1))=\left\{\begin{array}{ll}
+1&\mbox{if }s_2=1\\
+0&\mbox{if }s_2=0\\
+\end{array}\right.&
+a_2(k_1,s_2,\mu_0(\theta_2))=\left\{\begin{array}{ll}
+1&\mbox{if }s_2=1\\
+0&\mbox{if }s_2=0.\\
+\end{array}\right.
+\end{array}
+\end{align*}Therefore by the derivation in case $(2)$ and the assumption that $\mu_R(\theta_1)=\mu_1^2(\theta_1|k_1,a,s_1)$, $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ is: $\frac{1}{2}\left(\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\gamma(k_2)+\gamma(k_1)\right)$.  Similarly, $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is: $\frac{1}{2}\left(\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\gamma(k_1)\right)$.  By an argument exactly analogous to that for Lemma \ref{expected utility and competence} $R$ will prefer $G_1$.  An analogous argument holds if $\mu_0(c_2)>\mu_1^2(c_1|k_1,a,s_1)$, \textit{mutatis mutandis}.  
+
+\noindent\textbf{Case} $\mathbf{(4)}$ it could be that $k_1\in K^2_2(\mu_1^2(\theta_1|k_1,a,s_1))\bigcap K^2_3(\mu_0(\theta_2))$.  Then by definition:
+\begin{align*}
+a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,a,s_1))&=\left\{\begin{array}{ll}
+1&\mbox{if }s_2=1\\
+0&\mbox{if }s_2=0
+\end{array}\right.
+\end{align*}while $a_2(k_1,s_2,\mu_0(\theta_2))=1$ for $s_2\in\{0,1\}$.  Therefore $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ will be: $\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)$ while by the derivation for case $3$ and the assumption that $\mu_R(\theta_1)=\mu_1^2(\theta_1|k_1,a,s_1)$ $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ will be: $\frac{1}{2}\left(\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\gamma(k_2)+\gamma(k_1)\right)$.  Therefore we need only see that
+\begin{align*}
+&\frac{1}{2}\left(\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\gamma(k_2)+\gamma(k_1)\right)\geq\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)\\
+%&\mu_1^2(c)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_1^2(i)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\gamma(k_1)\\
+%&\geq\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})\\
+&\mu_1^2(c)\geq\frac{\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)-\gamma(k_1)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}.
+\end{align*}This follows immediately from $k_1\in K_2(\mu_1^2(\theta_1|k_1,a,s_1)$.
+
+\noindent\textbf{Case $\mathbf{(5)}$} it could be that $k_1\in K^2_3(\mu_1^2(\theta_1|k_1,a,s_1))\bigcap K^2_3(\mu_0(\theta_2))$.  By definition, it follows that: $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,a,s_1))=a_2(k_1,s_2,\mu_0(c_2))=1$ for $s_2\in\{0,1\}$.  Therefore $r(k_1,a,\mu_R)=1$ and $r(k_1,a,\mu_R)=0$ both imply that the expected utility to $R$ is: $\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)$.  $R$ is indifferent, consistent with the claim.
+\end{proof}
+
+
+
+
+
+
+
+
+\noindent\textbf{Lemma \ref{beliefs2}.}
+\begin{proof}Fix an initial belief $\mu$ and strategy profile $\sigma$. To see part $(1)$, take any $k\in K$ and suppose that under $a(k,s,\mu)=1$ for $s\in\{0,1\}$.  Then expanding the sums in $\mu_R(\theta|k_1,a_1,\sigma)$ we have that: $\mu_R(c|k_1,a_1,\sigma)=\mu_0(c)$.  Therefore the posterior belief is the same as the prior.  A derivation analogous to that in part $(1)$ yields the same result for the case where $a(k,s,\mu)=0$ for $s\in\{0,1\}$.
+%, we have the following expression:
+%\begin{align*}
+%\mu_R(\theta_{1}|k_1,a_1,\sigma)=&\pi(k_1|1,1)p(1|k_0,1,\sigma)p(1|\theta_{1},1)\frac{1}{2}\mu(\theta_{1})+\pi(k_1|1,0)p(1|k_0,1,\sigma)p(1|\theta_{1},0)\frac{1}{2}\mu(\theta_{1})\\
+%&\underline{+\pi(k_1|1,0)p(1|k_0,0,\sigma)p(0|\theta_{1},0)\frac{1}{2}\mu(\theta)+\pi(k_1|1,1)p(1|k_0,0,\sigma)p(0|\theta_{1},1)\frac{1}{2}\mu(\theta_{1})}\\
+%&\pi(k_1|1,1)p(1|k_0,1,\sigma)p(1|c,1)\frac{1}{2}\mu(c)+\pi(k_1|1,1)p(1|k_0,1,\sigma)p(1|i,0)\frac{1}{2}\mu(i)\\
+%&+\pi(k_1|1,0)p(1|k_0,1,\sigma)p(1|c,0)\frac{1}{2}\mu(c)+\pi(k_1|1,0)p(1|k_0,1,\sigma)p(1|i,0)\frac{1}{2}\mu(i)\\
+%&+\pi(k_1|1,1)p(1|k_0,0,\sigma)p(0|c,1)\frac{1}{2}\mu(c)+\pi(k_1|1,1)p(1|k_0,0,\sigma)p(0|i,1)\frac{1}{2}\mu(i)\\
+%&+\pi(k_1|1,0)p(1|k_0,0,\sigma)p(0|c,0)\frac{1}{2}\mu(c)+\pi(k_1|1,0)p(1|k_0,0,\sigma)p(0|i,0)\frac{1}{2}\mu(i)\\
+%\end{align*}
+%Consider $\mu_R(c|k_1,a_1,\sigma)$.  Then this expression becomes:
+%\begin{align*}
+%\mu_R(c|k_1,a_1,\sigma)=&\underline{\pi(k_1|1,1)\frac{1}{2}\mu(c)+\pi(k_1|1,0)\frac{1}{2}\mu(c)}\\
+%&\left\{\begin{array}{c}
+%\pi(k_1|1,1)\frac{1}{2}\mu(c)+\pi(k_1|1,1)\frac{1}{2}\frac{1}{2}\mu(i)+\pi(k_1|1,0)\frac{1}{2}\frac{1}{2}\mu(i)\\
+%+\pi(k_1|1,1)\frac{1}{2}\frac{1}{2}\mu(i)+\pi(k_1|1,0)\frac{1}{2}\mu(c)+\pi(k_1|1,0)\frac{1}{2}\frac{1}{2}\mu(i)\\
+%\end{array}\right\}\\
+%&=\frac{\pi(k_1|1,1)\frac{1}{2}\mu(c)+\pi(k_1|1,0)\frac{1}{2}\mu(c)}{\pi(k_1|1,1)\frac{1}{2}\mu(c)+\pi(k_1|1,0)\frac{1}{2}\mu(c)+\pi(k_1|1,1)\frac{1}{2}\mu(i)+\pi(k_1|1,0)\frac{1}{2}\mu(i)}\\
+%&=\mu_0(c)
+%\end{align*}and therefore the posterior belief is the same as the prior.  A derivation analogous to that in part $(1)$ yields the same result for the case where $a(k,s,\mu)=0$ for $s\in\{0,1\}$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Proposition \ref{the ruler can get his first best}.}
+\begin{proof}If $b=0$, then it is obvious that the claim is true.  Assume that $b>0$ and that $\alpha=0$.  First note that in any Perfect Bayesian Equilibrium, for any belief system $\mu$ $K_3(\mu)=K\backslash\{0,N\}$.  Given this, it follows that the value for continuing the game to $R$ is: $V(k_1,a_1,s_1)=\gamma(k_1)$.  Fix a strategy for $G_1$ such that:
+\begin{align*}
+\begin{array}{cc}
+a_1(k_0,s_1,\mu_0)=\left\{\begin{array}{ll}
+%1&\mbox{if }k_0\in K_1^1(\mu_0)\\
+1&\mbox{if }s_1=1\\%,k_0\in K_2^1(\mu_0)\\
+0&\mbox{if }s_1=0%,k_0\in K_2^1(\mu_0)\\
+%0&\mbox{if }k_0\in K_3^1(\mu_0)\\
+\end{array}\right.&a_1(k_1,s_2,\mu)=0.
+\end{array}
+\end{align*}%where:
+%\begin{align*}
+%&K_1^1(\mu_0)=\left\{k_0\in K\left|\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,0)\gamma(k_1)>\gamma(k_0)\right.\right\}\\
+%&K_2^1(\mu_0)=\left\{k_0\in K\left|\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)\gamma(k_1)>\gamma(k_0)\right.\mbox{and }\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,0)\gamma(k_1)<\gamma(k_0)\right\}\\
+%&K_3^1(\mu_0)=\left\{k_0\in K\left|\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)\gamma(k_1)<\gamma(k_0)\right.\right\}
+%\end{align*}
+i.e. a strategy that is first-best for $R$ in period $1$.  Fix a strategy for $G_2$ such that $a_2(k_1,s_2,\mu_0)=0$.  Under this strategy, $R$ will be indifferent between $G_1$ and $G_2$.  
+%\begin{align*}
+%r(k_1,a,\mu)&=\left\{\begin{array}{ll}
+%1&\mbox{ if }a=1,k_0\in K_3^1(\mu)\mbox{ or }a=0,k_0\in K_1^1(\mu)\\
+%&\\
+%0&\mbox{ if }a=0,k_0\in K_3^1(\mu)\mbox{ or }a=1,k_0\in K_1^1(\mu)\\
+%\end{array}\right.
+%\end{align*}a best response since $R$ is indifferent.  Next we define the strategy of the ruler for $k_0\in K_2^1(\mu_0)$.  For any $k_0\in K_2^1(\mu_0)$ 
+
+Fix a strategy for the ruler in which we require that: $(1)$ $\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)b>b(1-r)+rd$ and $(2)$ $\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,0)b<b(1-r)+rd$.  Rearranging: $(1)$ $\frac{b\left(1+\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)\right)}{b-d}<r$ and $(2)$ $\frac{b\left(1+\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,0)\right)}{b-d}>r$.  Therefore, any $r$ in the interval $\left(\frac{b\left(1+\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)\right)}{b-d},\frac{b\left(1+\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,0)\right)}{b-d}\right)$ will satisfy this requirement.  Note that by $a_1$ and $a_2$, this will be a best response for $R$ since he is indifferent.  Clearly $a_2$ is optimal.  %It only remains to show that the strategy fixed for $G_1$ is a best response.  Take any $k_0\in K_1^1(\mu_0)$.  Given the strategy fixed for $G_1$, $a_(k_0,s_1,\mu_0)=1$, which yields expected utility: $\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)b>0$.  A deviation to $a_1(k_0,s_1,\mu_0)=0$ yields $d<0$, which is not profitable.  Take any $k_0\in K_3^1(\mu_0)$.  Given the strategy fixed for $G_1$, $a_(k_0,s_1,\mu_0)=0$, which yields expected utility: $\gamma(k_0)$.  A deviation to $a_(k_0,s_1,\mu_0)=1$ yields:
+%\begin{align*}
+%\sum_{k_1>1}\mathcal{P}(k_1,\mu_0,1)d<0<\gamma(k_0)
+%\end{align*}which is not profitable.  
+Finally, by construction, $a_1(k_0,s_1,\mu_0)$ as specified above is a best response for any $k_0\in K_2^1(\mu_0)$.  Thus, there exists a Perfect Bayesian Equilibrium in which the ruler can obtain his first-best outcome.
+\end{proof}
+
+
+
+
+
+
+\noindent Define: $K(s,\mu,\mu^{\prime})=\left\{k\in K\left|\frac{\pi(k|1,s)\mu(c)}{\pi(k|1,s)\mu(c)+\frac{1}{2}\mu(i)(\pi(k|1,1)+\pi(k|1,0))}>\mu^{\prime}(c)\right.\right\}$.
+
+\noindent\textbf{Proposition \ref{if d is large the ruler can get his first-best}.}
+\begin{proof}Fix a strategy for $G_1$ such that $a_1(k_0,s_1,\mu_0)=s_1$, and without loss of generality suppose that $k_0\in K_2(\max\{\mu_0(c_1),\mu_0(c_2)\})$.  By Lemma \ref{preferences over competence}:
+\begin{align*}
+r(k_1,a_1,\mu_1^2)&=\left\{\begin{array}{ll}
+1&\mbox{if }\mu_1^2(c_1)<\mu_0(c_2)\mbox{ and }k_1\in K_2(\mu_0(c_2))\\
+&\\
+0&\mbox{otherwise}.\\
+\end{array}\right.
+\end{align*}is clearly a best response.  It only remains to determine whether $a_1$ as specified is a best response.  There are two cases to consider.
+
+\noindent\textbf{Case $\mathbf{(1)}$}  Assume that $\mu_0(c_1)>\mu_0(c_2)$.  Suppose that $s_1=0$.  Then $a_1(k_0,0,\mu_0)=0$.  Given the strategy for $R$, $r=0$.  Therefore, the expected utility for $G_1$ if he avoids battle is: $\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k^{\prime})+\frac{\alpha\gamma(k_0)}{2}$.  Consider the deviation to $a_1(k_0,1,\mu_0)=1$.  Given the strategy fixed for $R$, the expected utility for this deviation is:
+\begin{align*}
+%&\sum_{k_1\in K_1(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)\\
+%&+\sum_{k_1\in K_3(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\alpha\gamma(k_1)\\
+%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),0)\{\alpha\gamma(k_2)+d\}+\frac{\alpha\gamma(k_1)+d}{2}\right)\\
+%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcap K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,0)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)\\
+%\\
+&\sum_{k_1\in K}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left\{\begin{array}{ll}
+\alpha\gamma(k_1)&\mbox{ if }k_1\in K_3(\overline{\mu}(k_1,1,0))\\
+\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)&\mbox{ if }k_1\in K_1(\overline{\mu}(k_1,1,0))\\
+\frac{\alpha\gamma(k_1)+\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)}{2}&\mbox{ if }k_1\in K(1,\mu_1^2,\mu_0)\bigcap K_2(\overline{\mu}(k_1,1,0))\\
+\frac{\alpha\gamma(k_1)+d+\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}}{2}&\mbox{ if }k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\overline{\mu}(k_1,1,0))
+\end{array}\right.
+\end{align*}Because $k_0\in K_2^1(\mu_0)$ by assumption, and $d<0$, it follows that:
+%\begin{align*}
+%&\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)\\
+%&+\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\gamma(k_1)\\
+%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\frac{\gamma(k_1)}{2}\right)\\
+%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\gamma(k_2)+\frac{\gamma(k_1)}{2}\right)\\
+%&<\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\gamma(k^{\prime})+\frac{\gamma(k_0)}{2}.
+%\end{align*}%Therefore:
+%%\begin{align*}
+%%&\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)\\
+%%&+\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\alpha\gamma(k_1)\\
+%%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)\\
+%%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)\\
+%%&<\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k^{\prime})+\frac{\alpha\gamma(k_0)}{2}
+%%\end{align*}
+%Since $d<0$, we have:
+%\begin{align*}
+%%&\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)\\
+%%&+\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\alpha\gamma(k_1)\\
+%%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}+\frac{\alpha\gamma(k_1)+d}{2}\right)\\
+%%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)\\
+%&\sum_{k_1\in K}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left\{\begin{array}{ll}
+%\alpha\gamma(k_1)&\mbox{ if }k_1\in K_3(\overline{\mu}(k_1,1,0))\\
+%\\
+%\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)&\mbox{ if }k_1\in K_1(\overline{\mu}(k_1,1,0))\\
+%\\
+%\frac{\alpha\gamma(k_1)+\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,0)\alpha\gamma(k_2)}{2}&\mbox{ if }k_1\in K(1,\mu_1^2,\mu_0)\bigcap K_2(\overline{\mu}(k_1,1,0))\\
+%\\
+%\frac{\alpha\gamma(k_1)+d+\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),0)\{\alpha\gamma(k_2)+d\}}{2}&\mbox{ if }k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\overline{\mu}(k_1,1,0))
+%\end{array}\right.\\
+%&<\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k^{\prime})+\frac{\alpha\gamma(k_0)}{2}
+%\end{align*}
+this expression is strictly less than $\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k^{\prime})+\frac{\alpha\gamma(k_0)}{2}$ and therefore, this deviation is not profitable.   Next, suppose that $s_1=1$.  Then $a_1(k_0,1,\mu_0)=1$.  Given the strategy for $R$, the expected utility for $G_1$ if he deviates to avoiding battle is: $\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k^{\prime})+\frac{\alpha\gamma(k_0)}{2}$.  Given the strategy fixed for $R$, the expected utility for this strategy is:
+\begin{align*}
+&\sum_{k_1\in K}\mathcal{P}(k_1,\mu_0(\theta_1),1)\left\{\begin{array}{ll}
+\alpha\gamma(k_1)&\mbox{ if }k_1\in K_3(\overline{\mu}(k_1,1,1))\\
+\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)&\mbox{ if }k_1\in K_1(\overline{\mu}(k_1,1,1))\\
+\frac{\alpha\gamma(k_1)+\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)}{2}&\mbox{ if }k_1\in K(1,\mu_1^2,\mu_0)\bigcap K_2(\overline{\mu}(k_1,1,1))\\
+\frac{\alpha\gamma(k_1)+d+\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}}{2}&\mbox{ if }k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\overline{\mu}(k_1,1,1))
+\end{array}\right.
+%&\sum_{k_1\in K(\overline{\mu}(k_1,1,1))}\mathcal{P}(k_1,\mu_0(\theta_1),1)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)\\
+%&+\sum_{k_1\in K(\overline{\mu}(k_1,1,1))}\mathcal{P}(k_1,\mu_0(\theta_1),1)\alpha\gamma(k_1)\\
+%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),1)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}+\frac{\alpha\gamma(k_1)+d}{2}\right)\\
+%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),1)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)
+\end{align*}
+We want to see that this is larger than the utility for deviation: $\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k^{\prime})+\frac{\alpha\gamma(k_0)}{2}$.  Rearranging, we require that:
+\begin{align*}
+d\geq&\frac{\alpha\left(\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_1),1)\gamma(k_2)+\gamma(k_0)}{2}-\sum_{k_1>1}\mathcal{P}(k_1,\mu_0(\theta_1),1)V(k_1,1,1)\right)}{\sum_{k_1\in(K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\mu_0(\theta_2))}\mathcal{P}(k_1,\mu_0(\theta_1),1)\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)+1}{2}}\equiv d_1^*(\alpha,\mu)
+\end{align*}for $a_1(k_0,s_1,\mu_0)$ to be a best response; long as $d\geq d_1^*(\alpha,\mu)$, this profile will be a Perfect Bayesian Equilibrium.
+
+
+
+\noindent\textbf{Case $\mathbf{(2)}$}  Suppose that $\mu_0(c_1)<\mu_0(c_2)$.  Let $s_1=0$.  Note that given the strategy for $R$, $r(k_1,0,\mu_0)=1$.  Therefore the expected utility to $G_1$ if he avoids battle will be: $\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}+\frac{\alpha\gamma(k_2)+d}{2}$.  Consider the deviation to $a_1(k_0,0,\mu_0)=1$.  The expected utility to $G_1$ for this deviation will be:
+\begin{align*}
+%&\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)\\
+%&+\sum_{k_1\in K(\overline{\mu}(k_1,1,0))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\alpha\gamma(k_1)\\
+%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}+\frac{\alpha\gamma(k_1)+d}{2}\right)\\
+%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)
+&\sum_{k_1\in K}\mathcal{P}(k_1,\mu_0(\theta_1),0)\left\{\begin{array}{ll}
+\alpha\gamma(k_1)&\mbox{ if }k_1\in K_3(\overline{\mu}(k_1,1,0))\\
+\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)&\mbox{ if }k_1\in K_1(\overline{\mu}(k_1,1,0))\\
+\frac{\alpha\gamma(k_1)+\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)}{2}&\mbox{ if }k_1\in K(1,\mu_1^2,\mu_0)\bigcap K_2(\overline{\mu}(k_1,1,0))\\
+\frac{\alpha\gamma(k_1)+d+\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}}{2}&\mbox{ if }k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\overline{\mu}(k_1,1,0))
+\end{array}\right.\\
+\end{align*}Rearranging if:
+\begin{align*}
+d\geq&\frac{\alpha\left(\sum_{k_1}\mathcal{P}(k_1,\mu_0(\theta_1),0)V(k_1,1,0)-\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\gamma(k_0)}{2}\right)}{\left(1-\sum_{k_1\in(K\backslash K(1,\mu_1^2,\mu_0))\bigcap K_2(\mu_0(\theta_2))}\mathcal{P}(k_1,\mu_0(\theta_1),0)\right)\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)+1}{2}}\equiv d_2^*(\alpha,\mu)
+\end{align*}then this deviation will not be profitable.  Note that if $d$ is large enough to satisfy case $(1)$ where $s_1=1$, then it must also be large enough to satisfy case $(2)$ where $s_1=1$.  Therefore, so long as $d\geq d_2^*(\alpha,\mu)$, this profile will be a Perfect Bayesian Equilibrium.\footnote{The proof for the cases in which $k_0\in K_1(\max\{\mu_0(c_1),\mu_0(c_2)\})$ and $k_0\in K_3(\max\{\mu_0(c_1),\mu_0(c_2)\})$ is analogous, and is omitted.}
+\end{proof}
+
+
+
+
+
+
+
+
+
+\noindent\textbf{Proposition \ref{if d is small then generals can be timid}.}
+\begin{proof}The proof is similar to that for Proposition \ref{if d is large the ruler can get his first-best} and so is omitted.
+\end{proof}
+%\begin{proof}Assume that $\alpha>0$ and without loss of generality suppose that $k_1\in K^2_2(\max\{\mu_0(c_1),\mu_0(c_2)\})$.  Fix the strategies:
+%\begin{align*}
+%\begin{array}{cc}
+%a_1(k_0,s_1,\mu_0)=\left\{\begin{array}{ll}
+%0&\mbox{if }s_1=1\\
+%&\\
+%0&\mbox{if }s_1=0\\
+%\end{array}\right.
+%&
+%r(k_1,a_1,\mu)=\left\{\begin{array}{ll}
+%1&\mbox{if }\mu_R(c_1|k_1,a_1,\sigma)<\mu_0(c_2)\\
+%&\mbox{ and }k_1\in K_2(\mu_0(\theta_2))\\
+%&\\
+%0&\mbox{otherwise}
+%\end{array}\right.
+%\end{array}
+%\end{align*}By Lemma \ref{preferences over competence}, clearly $r(k_1,a_1,\mu)$ is a best response for $R$.  It only remains to determine whether $a_1(k_0,s_1,\mu_0)$ is a best response for $G_1$.  Assume that $\mu_0(c_1)>\mu_0(c_2)$.  Suppose that $s_1=0$.  Then $a_1(k_0,0,\mu_0)=0$.  By the same argument as for Proposition \ref{if d is large the ruler can get his first-best}, it will not be profitable to deviate to $a_1(k_1,0,\mu_0)=1$.  Suppose that $s_1=1$.  Then $a_1(k_0,1,\mu_0)=0$.  By $\mu_0(c_1)>\mu_0(c_2)$ and the strategy specified for the ruler, this implies that the expected utility to $G_1$ will be: $\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_1),1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_0)}{2}$.  A deviation to $a_1(k_0,1,\mu_0)=1$ implies an expected utility of:
+%\begin{align*}
+%&\sum_{k_1\in K(\overline{\mu}(k_1,1,1))}\mathcal{P}(k_1,\mu_0(\theta_1),1)\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\alpha\gamma(k_2)\\
+%&+\sum_{k_1\in K(\overline{\mu}(k_1,1,1))}\mathcal{P}(k_1,\mu_0(\theta_1),1)\alpha\gamma(k_1)\\
+%&+\sum_{k_1\in (K\backslash K(1,\mu_1^2,\mu_0))\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),1)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\{\alpha\gamma(k_2)+d\}+\frac{\alpha\gamma(k_1)+d}{2}\right)\\
+%&+\sum_{k_1\in K(1,\mu_1^2,\mu_0)\bigcup K_2(\mu_1^2)}\mathcal{P}(k_1,\mu_0(\theta_1),1)\left(\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2,1)\alpha\gamma(k_2)+\frac{\alpha\gamma(k_1)}{2}\right)
+%\end{align*}Rearranging, it follows that this deviation will not be profitable so long as $d<d^*_1(\alpha,\mu)$, yielding a Perfect Bayesian Equilibrium.  
+%\end{proof}
+
+
+
+
+
+
+
+%\begin{lemma}For any belief system $\mu$ the set $K(1,\mu,\mu)=\{k^*+1,k^*+2,\hdots,N-1\}$ and $K(0,\mu,\mu)=\{1,2,\hdots,k^*\}$.\label{military status quos that improve competence}
+%\end{lemma}
+%\begin{proof}Define $K(s,\mu)$ as in the statement of the lemma and fix a belief system $\mu$.  Then by definition, $k\in K(1,\mu)$ implies that:
+%\begin{align*}
+%&1<\frac{\pi(k|1,1)}{\pi(k|1,1)\mu(c)+\frac{1}{2}(1-\mu(c))(\pi(k|1,1)+\pi(k|1,0))}\\
+%&\frac{1}{2}(1-\mu(c))(\pi(k|1,1,)+\pi(k|1,0))<\pi(k|1,1)(1-\mu(c))\\
+%&\pi(k|1,0)<\pi(k|1,1).
+%\end{align*}By assumption \ref{distributions}, this will be true for all $k>k^*$.Similarly, $k\in K(0,\mu)$ implies that:
+%\begin{align*}
+%&1<\frac{\pi(k|1,0)}{\pi(k|1,0)\mu(c)+\frac{1}{2}(1-\mu(c))(\pi(k|1,1)+\pi(k|1,0))}\\
+%&\frac{1}{2}(1-\mu(c))(\pi(k|1,1,)+\pi(k|1,0))<\pi(k|1,0)(1-\mu(c))\\
+%&\pi(k|1,1)<\pi(k|1,0).
+%\end{align*}By assumption \ref{distributions}, this will be true for all $k\leq k^*$.
+%\end{proof}
+
+
+
+
+
+
+
+\begin{lemma}  For any belief system $\mu$ suppose without loss of generality that $k_1\in K(1,\mu,\mu)$.  Then if $\sigma$ is such that $a_1(k_0,s_1,\mu)=1$ for $s_1\in\{0,1\}$ then either Lemma \ref{preferences over competence} will be true or:
+\begin{enumerate}
+\item $k_1\in K_3(\mu_0(\theta_2))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))$ implies $R$ is indifferent between $G_1$ and $G_2$.
+\item $k_1\in K_3(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))$ implies $R$ will weakly prefer $G_1$.
+\item $k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))$ implies $R$ will weakly prefer $G_1$ if: $\mu_1^2(c_1|k_1,1,1)\geq2\mu_0(c_2)-\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}$.
+\item $k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))$ implies $R$ will weakly prefer $G_1$ if: $\frac{\mu^2_1(c_1|k_1,1,1)+\mu^2_1(c_1|k_1,1,0)}{2}\geq\mu_0(c_2)$.
+\item $k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))$ implies $R$ will weakly prefer $G_1$ to $G_2$ if: $\mu_1^2(c_1|k_1,1,1)\geq2\mu_0(c_2)+\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}$.
+\item $k_1\in K_1(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))$ implies $R$ will weakly prefer $G_1$ to $G_2$.
+\item $k_1\in K_1(\mu_0(\theta_2))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))$ implies $R$ is indifferent between $G_1$ and $G_2$.
+\end{enumerate}\label{ruler decision}
+\end{lemma}
+\begin{proof}The proof is analogous to that for Lemma \ref{preferences over competence}, and so is omitted.
+%Fix $\sigma$ such that $a_1(k_0,s_1,\mu)=1$.  Suppose without loss of generality that $k_1\in K(1,\mu,\mu)$.  Then: $(1)$ by Lemma \ref{beliefs2} $\mu_R(\theta_1)\neq\mu_1^2(\theta_1)$ and; $(2)$ by Lemma \ref{changes in beliefs} and \ref{military status quos that improve competence} we have $3$ cases to consider: it could be that $\mu_1^2(c_1|k_1,1,1)>\mu_0(c_2)$ and $\mu_1^2(c_1|k_1,a_1,0)>\mu_0(c_2)$, in which case the results of Lemma \ref{preferences over competence} apply; it could be that $\mu_1^2(c_1|k_1,1,1)<\mu_0(c_2)$ and $\mu_1^2(c_1|k_1,1,0)<\mu_0(c_2)$, in which case again the results of Lemma \ref{preferences over competence} apply; it could be that $\mu_1^2(c_1|k_1,1,1)>\mu_0(c_2)$ and $\mu_1^2(c_1|k_1,1,0)<\mu_0(c_2)$, in which case there are seven cases to consider.  
+
+%\noindent \textbf{Case $\mathbf{(1)}$} it could be that $k_1\in K_3(\mu_0(\theta_2))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))$.  Then by the same argument as in Lemma \ref{preferences over competence} above, $R$ will be indifferent between $G_1$ and $G_2$.
+
+%\noindent \textbf{Case $\mathbf{(2)}$} it could be that $k_1\in K_3(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))$.  Then by definition, $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,1))=s_2$, $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,0))=0$, and $a_2(k_1,s_2,\mu_0(\theta_2))=0$.  Then $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is $\gamma(k_1)$ while $r(k_1,a,\mu_R)$ implies that the expected utility to $R$ is:
+%\begin{align*}
+%&\sum_{j\in\Omega}\sum_{s_1\in S}\sum_{s_2\in S}E(E(u(s_2)|\omega_2,s_1))=\sum_{j\in\Omega}\sum_{s_1\in S}\sum_{s_2\in S}E(u(s_2)|\omega_2,s_1)p(\omega_2,s_1)\\
+%&=\sum_{j\in\Omega}\sum_{s_1\in S}\sum_{s_2\in S}E(u(s_2)|\omega_2,s_1)p(\omega_2)p(s_1)=\sum_{j\in\Omega}\sum_{s_1\in S}\sum_{s_2\in S}u(s_2)p(s_2|\omega_2,s_1)p(\omega_2)p(s_1)
+%\end{align*}Note that:
+%\begin{align*} 
+%p(s_1=1)&=p(s_1=1|\omega_1=1)p(\omega_1=1)+p(s_1=1|\omega_1=0)p(\omega_1=0)\\
+%&=\left(\mu_0(c_1)+\frac{1}{2}\mu_0(i_1)\right)\frac{1}{2}+\frac{1}{2}\mu_0(i_1)\frac{1}{2}=\frac{1}{2}.
+%\end{align*}Thus:
+%\begin{align*}
+%&\sum_{j\in\Omega}\sum_{s_1\in S}\sum_{s_2\in S}u(s_2)p(s_2|\omega_2,s_1)p(\omega_2)p(s_1)=\frac{1}{4}\sum_{j\in\Omega}\sum_{s_1\in S}\sum_{s_2\in S}u(s_2)p(s_2|\omega_2,s_1)\\
+%%&=\frac{1}{4}\left(\left(\mu_R(c|s_1=1)+\frac{\mu_R(i|s_1=1)}{2}\right)\sum_{k^{\prime}>1}\pi(k^{\prime},1,1)\gamma(k^{\prime})+\frac{\mu_R(i|s_1=1)}{2}\gamma(k_1)\right)\\
+%%&+\frac{1}{4}\left(\frac{\mu_R(i|s_1=1)}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})+\left(\mu_R(c|s_1=1)+\frac{\mu_R(i|s_1=1)}{2}\right)\gamma(k_1)\right)+\frac{\gamma(k_1)}{2}\\
+%%&=\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{3\gamma(k_1)}{4}.\\
+%&=\frac{1}{4}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,1),1)\gamma(k_2)+\frac{3\gamma(k_1)}{4}
+%\end{align*}Therefore, $R$ prefers $G_1$ if: $\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,1),1)\gamma(k_2)\geq\gamma(k_1)$.  This is true by definition, since $k_1\in K_2(\mu_1^2(\theta_1|k_1,1,1))$.
+
+%\noindent \textbf{Case $\mathbf{(3)}$} it could be that $k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))$.  Then by definition $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,1))=s_2$, $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,0))=0$ for $s_2\in\{0,1\}$, and $a_2(k_1,s_2,\mu_0(\theta_2))=s_2$.  Then $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%%&\frac{1}{2}\left(\left(\mu_0(c_2)+\frac{\mu_0(i)}{2}\right)\sum_{k^{\prime}}\pi(k^{\prime}|,1,1)\gamma(k^{\prime})+\frac{\mu_0(i_2)}{2}\gamma(k_1)\right)\\
+%%&+\frac{1}{2}\left(\frac{\mu_0(i_2)}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})+\left(\mu_0(c_2)+\frac{\mu_0(i_2)}{2}\right)\gamma(k_1)\right)\\
+%%&\frac{1}{2}\left(\mu_0(c_2)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_0(i_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{1}{2}\gamma(k_1)
+%$\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\frac{\gamma(k_1)}{2}$.
+%%\end{align*}
+%Alternatively $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ is: $\frac{1}{4}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,1),1)\gamma(k_2)+\frac{3\gamma(k_1)}{4}$.  Therefore, $R$ will prefer $G_1$ to $G_2$ if:
+%%\begin{align*}
+%%&\frac{1}{2}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{\gamma(k_1)}{2}\\
+%%&\geq\mu_0(c_2)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_0(i_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\\
+%%&\frac{1}{2}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{\gamma(k_1)}{2}\\
+%%&\geq\mu_0(c_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\\
+%%&\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\gamma(k_1)\\
+%%&\geq2\mu_0(c_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\\
+%$\mu_1^2(c_1|k_1,1,1)\geq2\mu_0(c_2)+\frac{\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)-\gamma(k_1)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}$.
+%%\end{align*}
+
+%\noindent\textbf{Case $\mathbf{(4)}$} it could be that $k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,0))$.  Then by definition $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,1))=s_2$, $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,0))=s_2$ for $s_2\in\{0,1\}$, and $a_2(k_1,s_2,\mu_0(\theta_2))=s_2$.  Then $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%%\frac{1}{2}\left(\mu_0(c_2)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_0(i_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{1}{2}\gamma(k_1)
+%$\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\frac{\gamma(k_2)}{2}$
+%%\end{align*}
+%while $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%$\frac{1}{4}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,1))\gamma(k_2)+\frac{1}{4}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,0))\gamma(k_2)+\frac{\gamma(k_1)}{2}$
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&+\frac{1}{4}\left(\mu_R(c|s_1=0)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=0)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&+\frac{\gamma(k_1)}{2}.
+%%\end{align*}
+%Therefore, $R$ will prefer $G_1$ to $G_2$ if: $\frac{1}{4}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,1))\gamma(k_2)+\frac{1}{4}\sum_{k_2>1}\mathcal{P}(k_2,\mu_1^2(\theta_1|k_1,1,0))\gamma(k_2)+\frac{\gamma(k_1)}{2}\geq\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\frac{\gamma(k_2)}{2}$
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&+\frac{1}{4}\left(\mu_R(c|s_1=0)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=0)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&\geq\frac{1}{2}\left(\mu_0(c_2)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_0(i_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&+\frac{1}{4}\left(\mu_R(c|s_1=0)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%%&\geq\frac{1}{2}\left(\mu_0(c_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)-\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})+\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)\\
+%or $\frac{\mu_1^2(c_1|k_1,1,1)+\mu_1^2(c_1|k_1,1,0)}{2}\geq\mu_0(c_2)$.
+%%\end{align*}
+
+%\noindent\textbf{Case $\mathbf{(5)}$} it could be that $k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))$.  Then by definition $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,1))=s_2$, $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,0))=1$ for $s_2\in\{0,1\}$, and $a_2(k_1,s_2,\mu_0(\theta_2))=s_2$.  Then $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%%&\frac{1}{2}\left(\mu_0(c_2)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_0(i_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{1}{2}\gamma(k_1).
+%$\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\frac{\gamma(k_1)}{2}$.
+%%\end{align*}
+%Alternatively, $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{\gamma(k_1)}{4}\\
+%%&+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})
+%$\frac{1}{4}\sum_{k_2}\mathcal{P}(k_2,\mu_1^2(\theta_1|1,1,1),1)\gamma(k_2)+\frac{\gamma(k_1)}{4}+\frac{1}{2}\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)$
+%%\end{align*}
+%Therefore, $R$ will prefer $G_1$ to $G_2$ if:
+%%\begin{align*}
+%$\frac{1}{4}\sum_{k_2}\mathcal{P}(k_2,\mu_1^2(\theta_1|1,1,1),1)\gamma(k_2)+\frac{\gamma(k_1)}{4}+\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)\geq\frac{1}{2}\sum_{k_2>1}\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\frac{\gamma(k_1)}{2}$
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{\gamma(k_1)}{4}\\
+%%&+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})\\
+%%&\geq\frac{1}{2}\left(\mu_0(c_2)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_0(i_2)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{1}{2}\gamma(k_1)\\
+%or $\mu_R(c_1|k_1,1,1)\geq2\mu_0(c_2)+\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}$.
+%%\end{align*}
+
+%\noindent\textbf{Case $\mathbf{6}$} it could be that $k_1\in K_1(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))$.  Then by definition $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,1))=s_2$, $a_1(k_1,s_2,\mu_1^2(\theta_1|k_1,1,0))=1$ for $s_2\in\{0,1\}$, and $a_2(k_1,s_2,\mu_0(\theta_2))=1$ for $s_2\in\{0,1\}$.  Then $r(k_1,a,\mu_R)=1$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%%\frac{1}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime}).
+%$\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)$.
+%%\end{align*}
+%Alternatively, $r(k_1,a,\mu_R)=0$ implies that the expected utility to $R$ is:
+%%\begin{align*}
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{\gamma(k_1)}{4}\\
+%%&+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})
+%$\frac{1}{4}\sum_{k_2}\mathcal{P}(k_2,\mu_1^2(\theta_1|1,1,1),1)\gamma(k_2)+\frac{\gamma(k_1)}{4}+\frac{1}{2}\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)$
+%%\end{align*}
+%Therefore, $R$ will prefer $G_1$ to $G_2$ if:
+%%\begin{align*}
+%%&\frac{1}{4}\left(\mu_R(c|s_1=1)\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\mu_R(i|s_1=1)\sum_{k^{\prime}>1}\frac{\pi(k^{\prime}|1,1)+\pi(k^{\prime}|1,0)}{2}\gamma(k^{\prime})\right)+\frac{\gamma(k_1)}{4}\\
+%%&+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1}{4}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})
+%%\geq\frac{1}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,1)\gamma(k^{\prime})+\frac{1}{2}\sum_{k^{\prime}>1}\pi(k^{\prime}|1,0)\gamma(k^{\prime})\\
+%$\mu_1^2(c_1|k_1,1,1)\geq\frac{\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)-\gamma(k_1)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}$.
+%%\end{align*}
+%This follows immediately since $k_1\in K_2(\mu_1^2(\theta_1|k_1,1,1))$.
+
+%\noindent\textbf{Case $\mathbf{(7)}$} it could be that $k_1\in K_1(\mu_0(\theta_2))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))$.  Then by the same argument as case $(7)$ above, $R$ is indifferent between $G_1$ and $G_2$.
+
+\end{proof}
+
+
+
+
+
+
+
+
+\noindent\textbf{Proposition \ref{if d is small then generals can be aggressive}}
+\begin{proof}Fix a strategy profile for $G_1$ in which $a_1(k_0,s_1,\mu_0(\theta_1))=1$, and assume that $\alpha>0$, $\mu_0(c_1)<\mu_0(c_2)$, and $k_0\in K^2_2(\mu_0(\theta_2))$.  Suppose that $s_1=0$, and consider the deviation to $a_1(k_0,0,\mu_0(\theta_1))=0$.  Then by the off-path beliefs specified for the ruler, $\mu_R(\theta_1|k_0,0,\sigma)=\mu_1^2(\theta_1|k_0,0,0)=\mu_0(\theta_1)$.  Therefore, by Lemma \ref{preferences over competence}, it will be optimal for $R$ to choose $r(k_1,0,\mu)=1$.  To derive the expected utility to $G_1$ for following the specified strategy, let:
+%\begin{align*}
+%K_c(k_1)&=K_3(\mu_0(\theta_2))\bigcap K_1(\mu_0(\theta_2))\\
+%&\bigcap\left\{k_1\in \left.K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))\right|\right.\\
+%&\left.\mu_1^2(c_1|k_1,1,1)\geq2\mu_0(c_2)-\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}\right\}\\
+%&\bigcap\left\{k_1\in \left.K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,0))\right.\right|\\
+%&\left.\frac{\mu_1^2(c_1|k_1,1,1)+\mu_1^2(c_1|k_1,1,0)}{2}\geq\mu_0(c_2)\right\}\\
+%&\bigcap\left\{\left.k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))\right|\right.\\
+%&\left.\mu_1^2(c_1|k_1,1,1)\geq2\mu_0(c_2)+\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}\right\}
+%\end{align*}denote the set of military status quos where (by Lemma \ref{ruler decision}) $R$ retains $G_1$.  Similarly, let:
+\begin{align*}
+K_r(k_1)&=\left\{k_1\in \left.K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_3(\mu_1^2(\theta_1|k_1,1,0))\right|\right.\\
+&\left.\mu_1^2(c_1|k_1,1,1)<2\mu_0(c_2)-\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}\right\}\\
+&\bigcap\left\{k_1\in \left.K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,0))\right.\right|\\
+&\left.\frac{\mu_1^2(c_1|k_1,1,1)+\mu_1^2(c_1|k_1,1,0)}{2}<\mu_0(c_2)\right\}\\
+&\bigcap\left\{\left.k_1\in K_2(\mu_0(\theta_2))\bigcap K_2(\mu_1^2(\theta_1|k_1,1,1))\bigcap K_1(\mu_1^2(\theta_1|k_1,1,0))\right|\right.\\
+&\left.\mu_1^2(c_1|k_1,1,1)<2\mu_0(c_2)+\frac{\gamma(k_1)-\sum_{k_2>1}\frac{\pi(k_2|1,1)+\pi(k_2|1,0)}{2}\gamma(k_2)}{\sum_{k_2>1}\frac{\pi(k_2|1,1)-\pi(k_2|1,0)}{2}\gamma(k_2)}\right\}
+\end{align*}denote the set of military where $R$ removes $G_1$.  Given these, under the specified strategy the expected utility to $G_1$ is:
+\begin{align*}
+\alpha\sum_{k_1>1}\mathcal{P}(k_1,\mu_0(\theta_1),0)V(k_1,1,1)+d\left(\sum_{k_1\in K_r(k_1)}\mathcal{P}(k_1,\mu_0(\theta_1),0)\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)+1}{2}\right)
+\end{align*}Therefore it follows that the deviation to $a_1=0$ will not be profitable so long as:
+\begin{align*}
+d<\frac{\alpha\left(\sum_{k_1>1}\mathcal{P}(k_1,\mu_0(\theta_1),0)V(k_1,1,0)-\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\gamma(k_1)}{2}\right)}{\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)+1}{2}\left(1-\sum_{k_1\in K_r(k_1)\mathcal{P}(k_1,\mu_0(\theta_1),0)}\right)}
+\end{align*}Since $k_0\in K_2^1(\mu_0)$, it follows by definition that the right hand side will always be negative, and so this deviation will not be profitable for sufficiently small $d$.  Suppose that $s_1=1$.  Then by analogous argument, the deviation to $a_1(k_0,1,\mu_0(\theta_1))=0$ will not be profitable so long as:
+\begin{align*}
+d<\frac{\alpha\left(\sum_{k_1>1}\mathcal{P}(k_1,\mu_0(\theta_1),1)V(k_1,1,1)-\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)\gamma(k_2)+\gamma(k_1)}{2}\right)}{\sum_{k_2>1}\frac{\mathcal{P}(k_2,\mu_0(\theta_2),1)+1}{2}\left(1-\sum_{k_1\in K_r(k_1)\mathcal{P}(k_1,\mu_0(\theta_1),1)}\right)}
+\end{align*}By $k_0\in K_2^1(\mu_0)$, it follows by definition that the right hand side is always positive, and therefore for any $d<0$, this deviation is not profitable.  Therefore, under the assumptions of the proposition, for sufficiently small $d$, these strategies for a Perfect Bayesian Equilibrium.
+\end{proof}
+
+
+
+
+
+
+
+\begin{thebibliography}{}
+
+\bibitem{} Bendor, Jonathon, and Adam Meirowitz.  2004.  ``Spatial Models of Delegation."  \textit{American Political Science Review}.  98(2): 293-310.
+
+\bibitem{} Bennett Scott D., and Allan C. Stam III.  1996.  ``The Duration of Interstate Wars: 1812-1985."  \textit{American Political Science Review}.  90(3):239-257.
+
+\bibitem{} Bennett Scott D., and Allan C. Stam III.  1998.  ``The Declining Advantage of Democracy: A Combined Model of War Outcomes and Duration."  \textit{The Journal of Conflict Resolution}.  42(3):344-366.
+
+\bibitem{} Blainey, Geoffrey.  1973.  \textit{The Causes of War}.  New York: The Free Press.
+
+\bibitem{} Brody, Richard A.  1992.  ``Assessing the President: The Media, Elite Opinion, and Public Support."  Stanford: Stanford University Press.
+
+\bibitem{} Bueno de Mesquita, Bruce, and Randolph M. Siverson.  1995.  ``War and the Survival of Political Leaders: A Comparative Study of Regime Types and Political Accountability."  \textit{American Political Science Review}.  89(4): 841-855.
+
+\bibitem{} Bueno de Mesquita, Bruce, James D. Morrow, Randolph M. Siverson, and Alastair Smith.  1999. ``An Institutional Explanation of the Democratic Peace."  \textit{American Political Science Review}.  93(4):  791-808.
+
+\bibitem{} Bueno de Mesquita, Bruce, and James D. Morrow, Randolph M. Siverson, Alastair Smith.  2004.  \textit{The Logic of Political Survival}.  The MIT Press.
+
+\bibitem{} Bullock, Alan.  1992.  \textit{Hitler and Stalin: Parallel Lives}.  New York:  Afred A. Knopt.
+
+\bibitem{} Canes-Wrone, Brandice, and Michael C. Herron, Kenneth Shotts.  ``Leadership and Pandering: A Theory of Executive Policymaking."  \textit{American Journal of Political Science}.  45(3): 532-550.
+
+\bibitem{} Chiozza, Giacomo, and H. E. Goemans.  2011.  \textit{Leaders and International Conflict.} New York: Cambridge University Press.
+
+\bibitem{} Chiozza, Giacomo, and Kristian S. Gleditsch, Henk E. Goemans.  2009.  ``Introducing \textit{Archigos}: A Data Set of Political Leaders, 1875--2003."  \textit{Journal of Peace Research}.  46(2): 269-283.
+
+\bibitem{} Churchill, Winston S.  1949.  \textit{Their Finest Hour}.  Boston:  Houghton Mifflin Co.
+
+\bibitem{} Churchill, Winston S.  1950a.  \textit{The Grand Alliance}.  Boston:  Houghton Mifflin Co.
+
+\bibitem{} Churchill, Winston S.  1950b.  \textit{The Hinge of Fate}.  Boston:  Houghton Mifflin Co.
+
+\bibitem{} Clark, David, and William Reed.  2003.  ``A Unified Model of War Onset \& Outcome."  \textit{Journal of Politics}.  65(1): 69-91.
+
+\bibitem{} Filson, Darren, and Suzanne Werner.  2002.  ``A Bargaining Model of War and Peace: Anticipating the Onset, Duration, and Outcome of War."  \textit{American Journal of Political Science}.  46(4): 819-837.
+
+\bibitem{} Filson, Darren, and Suzanne Werner.  2004.  ``Bargaining and Fighting: The Impact of Regime Type on War Onset, Duration, and Outcomes."  \textit{American Journal of Political Science}.  48(2): 296-313.
+
+Geddes, Barbara.  2003. \textit{Paradigms and Sandcastles: Theory Building and Research Design in Comparative Politics.} Ann Arbor:  University of Michigan Press.
+
+\bibitem{} Goemans, Hein.  2000.  \textit{War and Punishment: The Causes of War Termination and the First World War}. Princeton, N. J.: Princeton University Press.  
+
+\bibitem{} Heller, Mihail, and Aleksandr M. Nekrich.  \textit{Utopia in Power:  The History of the Soviet Union from 1917 to the Present.}  New York:  Summit Books, 1986.
+
+\bibitem{} Holmstr\"{o}m, Bengt.  1999.  ``Managerial Incentive Problems: A Dynamic Perspective."  \textit{Review of Economic Studies}.  66: 169-182.
+
+%\bibitem{} Kedziora, Jeremy.  2009.  ``Endogenous War Aims and State Resolve."  Working Paper.  University of Rochester.
+
+%\bibitem{} Khrushchev, Nikita S.  2004.  \textit{Memoirs of Nikita Khrushchev.  Vol. 1:  Commissar (1918-1945).}  Ed. Sergei Khrushchev.  University Park, PA:  Pennsylvania State University Press.
+
+\bibitem{} Lake, David A.  1992.  ``Powerful Pacifists: Democratic States and War."  \textit{American Political Science Review}.  86(2): 24-37.
+
+\bibitem{} Lewin, Ronald.  1984.  \textit{Hitler�s Mistakes}.  New York:  William Morrow \& Co., Inc.
+
+\bibitem{} Mitcham, Samuel W., Jr.  1988.  \textit{Hitler�s Field Marshals and Their Battles}.  Chelsea, MI:  Scarborough House Publishers.
+
+\bibitem{} Norpoth, Helmut.  1987.  ``Guns and Butter and Governmental Popularity in Britain."  \textit{American Political Science Review}.  81(3): 949-959.
+
+\bibitem{} Parrish, Michael.  1996.  \textit{The Lesser Terror:  Soviet State Security, 1939-1953. } Westport, Connecticutt:  Praeger.
+
+\bibitem{} Powell, Robert.  2004. ``Bargaining and Learning While Fighting."  \textit{American Journal of Political Science}.  48(2): 344-361.
+
+\bibitem{} Reiter, Dan.  1995.  ``Political Structure and Foreign Policy Learning: Are Democracies More Likely to Act on the Lessons of History?"  \textit{International Interactions}.  21(March): 39-62.
+
+\bibitem{} Reiter, Dan, and Allan Stam III.  1998a.  ``Democracy, War Initiation, and Victory."  \textit{American Political Science Review}.  92(3): 377-389.
+
+\bibitem{} Reiter, Dan, and Allan Stam III.  1998b.  ``Democracy and Battlefield Military Effectiveness."  \textit{The Journal of Conflict Resolution}.  42(3): 259-277.
+
+\bibitem{} Reiter, Dan, and Allan Stam III.  2002.  \textit{Democracies at War}.  Princeton University Press.
+
+\bibitem{} Simon, Michael W., and Erik Gartzke.  1996.  ``Political System Similarity and the Choice of Allies: Do Democracies Flock Together, or Do Opposites Attract?"  \textit{Journal of Conflict Resolution}.  40: 617-635.
+
+\bibitem{} Siverson, Randolph M.  1995.  ``Democracies and War Participation: In Defense of the Institutional Constraints Argument."  \textit{European Journal of International Relations}.  1(December):481-490.
+
+\bibitem{} Slantchev, Branislav L.  2003a.  ``The Power to Hurt: Costly Conflict with Completely Informed States."  \textit{American Political Science Review}.  97(1): 123-133.
+
+\bibitem{} Slantchev, Branislav L.  2003b.  ``The Principle of Convergence in Wartime Negotiations."  \textit{American Political Science Review}.  97(4): 621-632.
+
+\bibitem{} Speer, Albert.  1970.  \textit{Inside the Third Reich}.  New York:  Collier Books.
+
+\bibitem{} Synder, Jack.  1991.  \textit{Myths of Empire: Domestic Politics and International Ambition}.  Ithaca, NY: Cornell University Press.
+
+\bibitem{} Wagner, R. Harrison.  2000.  ``Bargaining and War."  \textit{American Journal of Political Science}.  44(3): 469-484.
+
+\bibitem{} Weeks, Jessica L. 2008.  ``Autocratic Audience Costs: Regime Type and Signaling Resolve.'' \textit{International Organization}.  62(1) (Winter):  35-64.
+
+\bibitem{} Zhukov, Georgii K.  1969.  \textit{Vospominaniia i razmyshleniia.}  Moskva:  Izdatel’stvo agentsva pechati novosti.
+
+\end{thebibliography}
+
+
+
+
+\end{document}18
