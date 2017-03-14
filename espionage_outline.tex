@@ -1,0 +1,403 @@
+%\documentclass[11pt,twocolumn]{article}
+\documentclass[12pt]{article}
+%\documentclass[10pt]{article}
+
+\title{Espionage and Optimal Information Compartmentalization}
+\usepackage{amsmath,amssymb,graphicx,amsthm}
+\usepackage{setspace}
+\usepackage{mathpazo}
+\usepackage{url}
+
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+%\usepackage[left=0.5in,top=0.75in,right=0.5in,bottom=1in,nohead]{geometry}
+
+\singlespacing
+%\author{Jeremy Kedziora}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[]{Definition}
+\newtheorem{assumption}[]{Assumption}
+\newtheorem*{example}{Example 1}
+
+\newenvironment{result}[1][Result]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+
+% Brenton's derivative commands -- to get df/dx, use \deriv{f}{x}; the use of \pderiv is analogous
+\newcommand{\deriv}[2]{\frac{d #1}{d #2}}
+\newcommand{\pderiv}[2]{\frac{\partial #1}{\partial #2}}
+
+% making it so nested enumerate uses lowercase roman numerals
+\renewcommand{\theenumii}{\roman{enumii}}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+
+
+
+\section*{Primitives}
+
+\begin{itemize}
+
+\item Two agencies responsible for allocating defensive resources, $A_1$ and $A_2$;
+
+\item An opponent $B$;
+
+\item A set of sites $K=\{1,\hdots,N\}$ which may potentially be attacked by $B$.  Agencies $A_1$ and $A_2$ are collectively responsible for the defense of these sites.
+
+\item Each agency can allocate resources in the defense of each site in $K$.
+
+\end{itemize}
+
+
+
+
+
+
+
+
+\section*{Timing}
+
+\begin{enumerate}
+
+\item The opponent $B$ first chooses a plan of attack.  A plan is a mapping $p:K \to [0,1]$.  Therefore $p(k)$ is the probability that the plan adopted by $B$ assigns to an attack on site $k$;\footnote{Note that $\sum_{k\in K}p(k)=1$.}
+
+\item Assets are committed to the attack: a site $k^*$ is drawn from $K$ according to $p(K)$.  The site $k^*$ that $B$ actually commits assets to attack is unobserved by $A_i$;
+
+%there is a problem here in that we need to require that the intersection of all these sets be larger than just k* or else these guys will figure this out.
+\item Each agency observes a signal, $S_i$.  A signal will be a set of sites that the opposition group $B$ could have attacked.  We will require that any signal contain only sites to which $p$ assigns positive probability.  We will also require that the signal contain the actual site to which $B$ has committed assets, $k^*$.  Therefore, given a plan of attack $p$, let the collection of admissible signals $\mathcal{S}(p)$ be:
+\begin{align*}
+\mathcal{S}(p)\subsetneq\{C\subseteq K|p(k)>0\mbox{ for all }k\in C,k^*\in C\}
+\end{align*}with $S_1,S_2\in\mathcal{S}(p)$ and $S=(S_1,S_2)$.  Let $\lambda(S_i,p,k)$ denote the probability that agency $i$ observes signal $S_i$ given plan $p$ and that assets are committed to an attack on $k$ and let.  Assume that signals are observed independently and with identical distribution conditional on $p$ and let:
+\begin{align*}
+\lambda(S,p,k)&=\lambda(S_1,p,k)\lambda(S_2,p,k)
+\end{align*}  Finally, assume that $S_i$ is observed only by $i$;
+
+\item The two agencies simultaneously decide whether or not to share the signal they have observed.  Denote an intelligence sharing policy by the map $s_i:\mathcal{S}(p) \to \{\emptyset,S_i\}$ where $S_i$ denotes the decision to share $S_i$ with agency $A_{-i}$ and $\emptyset$ denotes the decision to not share $S_i$.  Let $s=(s_1,s_2)$.
+
+\item After adopting an intelligence sharing policy, the two agencies simultaneously allocate resources to defend the sites.  A defensive allocation is an element $m_i\in \mathbb{R}_+^N$ with:
+\begin{align*}
+m_i=(m_i^1,m_i^2,\hdots,m_i^N).
+\end{align*}We will focus on pure strategies for defensive allocations.  Therefore with a slight abuse of notation, define a pure defensive allocation strategy as a mapping $m_i(S_i,s_{-i})$.  Let $m(S,s)=(m_i(S_i,s_{-i}))_{i\in\{1,2\}}$.  Assume that $m$ is unobserved by $B$;
+
+\item Opposition group $B$ then has the opportunity to go forward with the attack or not.  Let $a(k,\lambda,s,m)$ denote the probability that $B$ allows the attack to proceed given that assets have been committed to an attack on site $k$.  Since $B$ does not observe the signal observed by $A_i$ or the allocation of defensive resources, his decision depends on his beliefs that a particular signal might have been observed, on the intelligence sharing policy, and on the allocation strategy adopted as a function of the intelligence sharing policy, i.e. on $\lambda$, $s$, $m$;
+
+\item The probability that an attack on a site $k$ succeeds is given by $\pi(k,m)$, $\pi : K\times \mathbb{R}^2_+ \to [0, 1]$. 
+
+\begin{assumption}  \textbf{Convexity:}  Increasing the defensive allocation at a site decreases the likelihood that an attack there succeeds, i.e. $\pi(k,m)$ is strictly declining and strictly convex in $m^k$.  \label{convexity}
+\end{assumption}
+
+\begin{assumption}  \textbf{Necessary Effort:}  As effort increases the probability of a successful attack converges to $0$, i.e. for all $k\in K$ as $m_i^k\to\infty$ we have $\pi(k,m)\to0$.  Sites require effort to defend, i.e. for all $k\in K$ as $m_i^k\to0$ we have $\pi(k,0)\to 1$.\label{endpoints}
+\end{assumption}
+
+\begin{assumption}  \textbf{Independent Sites:}  Sites are independent so that changing the defensive allocation at one site does not change the likelihood that an attack succeeds at another, i.e. $\pi(k,m)$ is constant in all $m^{k^\prime}$ such that $k^{\prime}\neq k$.\label{independence}
+\end{assumption}
+
+\begin{assumption} \textbf{Identical Sites:}  Sites have the same intrinsic defensiveness, i.e. for all $k,k^{\prime}\in K$ we have $\pi(k,m)=\pi(k^{\prime},m)$.\label{equality}
+\end{assumption}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+\section*{Preferences}
+
+\begin{itemize}
+
+\item Each agency $A_i$ has a set of high-valued targets $H_i\subseteq K$ and low-valued targets $L_i\subseteq K$.  Each site must be either high or low value to $A_i$ and no site can be both, i.e. $H_i \cup L_i = K$ and $H_i \cap L_i = \emptyset$.  Given this, for $i\in B$ define:
+\begin{align*}
+v_i(k)&=\left\{\begin{array}{ll}
+v_H&\mbox{if }k\in H_i\\
+&\\
+v_L&\mbox{if }k\in L_i
+%0&\mbox{if there is no attack or a failed attack on }k
+\end{array}\right.
+\end{align*}where $v_H>v_L$;
+
+\item Assume that following a successful attack on site $k$ and given its defensive allocation $m_i$ agency $A_i$ gets a utility of:
+\begin{align*}
+-\sum_{k\in K} m_i^k-\left\{\begin{array}{ll}
+v_i(k)&\mbox{if there is a successful attack on }k\\
+&\\
+0&\mbox{if the attack on $k$ fails or there is no attack;}
+\end{array}\right.
+\end{align*}
+
+\item For the opposition group $B$ define:
+\begin{align*}
+v_B(k)&=\left\{\begin{array}{ll}
+v_H& \mbox{if $k \in H_1 \cap H_2$} \\
+v_L& \mbox{if $k \in L_1 \cap L_2$} \\
+\frac{1}{2} v_H + \frac{1}{2} v_L& \mbox{if }k\in H_i\cap L_{-i};
+%0&\mbox{if the attack fails}
+\end{array}\right.
+\end{align*}
+
+\item Opposition group $B$ has a utility for an attack on site $k$ of:
+\begin{align*}
+-c+\left\{\begin{array}{ll}
+v_B(k)&\mbox{if there is a successful attack on }k\\
+&\\
+0&\mbox{if the attack on $k$ fails}
+\end{array}\right.
+\end{align*}where $c$ is the fixed cost to $B$ of going forward with the attack.  Finally, if $B$ chooses not to go forward with the attack, he receives 0.
+
+\end{itemize}
+
+
+
+\section*{Backwards Induction}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%Expected utility for the opposition group B
+%%%%%%%%%%%%%%%%%%%%%%
+Beginning with the opposition group $B$, the expected utility for going forward with the attack given that assets have been allocated to attack site $k^*$ given plan $p$ is:
+\begin{align*}
+\sum_{S}\lambda(S,p,k^*)\pi(k^*,m(S,s))v_B(k^*)-c
+\end{align*}Therefore fixing a distribution $\lambda$ and an intelligence sharing policy $s$, for any site $k$:
+\begin{align*}
+a^*(k,\lambda,s,m)&=\left\{\begin{array}{ll}
+1&\mbox{if }\sum_{S}\lambda(S,p,k)\pi(k,m(S,s))v_B(k)>c
+\\
+&\\
+0&\mbox{if }\sum_{S}\lambda(S,p,k)\pi(k,m(S,s))v_B(k)<c.
+\end{array}\right.
+\end{align*}
+
+
+
+\vspace{20mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LEMMA Arguing that if B attacks a low value target then he will attack a higher value one
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}Fix a distribution $\mu$ and an allocation $m$.  Then if $B$ chooses to attack at site $k\in L_1\cap L_2$ in equilibrium then he will also choose to attack at site $k^{\prime}\in H_i\cap L_{-i}$.  If $B$ chooses to attack $k\in H_i\cap L_{-i}$ in equilibrium then he will also choose to attack at site $k^{\prime}\in H_1\cap H_2$.
+\end{lemma}
+\begin{proof}Fix an equilibrium and suppose that $a^*(k,\lambda,s^*)=1$ for $k\in L_1\cap L_2$.  Then from the above it must be that:
+\begin{align*}
+\sum_{S}\lambda(S,p,k)\pi(k,m(S,s))v_L>c
+\end{align*}Take any $k^{\prime}\in H_i\cap L_{-i}$.  Note that by assumption $\pi(k,m)=\pi(k^{\prime},m)$ and also that the value from a successful attack at $k^{\prime}$ is $\frac{1}{2}v_H+\frac{1}{2}v_L>v_L$.  Thus:
+\begin{align*}
+\sum_{S}&\lambda(S,p,k)\pi(k^{\prime},m(S,s))\left\{\frac{1}{2}v_H+\frac{1}{2}v_L\right\}>\sum_{S}\lambda(S_1,p,k)\pi(k,m(S,s))v_L>c,
+\end{align*}and so it must be that $a^*(k^{\prime},\lambda,s^*)=1$.  The second part of the claim follows by analogous logic.%This follows immediately from the assumption that $v_H>\frac{1}{2}v_H+\frac{1}{2}v_L>v_L$.
+\end{proof}
+
+
+
+\vspace{20mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%First we need to compute an expression for the beliefs held about k*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent Agency $i$ has two opportunities to update his beliefs regarding the site to which $B$ has committed assets to an attack.  He may update his beliefs after observing the signal and then may update his beliefs again after adopting an intelligence sharing policy.  Let $\mu_i(k|S_i,s_{-i},p)$ denote the posterior belief for agency $i$ that $k=k^*$, i.e. that is $k$ the site that the opposition group $B$ has committed assets to attack after $i$ has observed signal $S_i$ and given a plan of attack $p$.  By repeated applications of Bayes Rule and the Law of Total Probability:
+\begin{align*}
+\mu_1(k|S_1,s_2,p)&=\frac{\sum_{S|S_1}\lambda(S,p,k)\phi(S_2,s_{2})p(k)}{\sum_{k\in K}\sum_{S|S_1}\lambda(S,p,k)\phi(S_2,s_2)p(k)}
+%\frac{\mu_1(k,S_1,s_{2},p)}{\mu_1(S_1,s_{2},p)}=\frac{\mu_1(k,S_1,s_{2},p)}{\sum_{k\in K}\mu_1(k,S_1,s_{2},p)}=\frac{\sum_{S_2}\mu_1(k,S_1,S_2,s_{2},p)}{\sum_{k\in K}\sum_{S_2}\mu_1(k,S_1,S_2,s_{2},p)}\\
+%&=\frac{\sum_{S_2}\mu_1(S_1,S_2,s_{2},k,p)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1,S_2,s_{2},k,p)}=\frac{\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(S_2,s_{2},k,p)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(S_2,s_{2},k,p)}\\
+%&=\frac{\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2,k,p)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2,k,p)}\\
+%&=\frac{\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)\mu(k,p)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)\mu(k,p)}\\
+%&=\frac{\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)\mu(k,p)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)\mu(k,p)}\\
+%&=\frac{\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)\mu(k|p)\mu(p)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1|S_2,s_{2},k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)\mu(k|p)\mu(p)}\\
+%&=\frac{\sum_{S_2}\mu_1(S_1|k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)p(k)}{\sum_{k\in K}\sum_{S_2}\mu_1(S_1|k,p)\mu(s_{2}|S_2,k,p)\mu(S_2|k,p)p(k)}\\
+%&=\frac{\sum_{S_2}\lambda(S_1|p,k)\lambda(S_2|p,k)\mu(s_{2}|S_2,p)p(k)}{\sum_{k\in K}\sum_{S_2}\lambda(S_1|p,k)\lambda(S_2|p,k)\mu(s_{2}|S_2,p)p(k)}
+%\frac{\mu_i(k,S_i,p)}{\mu_i(S_i,p)}=\frac{\mu_i(k,S_i,p)}{\sum_{k\in K}\mu_i(k,S_i,p)}=\frac{\mu_i(S_i|p,k)\mu(p,k)}{\sum_{k\in K}\mu_i(S_i|p,k)\mu(p,k)}\\
+%&=\frac{\mu_i(S_i|p,k)\mu(k|p)\mu(p)}{\sum_{k\in K}\mu_i(S_i|p,k)\mu(k|p)\mu(p)}=\frac{\lambda(S_i,p,k)p(k)}{\sum_{k\in K}\lambda(S_i,p,k)p(k)}
+\end{align*}where:
+\begin{align*}
+\phi(S_2,s_2)&=\left\{\begin{array}{ll}
+1&\mbox{if }S_2=s_2\mbox{ or }s_2=\emptyset\mbox{ and if }S_1\cap S_2\neq\emptyset\\
+&\\
+0&\mbox{if }S_2\neq s_2\mbox{ and }s_2\neq\emptyset\mbox{ or if }S_1\cap S_2=\emptyset
+\end{array}\right.
+\end{align*}is an indicator function.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The expected utility to i for adopting defensive allocation m_i:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Given these beliefs, the expected utility to agency $A_i$ for a defensive allocation $m$ is:
+% \begin{align*}
+% -\sum_{k\in K}p(k)a(k,\mu)\pi(k,m)\left\{\begin{array}{ll}
+% v_H&k\in H_i\\
+% &\\
+% v_L&k\in L_i\\
+% \end{array}\right.-\sum_{k}m_i^k.
+% \end{align*}
+\begin{align*}
+-\sum_{k \in K} \mu_i(k|S_i, s_{-i},p) a(k,\lambda,s)\pi(k, m)v_i(k)-\sum_{k\in K}m_i^k.
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%LEMMA Arguing there is a highest rationalizable amount of resources allocatable
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}There exists $\overline{m}$ such that in any equilibrium it must be that:
+\begin{align*}
+\sum_{k\in K} m_i^{k*} \leq \overline{m}.%\sum_{k \in K} \mu_i(k|S_i,s_{-i}^*,p^*)v_i(k)
+\end{align*}\label{upper bound}
+\end{lemma}
+\begin{proof}
+Without loss of generality, consider agency $1$, and suppose that the claim is false.  Then for all $\overline{m}$ there exists an equilibrium in which: $\sum_{k \in K} m_1^{k*} > \overline{m}$.  Consider any $\overline{m}$ such that:
+\begin{align*}
+\overline{m}&>\sum_{k \in K} \mu_1(k|S_1,s_2^*,p^*)v_1(k).
+\end{align*}By assumption, there exists an equilibrium such that $\sum_{k \in K} m_1^{k*} > \overline{m}$.  Take any such equilibrium and consider the deviation to an allocation $m^{\prime}_1=0$.  The expected utility associated with this deviation is:
+\begin{align*}
+-\sum_{k\in K} \mu_1(k|S_1,s_2^*,p^*)a^*(k,\lambda,s^*)\pi(k,0,m_2^*)v_1(k)
+\end{align*}This deviation will be unprofitable so long as:
+\begin{align*}
+\sum_{k\in K} \mu_1(k|S_1,s_2^*,p^*) a^*(k,\lambda,s^*)\left\{\pi(k,0,m^*_2)-\pi(k,m^*)\right\}v_1(k)\geq \sum_{k\in K}m_1^{k*}
+\end{align*}Note that $\pi(k,0,m_2^*)$ has a maximum value of $1$ while $\pi(k,m^*)$ has a minimum value of $0$.  Thus we have:
+\begin{align*}
+\sum_{k\in K}m_i^{k*}&>\sum_{k \in K} \mu_1(k|S_1,s_2^*,p^*)v_1(k)\\
+&\geq
+\sum_{k\in K}\mu_1(k|S_1,s_2^*,p^*)a^*(k, \lambda,s^*)v_1(k)\\
+&\geq
+\sum_{k \in K} \mu_1(k|S_1,s_2^*,p^*)a^*(k,\lambda,s^*)\left\{\pi(k,0,m^*_2)-\pi(k,m^*)\right\}v_1(k)\\
+&\geq\sum_{k\in K}m_i^{k*},
+\end{align*}
+which is a contradiction.  This argument implies that there does not exist an equilibrium such that $\sum_{k \in K} m_1^{k*} > \overline{m}$, for all $\overline{m}>\sum_{k \in K} \mu_1(k|S_1,s_2^*,p^*)v_1(k)$.  
+\end{proof}
+
+
+\vspace{30mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Here we define the constrained optimization problem faced by the two agencies
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Without loss of generality, given an allocation $m^*_{2}$ adopted by agency $A_{2}$, agency $A_1$ will allocate resources according to $m_1$.  In an equilibrium in which allocations are in pure strategies, $m_1^*$ must solve:
+\begin{align*}
+\max_{m_1\in\mathbb{R}_+^N}\left\{-\sum_{k \in K} \mu_1(k|S_1, s_{2},p) a(k,\lambda,s,m)\pi(k, m_1,m^*_{2})v_1(k)-\sum_{k\in K}m_1^k\right\}
+\end{align*}subject to $-m_1^k\leq0$ for all $k\in K$.  
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Let's think about the solution to the problem when we don't care about a()
+%This will help us with the solution to the problem when we do care about a()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Define the following Lagrangian:
+\begin{align*}
+\mathcal{L}(m_1)&=-\sum_{k\in K}\mu_1(k|S_1,s_2,p)a(k,\lambda,s,m)\pi(k,m_1,m_2)v_1(k)-\sum_{k\in K}m_1^k%+\sum_{k\in K}\lambda_km_1^k
+\end{align*}with the associated Kuhn-Tucker conditions which must be solved in equilibrium:
+\begin{align*}
+%\pderiv{\pi(k,m_1,m_2)}{m_1^k}=0;\hspace{3mm}m_1^k\geq0;\hspace{3mm}\lambda_k\geq0;\hspace{3mm}\lambda_km_1^k=0
+\pderiv{\pi(k,m_1,m_2)}{m_1^k}\leq0;\hspace{3mm}m_1^k\geq0;\hspace{3mm}m_1^k\pderiv{\pi(k,m_1,m_2)}{m_1^k}=0
+\end{align*}for all $k\in K$.  To characterize a solution to this problem consider:
+\begin{align*}
+\pderiv{\mathcal{L}(m_1)}{m_1^k}&=\pderiv{}{m_1^k}\left\{\sum_{k\in K}\mu_1(k|S_1,s_2,p)a(k,\lambda,s,m)\pi(k,m_1,m_2)v_1(k)-\sum_{k\in K}m_1^k\right\}\\
+%&=\pderiv{}{m_1^k}\left\{\sum_{k\in K}\mu_1(k|S_1,s_2,p)\pi(k,m_1,m_2)v_1(k)\right\}-\pderiv{}{m_1^k}\left\{\sum_{k\in K}m_1^k\right\}\\
+%&=\sum_{k\in K}\mu_1(k|S_1,s_2,p)\left\{\pderiv{\pi(k,m_1,m_2)}{m_1^k}\right\}v_1(k)-\pderiv{}{m_1^k}\left\{\sum_{k\in K}m_1^k\right\}\\
+&=-\sum_{k\in K}\mu_1(k|S_1,s_2,p)\left\{\pderiv{a(k,\lambda,s,m)\pi(k,m_1,m_2)}{m_1^k}\right\}v_1(k)-1.
+\end{align*}By Assumptions \ref{convexity} and \ref{endpoints}, for any site $k$, any $c>0$, and any $v_B(k)>0$ there exists $m(S,s)$ with $m_1^k(S_1,s_2)$ and $m_2^k(S_2,s_1)$ sufficiently large so that:
+\begin{align}
+\sum_S\lambda(S,p,k)\pi(k,m(S,s))\leq\frac{c}{v_B(k)}\label{a}
+\end{align}which would imply that $a(k,\lambda,s,m)=0$ is optimal.  Fix any such $m(S,s)$.  Then note that if this pair of allocation strategies is optimal it must necessarily be true that \eqref{a} holds with equality, since if the inequality was strict either agency would have a profitable deviation to allocate less to the defense of site $k$ while maintaining the same outcome.  Therefore, given $m_2(S_2,s_1)$ let $\overline{m}_1^k(m_2(S_2,s_1))$ denote the allocation such that \eqref{a} is satisfied with equality.  This discussion implies that for any site $k$ and any $m_2(S_2,s_1)$ with $m_2^k(S_2,s_1)$ sufficiently large such that:
+\begin{align*}
+\sum_S\lambda(S,p,k)\pi(k,0,m_2(S_2,s_1))\leq\frac{c}{v_B(k)}
+\end{align*}$m_1^*$ must be such that $m_1^{k*}=0$.  %If Agency $A_2$ is allocating a sufficient amount to the defense of site $k$ that $B$ refuses to attack, regardless of what $A_1$ chooses, then $A_1$ will choose a best response that allocates nothing to the defense of site $k$.
+
+Next, note that for any $k$ and any $m_2(S_2,s_1)$ with $m_2^k(S_2,s_1)$ sufficiently small such that:
+\begin{align}
+\sum_S\lambda(S,p,k)\pi(k,0,m_2(S_2,s_1))>\frac{c}{v_B(k)}\label{0}
+\end{align}it is always possible for $A_1$ to choose $m_1(S_1,s_2)$ so that $m_1^k(S_1,s_2)$ is sufficiently large that \eqref{a} holds with equality.  The expected utility to $A_1$ given this allocation strategy is: $-\sum_{k\in K}m_1^k$.  Next consider the maximization problem for $A_1$ and fix $a(k,\lambda,s,m)=1$.  By Lemma \ref{upper bound} a maximizer $m_1^{k*}$ must exist in $[0,\overline{m}]$.  %Note that for any $k$ and any $m_2(S_2,s_1)$ with $m_2^k(S_2,s_1)$ sufficiently small such that \eqref{0} is satisfied the maximizer $m_1^*$ will have $m_1^{k*}$ interior if:
+%\begin{align*}
+%%-\sum_{k\in K}\mu_1(k|S_1,s_2,p)\left\{\pderiv{\pi(k,m_1,m_2)}{m_1^k}\right\}v_1(k)>1\\
+%%-\mu_1(k|S_1,s_2,p)\left\{\pderiv{\pi(k,m_1,m_2)}{m_1^k}\right\}v_1(k)+\sum_{j\neq k}\mu_1(j|S_1,s_2,p)\left\{\pderiv{\pi(j,m_1,m_2)}{m_1^k}\right\}v_1(j)>1\\
+%%-\mu_1(k|S_1,s_2,p)\left\{\pderiv{\pi(k,m_1,m_2)}{m_1^k}\right\}v_1(k)+\sum_{j\neq k}\mu_1(j|S_1,s_2,p)\left\{0\right\}v_1(j)>1\\
+%-\left\{\pderiv{\pi(k,0,m_2(S_2,s_1))}{m_1^k}\right\}>\frac{1}{\mu_1(k|S_1,s_2,p)v_1(k)}
+%\end{align*}%and will satisfy:
+%%\begin{align*}
+%%-\left\{\pderiv{\pi(k,m_1^*,m_2(S_2,s_1))}{m_1^k}\right\}=\frac{1}{\mu_1(k|S_1,s_2,p)v_1(k)}.
+%%\end{align*}
+The maximized value of the expected utility for $A_1$ is:
+\begin{align*}
+-\sum_{j\in K}\mu_1(j|S_1,s_2,p)\pi(k,m_1^*,m_2(S_2,s_2))v_1(j)-\sum_{j\in K}m_1^{j*}
+\end{align*}Note that for all $m_1^k$ we have:
+\begin{align*}
+%-\sum_{j\neq k}&\mu_1(j|S_1,s_2,p)\pi(j,m_1^*,m_2(S_2,s_2))v_1(j)-m_1^k-\sum_{j\neq k}m_1^{j*}\\
+%>&-\sum_{j\neq k}\mu_1(j|S_1,s_2,p)\pi(j,m_1^*,m_2(S_2,s_2))v_1(j)-\sum_{j\neq k}m_1^{j*}\\
+%&-\mu_1(k|S_1,s_2,p)\pi(k,m_1^k,m_2(S_2,s_2))v_1(k)-m_1^k\\
+-m_1^{k*}&>-\mu_1(k|S_1,s_2,p)\pi(k,m_1^*,m_2(S_2,s_2))v_1(k)-m_1^{k*}.
+\end{align*}It follows from this that there exists $\widehat{m}_1^{k}>m_1^{k*}$ such that:
+\begin{align*}
+-\widehat{m}_1^{k}=-\mu_1(k|S_1,s_2,p)\pi(k,m_1^*,m_2(S_2,s_2))v_1(k)-m_1^{k*}.
+\end{align*}Thus, if $\overline{m}_1^k(m_2(S_2,s_1))$ satisfies: $\overline{m}_1^k(m_2(S_2,s_1))<\widehat{m}_1^k$ then it must be that:
+\begin{align*}
+-\sum_{j\neq k}&\mu_1(j|S_1,s_2,p)\pi(j,m_1^*,m_2(S_2,s_2))v_1(j)-\overline{m}_1^k(m_2(S_2,s_1))-\sum_{j\neq k}m_1^{j*}\\
+>&-\sum_{j\in K}\mu_1(j|S_1,s_2,p)\pi(j,m_1^*,m_2(S_2,s_2))v_1(j)-\sum_{j\in K}m_1^{j*}.
+\end{align*}Therefore it will be optimal for $A_1$ to deviate from the maximizer $m_1^*$ that satisfies the Kuhn-Tucker conditions for the Lagrangian with $a(k,\lambda,s,m)=1$ to $\overline{m}_1^k(m_2(S_2,s_1))$.  If $\overline{m}_1^k(m_2(S_2,s_1))$ satisfies $\overline{m}_1^k(m_2(S_2,s_1))>\widehat{m}_1^k$ then:
+\begin{align*}
+-\sum_{j\neq k}&\mu_1(j|S_1,s_2,p)\pi(j,m_1^*,m_2(S_2,s_2))v_1(j)-\overline{m}_1^k(m_2(S_2,s_1))-\sum_{j\neq k}m_1^{j*}\\
+<&-\sum_{j\in K}\mu_1(j|S_1,s_2,p)\pi(j,m_1^*,m_2(S_2,s_2))v_1(j)-\sum_{j\in K}m_1^{j*}
+\end{align*}which would imply that deviation to $\widehat{m}_1^k$ from $m_1^{k*}$ is not profitable.  With this discussion, we may write the best response correspondence for $A_1$.  Denote this correspondence by: 
+\begin{align*}
+m^k_1(S_1,s_2,m_2;\widehat{m}_1)&=\left\{\begin{array}{ll}
+0&\mbox{if }m_2(S_2,s_1)\mbox{ is such that }\eqref{0}\mbox{ is satisfied}\\
+m_1^{k*}&\mbox{if }\overline{m}_1^k(m_2(S_2,s_1))>\widehat{m}_1^k\\
+\overline{m}_1^k(m_2(S_2,s_1))&\mbox{if }\overline{m}_1^k(m_2(S_2,s_1))<\widehat{m}_1^k\\
+\end{array}\right.
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Here let's characterize the BR correspondence for k\in S_i
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%A lemma arguing that neither agency will allocate resources to defend sites outside signals
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lemma}In equilibrium, if $s_{-i}\neq\emptyset$ then $m_i^{k*}=0$ for all $k\notin S_1\cap S_2$.  If $s_{-i}=\emptyset$ then $m_i^{k*}=0$ for all $k\notin S_1$.
+\end{lemma}
+\begin{proof}Suppose not.  Then there exists an equilibrium in which either $s_{-i}\neq\emptyset$ and for some $k\notin S_1\cap S_2$ we have $m_i^{k*}>0$ or $s_{-i}=\emptyset$ and for some $k\notin S_i$ we have $m_i^{k*}>0$.  Suppose that $s_{-i}\neq\emptyset$.  Then the expected utility to $i$ under the equilibrium strategy profile will be:
+\begin{align*}
+-\sum_{k\in K}\mu_i(k|S_i,s_{-i},p)p(a=1|k,\lambda,s)\pi(k,m^*)v_i(k)-\sum_{j\in K}m_i^{j*}.
+\end{align*}Note that by definition of $\mathcal{S}(p)$ we have $k^*\in S_i$ for all $k\notin S_i$ it must be that $k\neq k^*$, and so $\lambda(S_i,p,k)=0$ for any such $k$, implying that $\mu_i(k|S_i,s_{-i},p)=0$.  Thus, at the maximizer $m_i^*$ we must have:
+\begin{align*}
+&\pderiv{}{m_i^k}\left\{-\sum_{k\in K}\mu_i(k|S_i,s_{-i},p)p(a=1|k,\lambda,s)\pi(k,m^*)v_i(k)-\sum_{j\in K}m_i^{j*}\right\}=0\\
+%&-\pderiv{}{m_i^k}\left\{\sum_{k\in K}\mu_i(k|S_i,s_{-i},p)p(a=1|k,\lambda,s)\pi(k,m^*)v_i(k)\right\}-\pderiv{}{m_i^k}\left\{\sum_{j\in K}m_i^{j*}\right\}=0\\
+&-\pderiv{}{m_i^k}\left\{\sum_{k\in K}(0)p(a=1|k,\lambda,s)\pi(k,m^*)v_i(k)\right\}-\pderiv{}{m_i^k}\left\{\sum_{j\in K}m_i^{j*}\right\}=0\\
+&-\pderiv{}{m_i^k}\left\{0\right\}-\pderiv{}{m_i^k}\left\{\sum_{j\in K}m_i^{j*}\right\}=0\\
+&-\pderiv{}{m_i^k}\left\{\sum_{j\in K}m_i^{j*}\right\}=0\\
+&-1=0
+\end{align*}which is a contradiction.
+\end{proof}
+
+
+
+
+
+
+
+\end{document}
+
+% DO NOT DELETE
+% (this is so Brenton doesn't screw up everything with Emacs)
+% .
+% Local variables:
+% mode: LaTeX
+% LaTeX-indent-level: 0
+% LaTeX-item-indent: 0
+% eval: (auto-fill-mode 0)
+% fill-column: 10000
+% End:
+% 
